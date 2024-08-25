@@ -18,3 +18,17 @@ export interface IGetFilesResponse {
   folder_id: string;
   files: IFiles[];
 }
+
+export interface IGetOneTimesViewArg {
+  oneTimeLink: string;
+  viewPassword: string;
+}
+
+export interface IGetOneTimesViewResponse {
+  file_count: number;
+  folder_name: string;
+  lifetime: number;
+  folder_size: number;
+  folder_id: string;
+  files: IFiles[];
+}
