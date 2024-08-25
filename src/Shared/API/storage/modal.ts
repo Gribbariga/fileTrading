@@ -44,3 +44,8 @@ export interface ICreateFolderResponse {
   folder_id: string;
   view_link: string;
 }
+
+export interface IRenameFolderArg {
+  folder_id: string;
+  new_name: string;
+}

@@ -6,6 +6,7 @@ import {
   IGetFilesResponse,
   IGetOneTimesViewArg,
   IGetOneTimesViewResponse,
+  IRenameFolderArg,
 } from "./modal";
 
 export const getFiles = async (arg: IGetFilesArg) => {
@@ -25,4 +26,8 @@ export const createFolder = async (arg: ICreateFolderArg) => {
     "api/storage/folder/create",
     arg
   );
+};
+
+export const renameFolder = async (arg: IRenameFolderArg) => {
+  return await axiosBase.patch<null>("/api/storage/folder/rename", arg);
 };
