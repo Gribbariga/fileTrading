@@ -1,6 +1,6 @@
 export interface IGetFilesArg {
-  folderId: string;
-  viewPassword: string;
+  folder_id: string;
+  view_password: string;
 }
 
 export interface IFiles {
@@ -20,8 +20,8 @@ export interface IGetFilesResponse {
 }
 
 export interface IGetOneTimesViewArg {
-  oneTimeLink: string;
-  viewPassword: string;
+  onetime_link: string;
+  view_password: string;
 }
 
 export interface IGetOneTimesViewResponse {
@@ -31,4 +31,16 @@ export interface IGetOneTimesViewResponse {
   folder_size: number;
   folder_id: string;
   files: IFiles[];
+}
+
+export interface ICreateFolderArg {
+  lifetime: number; //days
+  name: string;
+  view_password: string;
+  download_password: boolean;
+}
+
+export interface ICreateFolderResponse {
+  folder_id: string;
+  view_link: string;
 }
