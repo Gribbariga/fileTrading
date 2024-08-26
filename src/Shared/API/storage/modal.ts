@@ -49,3 +49,7 @@ export interface IRenameFolderArg {
   folder_id: string;
   new_name: string;
 }
+
+export interface IDownloadFolderArg {
+  folder_id: string;
+}

@@ -2,6 +2,7 @@ import { axiosBase } from "../../config/axiosConfig/axiosConfig";
 import {
   ICreateFolderArg,
   ICreateFolderResponse,
+  IDownloadFolderArg,
   IGetFilesArg,
   IGetFilesResponse,
   IGetOneTimesViewArg,
@@ -30,4 +31,9 @@ export const createFolder = async (arg: ICreateFolderArg) => {
 
 export const renameFolder = async (arg: IRenameFolderArg) => {
   return await axiosBase.patch<null>("/api/storage/folder/rename", arg);
+};
+export const downLoadFolder = async (arg: IDownloadFolderArg) => {
+  return await axiosBase.get<null>(
+    `/api/storage/folder/download/${arg.folder_id}`
+  );
 };
