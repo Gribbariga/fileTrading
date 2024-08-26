@@ -2,6 +2,7 @@ import { axiosBase } from "../../config/axiosConfig/axiosConfig";
 import {
   ICreateFolderArg,
   ICreateFolderResponse,
+  IDeleteFolderArg,
   IDownloadFolderArg,
   IGetFilesArg,
   IGetFilesResponse,
@@ -32,8 +33,15 @@ export const createFolder = async (arg: ICreateFolderArg) => {
 export const renameFolder = async (arg: IRenameFolderArg) => {
   return await axiosBase.patch<null>("/api/storage/folder/rename", arg);
 };
+
 export const downLoadFolder = async (arg: IDownloadFolderArg) => {
   return await axiosBase.get<null>(
     `/api/storage/folder/download/${arg.folder_id}`
+  );
+};
+
+export const deleteFolder = async (arg: IDeleteFolderArg) => {
+  return await axiosBase.get<null>(
+    `http://5.35.98.32/api/storage/folder/delete/${arg.folder_id}`
   );
 };

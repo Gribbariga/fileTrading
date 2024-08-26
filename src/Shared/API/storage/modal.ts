@@ -53,3 +53,7 @@ export interface IRenameFolderArg {
 export interface IDownloadFolderArg {
   folder_id: string;
 }
+
+export interface IDeleteFolderArg {
+  folder_id: string;
+}
