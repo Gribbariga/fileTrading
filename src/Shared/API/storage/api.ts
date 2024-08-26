@@ -2,6 +2,8 @@ import { axiosBase } from "../../config/axiosConfig/axiosConfig";
 import {
   ICreateFolderArg,
   ICreateFolderResponse,
+  ICreateOneTimeLinkArg,
+  ICreateOneTimeLinkResponse,
   IDeleteFolderArg,
   IDownloadFolderArg,
   IGetFilesArg,
@@ -42,13 +44,20 @@ export const downLoadFolder = async (arg: IDownloadFolderArg) => {
 };
 
 export const deleteFolder = async (arg: IDeleteFolderArg) => {
-  return await axiosBase.get<null>(
-    `http://5.35.98.32/api/storage/folder/delete/${arg.folder_id}`
+  return await axiosBase.delete<null>(
+    `/api/storage/folder/delete/${arg.folder_id}`
   );
 };
 
-export const PreviewImage = async (arg: IPreviewImage) => {
+export const previewImage = async (arg: IPreviewImage) => {
   return await axiosBase.get<null>(
-    `http://5.35.98.32/api/storage/folder/view/image/${arg.folder_id}/${arg.file_db_id}`
+    `/api/storage/folder/view/image/${arg.folder_id}/${arg.file_db_id}`
+  );
+};
+
+export const createOneTimeLink = async (arg: ICreateOneTimeLinkArg) => {
+  return await axiosBase.post<ICreateOneTimeLinkResponse>(
+    "/api/storage/folder/onetime/create",
+    arg
   );
 };

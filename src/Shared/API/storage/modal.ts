@@ -57,7 +57,16 @@ export interface IDownloadFolderArg {
 export interface IDeleteFolderArg {
   folder_id: string;
 }
-export interface IPreviewImage {
+
+export interface IPreviewImageArg {
   folder_id: string;
   file_db_id: number;
+}
+
+export interface ICreateOneTimeLinkArg {
+  folder_id: string;
+}
+
+export interface ICreateOneTimeLinkResponse {
+  onetime_link: string;
 }
