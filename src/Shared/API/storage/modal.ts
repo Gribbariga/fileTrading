@@ -57,3 +57,7 @@ export interface IDownloadFolderArg {
 export interface IDeleteFolderArg {
   folder_id: string;
 }
+export interface IPreviewImage {
+  folder_id: string;
+  file_db_id: number;
+}

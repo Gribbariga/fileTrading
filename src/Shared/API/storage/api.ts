@@ -8,6 +8,7 @@ import {
   IGetFilesResponse,
   IGetOneTimesViewArg,
   IGetOneTimesViewResponse,
+  IPreviewImage,
   IRenameFolderArg,
 } from "./modal";
 
@@ -43,5 +44,11 @@ export const downLoadFolder = async (arg: IDownloadFolderArg) => {
 export const deleteFolder = async (arg: IDeleteFolderArg) => {
   return await axiosBase.get<null>(
     `http://5.35.98.32/api/storage/folder/delete/${arg.folder_id}`
+  );
+};
+
+export const PreviewImage = async (arg: IPreviewImage) => {
+  return await axiosBase.get<null>(
+    `http://5.35.98.32/api/storage/folder/view/image/${arg.folder_id}/${arg.file_db_id}`
   );
 };
