@@ -1,4 +1,4 @@
-import { axiosBase } from "../../config/axiosConfig/axiosConfig";
+import { axiosBase } from "../../../config/axiosConfig/axiosConfig";
 import {
   ICreateFolderArg,
   ICreateFolderResponse,
@@ -10,7 +10,7 @@ import {
   IGetFilesResponse,
   IGetOneTimesViewArg,
   IGetOneTimesViewResponse,
-  IPreviewImage,
+  IPreviewImageArg,
   IRenameFolderArg,
 } from "./modal";
 
@@ -49,7 +49,7 @@ export const deleteFolder = async (arg: IDeleteFolderArg) => {
   );
 };
 
-export const previewImage = async (arg: IPreviewImage) => {
+export const previewImage = async (arg: IPreviewImageArg) => {
   return await axiosBase.get<null>(
     `/api/storage/folder/view/image/${arg.folder_id}/${arg.file_db_id}`
   );
