@@ -6,3 +6,13 @@ export interface IUploadFileArg {
 export interface IUploadFileResponse {
   download_link: string;
 }
+
+export interface IDownloadFileArg {
+  folder_id: string;
+  file_db_id: number;
+}
+
+export interface IDeleteFileArg {
+  folder_id: string;
+  file_db_id: number;
+}
