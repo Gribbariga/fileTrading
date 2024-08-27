@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const LogoLinkWrapperSC = styled(Link)`
+const LogoLinkWrapperSC = styled("div")`
   display: flex;
   width: 50px;
   height: 50px;

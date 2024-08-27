@@ -1,9 +1,11 @@
+import { Logo } from "shared/Logo/Logo";
 import { HeaderStyle } from "./HeadersStyle";
 import { GlobeIcon, PersonIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 
 export const Header = () => {
   return (
     <HeaderSC>
+      <Logo />
       <MenuWrapperSC>
         <IcomButtonSC
           size={"3"}
