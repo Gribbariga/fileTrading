@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { headerDesktopHeight } from "../../../../Shared/constant/headerSize";
 
 const HeaderSC = styled("header")`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: ${`${headerDesktopHeight}px`};
   padding: 20px 25px 20px 20px;
 
   background-color: var(--Colors-Default-white);

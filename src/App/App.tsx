@@ -1,8 +1,8 @@
-import { Header } from "../Widgets/Header/UI/Header";
+import { Layout } from "../Widgets/layout/UI/Layout";
 function App() {
   return (
     <>
-      <Header />
+      <Layout children={""} />
     </>
   );
 }
