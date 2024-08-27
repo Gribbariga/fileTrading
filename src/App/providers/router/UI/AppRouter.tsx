@@ -1,3 +1,4 @@
+import { StoragePage } from "page/StoragePage";
 import { Suspense } from "react";
 import { Route, RouteProps, Routes } from "react-router-dom";
 import { AppRoutes } from "shared/config/routerConfig/routerConfig";
@@ -5,7 +6,7 @@ import { AppRoutes } from "shared/config/routerConfig/routerConfig";
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.STORAGE]: {
     path: AppRoutes.STORAGE,
-    element: <div />,
+    element: <StoragePage />,
   },
 
   [AppRoutes.NOT_FOUND]: {
