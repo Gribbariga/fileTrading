@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { headerDesktopHeight } from "../../../../Shared/constant/headerSize";
+import { headerDesktopHeight } from "../../../../shared/constant/headerSize";
 import { IconButton } from "@radix-ui/themes";
 
 const HeaderSC = styled("header")`

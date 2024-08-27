@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { headerDesktopHeight } from "../../../Shared/constant/headerSize";
+import { headerDesktopHeight } from "../../../shared/constant/headerSize";
 
 const MainWindowsSC = styled("div")`
   height: ${`${window.innerHeight - headerDesktopHeight}px`};
