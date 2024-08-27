@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
-import { LayoutStyle } from "./LayoutStyle.ts";
-import { Container } from "../../../Shared/Container/Container.tsx";
-import { Header } from "./Header/Header.tsx";
+import { Header } from "./Header/Header";
+import { Container } from "shared/Container/Container";
+import { LayoutStyle } from "./LayoutStyle";
 
 interface ILayoutProps {
   children: ReactNode;

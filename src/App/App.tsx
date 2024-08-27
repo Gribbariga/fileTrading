@@ -1,4 +1,5 @@
-import { Layout } from "../Widgets/layout/UI/Layout";
+import { Layout } from "widgets/layout/UI/Layout";
+
 function App() {
   return (
     <>

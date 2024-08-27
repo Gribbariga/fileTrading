@@ -1,4 +1,3 @@
-import { IconButton } from "@radix-ui/themes";
 import { HeaderStyle } from "./HeadersStyle";
 import { GlobeIcon, PersonIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 
