@@ -1,9 +1,9 @@
-import { Layout } from "widgets/layout/UI/Layout";
+import AppRouter from "./providers/router/UI/AppRouter";
 
 function App() {
   return (
     <>
-      <Layout children={""} />
+      <AppRouter />
     </>
   );
 }
