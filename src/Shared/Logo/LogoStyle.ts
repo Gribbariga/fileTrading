@@ -10,4 +10,4 @@ const LogoLinkWrapperSC = styled(Link)`
   flex-shrink: 0;
 `;
 
-export const LogoStyle = () => ({});
+export const LogoStyle = () => ({ LogoLinkWrapperSC });

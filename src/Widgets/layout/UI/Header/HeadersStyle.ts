@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { headerDesktopHeight } from "../../../../Shared/constant/headerSize";
+import { IconButton } from "@radix-ui/themes";
 
 const HeaderSC = styled("header")`
   width: 100%;
@@ -20,7 +21,12 @@ const MenuWrapperSC = styled("div")`
   align-items: center;
 `;
 
+const IcomButtonSC = styled(IconButton)`
+  cursor: pointer;
+`;
+
 export const HeaderStyle = () => ({
   HeaderSC,
+  IcomButtonSC,
   MenuWrapperSC,
 });

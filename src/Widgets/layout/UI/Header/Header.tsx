@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <HeaderSC>
       <MenuWrapperSC>
-        <IconButton
+        <IcomButtonSC
           size={"3"}
           variant="outline"
           color="orange"
@@ -14,8 +14,8 @@ export const Header = () => {
           loading={false}
         >
           <QuestionMarkIcon />
-        </IconButton>
-        <IconButton
+        </IcomButtonSC>
+        <IcomButtonSC
           size={"3"}
           variant="outline"
           color="orange"
@@ -23,8 +23,8 @@ export const Header = () => {
           loading={false}
         >
           <GlobeIcon />
-        </IconButton>
-        <IconButton
+        </IcomButtonSC>
+        <IcomButtonSC
           size={"3"}
           variant="outline"
           color="orange"
@@ -32,10 +32,10 @@ export const Header = () => {
           loading={false}
         >
           <PersonIcon />
-        </IconButton>
+        </IcomButtonSC>
       </MenuWrapperSC>
     </HeaderSC>
   );
 };
 
-const { HeaderSC, MenuWrapperSC } = HeaderStyle();
+const { HeaderSC, IcomButtonSC, MenuWrapperSC } = HeaderStyle();

@@ -18,6 +18,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
     "styled-components": "^6.1.12",
+    "vite-plugin-svgr": "^4.2.0",
     "zustand": "^4.5.5"
   },
   "devDependencies": {

@@ -13,12 +13,18 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-
+    "baseUrl": "./",
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "shared/*": ["src/shared/*"],
+      "widgets/*": ["src/widgets/*"],
+      "page/*": ["src/page/*"],
+      "features/*": ["src/features/*"]
+    }
   },
   "include": ["src"]
 }
