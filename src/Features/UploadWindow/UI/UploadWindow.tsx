@@ -2,11 +2,12 @@ import { createPortal } from "react-dom";
 import { UploadWindowStyle } from "./UploadWindowStyle.ts";
 import { Heading, Text } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
-import { ChangeEvent, DragEvent } from "react";
+import { ChangeEvent, DragEvent, useEffect } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
 import { uploadFile } from "shared/API/storage/files/api.ts";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "shared/lib/helper/setCookie/setCookie.ts";
+import { getCookie } from "shared/lib/helper/getCookie/getCookie.ts";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
@@ -39,6 +40,13 @@ export const UploadWindow = () => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    if (getCookie("folderId")) {
+      // navigation("/124512512");
+    }
+  }, []);
+
   return (
     <>
       {createPortal(
