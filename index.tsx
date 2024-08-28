@@ -1,3 +1,4 @@
+import React from "react";
 import { Theme } from "@radix-ui/themes";
 import { createRoot } from "react-dom/client";
 import App from "./src/App/App.tsx";

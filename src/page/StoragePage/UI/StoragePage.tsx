@@ -1,9 +1,12 @@
+import { UploadWindow } from "src/Features/UploadWindow/publicApi";
 import { Layout } from "widgets/layout/publicApi";
 
 const StoragePage = () => {
   return (
     <>
-      <Layout>12412</Layout>
+      <Layout>
+        <UploadWindow />
+      </Layout>
     </>
   );
 };

@@ -35,8 +35,8 @@ export interface IGetOneTimesViewResponse {
 
 export interface ICreateFolderArg {
   lifetime: number; //days
-  name: string;
-  view_password: string;
+  name?: string;
+  view_password?: string;
   download_password: boolean;
 }
 

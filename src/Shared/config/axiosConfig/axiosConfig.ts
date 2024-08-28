@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const axiosBase = axios.create({
-  baseURL: process.env.VITE_DOMAIN,
+  baseURL: import.meta.env.VITE_DOMAIN,
 });
