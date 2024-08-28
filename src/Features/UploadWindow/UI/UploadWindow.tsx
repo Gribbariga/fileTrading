@@ -114,8 +114,8 @@ export const UploadWindow = () => {
                     weight={"regular"}
                     align={"center"}
                   >
-                    <SpanSC>Нажмите «Загрузить»</SpanSC> или перетащите файлы в
-                    эту область
+                    <Text color="orange">Нажмите «Загрузить»</Text> или
+                    перетащите файлы в эту область
                   </Text>
                 </FileUploadBaseSC>
                 <Text
@@ -138,7 +138,6 @@ export const UploadWindow = () => {
 };
 
 const {
-  SpanSC,
   InputSC,
   DropZoneSC,
   DownloadSC,

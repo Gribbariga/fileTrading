@@ -91,12 +91,7 @@ const DownloadSC = styled("div")`
   box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 `;
 
-const SpanSC = styled("span")`
-  color: var(--accent-9) !important;
-`;
-
 export const UploadWindowStyle = () => ({
-  SpanSC,
   InputSC,
   DropZoneSC,
   DownloadSC,
