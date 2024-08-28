@@ -15,4 +15,18 @@ export default defineConfig({
       public: "/public",
     },
   },
+  server: {
+    watch: {
+      usePolling: true,
+    },
+    host: true,
+    port: 4517,
+    proxy: {
+      "/api": {
+        target: "http://5.35.98.32/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });

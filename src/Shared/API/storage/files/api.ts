@@ -7,9 +7,17 @@ import {
 } from "./modal";
 
 export const uploadFile = async (arg: IUploadFileArg) => {
+  const newFormData = new FormData();
+  newFormData.append("file", arg.file);
+  newFormData.append("folder_id", arg.folder_id);
   return await axiosBase.post<IUploadFileResponse>(
     `/api/storage/file/upload`,
-    arg
+    newFormData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 };
 

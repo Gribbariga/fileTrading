@@ -12,14 +12,19 @@ export const UploadWindow = () => {
   const navigation = useNavigate();
 
   const handleUploadFile = (event: DragEvent<HTMLDivElement>) => {
+    const files = event.dataTransfer.files;
     createFolder({
       lifetime: import.meta.env.VITE_GUEST_MAX_DAY_STORAGE,
       download_password: false,
     }).then(({ data }) => {
       setCookie("folderId", data.folder_id);
-      const files = event.dataTransfer.files;
+      console.log("?");
+
+      console.log(files);
       for (let i = 0; i < files.length; i++) {
+        console.log("start");
         const fileSizeInMB = files[i].size / (1024 * 1024);
+        console.log(files[i]);
         if (
           i < import.meta.env.VITE_GUEST_MAX_COUNT_FILE &&
           fileSizeInMB <= import.meta.env.VITE_GUEST_MAX_SIZE_FILE
@@ -27,8 +32,8 @@ export const UploadWindow = () => {
           uploadFile({ file: files[i], folder_id: data.folder_id });
         }
       }
+      navigation("/");
     });
-    navigation("/");
     console.log(event.dataTransfer.files[0]);
   };
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
