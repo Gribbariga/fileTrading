@@ -2,33 +2,26 @@ import { createPortal } from "react-dom";
 import { UploadWindowStyle } from "./UploadWindowStyle.ts";
 import { Heading, Text } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
-import { ChangeEvent, DragEvent, useEffect, useState } from "react";
+import { ChangeEvent, DragEvent, useEffect, useRef } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
 import { uploadFile } from "shared/API/storage/files/api.ts";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "shared/lib/helper/setCookie/setCookie.ts";
 import { getCookie } from "shared/lib/helper/getCookie/getCookie.ts";
 import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSlice.ts";
-import { ITariffs } from "shared/API/subscription/modal.ts";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
   const { tariffs, subscription_id } = subscriptionSlice((state) => state);
 
-  const [tariffsState, setTarifsState] = useState<ITariffs | null>(null);
+  const inputUploadRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (tariffs) {
-      setTarifsState(tariffs[subscription_id]);
-    }
-  }, [tariffs, subscription_id]);
+  const currentTariff = tariffs !== null ? tariffs[subscription_id] : null;
 
-  const handleUploadFile = (event: DragEvent<HTMLDivElement>) => {
-    if (tariffsState) {
-      const files = event.dataTransfer.files;
-
+  const fetchFiles = (files: FileList) => {
+    if (currentTariff) {
       createFolder({
-        lifetime: tariffsState.max_lifetime,
+        lifetime: currentTariff.max_lifetime,
         download_password: false,
       }).then(({ data }) => {
         setCookie("folderId", data.folder_id);
@@ -40,19 +33,28 @@ export const UploadWindow = () => {
           const fileSizeInMB = files[i].size;
           console.log(files[i]);
           if (
-            i < tariffsState.max_file_in_folder &&
-            fileSizeInMB <= +tariffsState.max_file_size
+            i < currentTariff.max_file_in_folder &&
+            fileSizeInMB <= +currentTariff.max_file_size
           ) {
             uploadFile({ file: files[i], folder_id: data.folder_id });
           }
         }
         navigation("/");
       });
-      console.log(event.dataTransfer.files[0]);
     }
   };
+
+  const handleDropUploadFile = (event: DragEvent<HTMLDivElement>) => {
+    const files = event.dataTransfer.files;
+    fetchFiles(files);
+  };
+
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    const files = e.target.files;
+    if (files) {
+      fetchFiles(files);
+    }
   };
 
   useEffect(() => {
@@ -63,11 +65,12 @@ export const UploadWindow = () => {
 
   return (
     <>
-      {tariffsState && (
+      {currentTariff && (
         <>
           {createPortal(
-            <DropZoneSC onDrop={handleUploadFile}>
+            <DropZoneSC onDrop={handleDropUploadFile}>
               <InputSC
+                ref={inputUploadRef}
                 multiple={true}
                 type="file"
                 onChange={handleFileChange}
@@ -84,7 +87,7 @@ export const UploadWindow = () => {
             >
               Передавайте файлы одним касанием!
             </Heading>
-            <FileUploadBaseSC>
+            <FileUploadBaseSC onClick={() => inputUploadRef.current?.click()}>
               <DownloadSC>
                 <UploadIcon />
               </DownloadSC>
@@ -103,8 +106,8 @@ export const UploadWindow = () => {
               align={"center"}
               highContrast={true}
             >
-              Вы можете загрузить {tariffsState?.max_file_at_time} файл до{" "}
-              {(+tariffsState.max_file_size / (1024 * 1024)).toFixed(0)} МБ
+              Вы можете загрузить {currentTariff.max_file_at_time} файл до{" "}
+              {(+currentTariff.max_file_size / (1024 * 1024)).toFixed(0)} МБ
             </Text>
           </WindowWrapperSC>
         </>
