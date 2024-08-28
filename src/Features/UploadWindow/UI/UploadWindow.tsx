@@ -6,6 +6,7 @@ import { ChangeEvent, DragEvent } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
 import { uploadFile } from "shared/API/storage/files/api.ts";
 import { useNavigate } from "react-router-dom";
+import { setCookie } from "shared/lib/helper/setCookie/setCookie.ts";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
@@ -15,6 +16,7 @@ export const UploadWindow = () => {
       lifetime: import.meta.env.VITE_GUEST_MAX_DAY_STORAGE,
       download_password: false,
     }).then(({ data }) => {
+      setCookie("folderId", data.folder_id);
       const files = event.dataTransfer.files;
       for (let i = 0; i < files.length; i++) {
         const fileSizeInMB = files[i].size / (1024 * 1024);
