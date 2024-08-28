@@ -2,6 +2,7 @@ import { Heading } from "@radix-ui/themes";
 import { StorageActionBarStyle } from "./StorageActionBarStyle.ts";
 import { ShareStorage } from "src/Features/ShareStorage/publicApi.ts";
 import { DownloadAll } from "src/Features/DownloadAll/publicApi.ts";
+import { UploadsFile } from "src/Features/UploadsFile/publicApi.ts";
 
 export const StorageActionBar = () => {
   return (
@@ -10,7 +11,7 @@ export const StorageActionBar = () => {
       <ActionWrapperSC>
         <ShareStorage />
         <DownloadAll />
-        <FileUp
+        <UploadsFile />
       </ActionWrapperSC>
     </StorageActionBarWrapperSC>
   );
