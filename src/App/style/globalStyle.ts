@@ -22,7 +22,6 @@ a {
 }
 
 * {
-    font-family:'roboto' !important;
     margin:0;
     padding:0;
     box-sizing:border-box;

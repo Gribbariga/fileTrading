@@ -64,7 +64,7 @@ export const UploadWindow = () => {
   }, []);
 
   return (
-    <>
+    <UploadWrapperSC>
       {currentTariff && (
         <>
           {createPortal(
@@ -80,9 +80,9 @@ export const UploadWindow = () => {
           )}
           <WindowWrapperSC>
             <Heading
-              size={"2"}
+              size={"3"}
               weight={"bold"}
-              align={"left"}
+              align={"center"}
               highContrast={true}
             >
               Передавайте файлы одним касанием!
@@ -91,30 +91,28 @@ export const UploadWindow = () => {
               <DownloadSC>
                 <UploadIcon />
               </DownloadSC>
-              <Text
-                size={"1"}
-                weight={"regular"}
-                align={"left"}
-                highContrast={true}
-              >
-                Нажмите «Загрузить» или перетащите файлы в эту область
+              <Text size={"1"} color="gray" weight={"regular"} align={"center"}>
+                <SpanSC>Нажмите «Загрузить»</SpanSC> или перетащите файлы в эту
+                область
               </Text>
             </FileUploadBaseSC>
-            <Text
-              size={"1"}
-              weight={"regular"}
-              align={"center"}
-              highContrast={true}
-            >
+            <Text size={"1"} weight={"regular"} align={"center"} color="gray">
               Вы можете загрузить {currentTariff.max_file_at_time} файл до{" "}
               {(+currentTariff.max_file_size / (1024 * 1024)).toFixed(0)} МБ
             </Text>
           </WindowWrapperSC>
         </>
       )}
-    </>
+    </UploadWrapperSC>
   );
 };
 
-const { InputSC, DropZoneSC, DownloadSC, WindowWrapperSC, FileUploadBaseSC } =
-  UploadWindowStyle();
+const {
+  SpanSC,
+  InputSC,
+  DropZoneSC,
+  DownloadSC,
+  UploadWrapperSC,
+  WindowWrapperSC,
+  FileUploadBaseSC,
+} = UploadWindowStyle();
