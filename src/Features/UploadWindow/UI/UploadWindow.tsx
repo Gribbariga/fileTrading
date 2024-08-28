@@ -4,12 +4,12 @@ import { Heading, Text, Theme } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
 import { ChangeEvent, MouseEvent, DragEvent, useEffect, useRef } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
-import { uploadFile } from "shared/API/storage/files/api.ts";
 // import { useNavigate } from "react-router-dom";
 import { setCookie } from "shared/lib/helper/setCookie/setCookie.ts";
 import { getCookie } from "shared/lib/helper/getCookie/getCookie.ts";
 import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSlice.ts";
 import { useResize } from "shared/lib/hooks/useResize/useResize.ts";
+import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper.ts";
 
 export const UploadWindow = () => {
   // const navigation = useNavigate();
@@ -29,19 +29,9 @@ export const UploadWindow = () => {
       }).then(({ data }) => {
         setCookie("folderId", data.folder_id);
         console.log("?");
-
+        uploadFileHelper(files, currentTariff, data.folder_id);
         console.log(files);
-        for (let i = 0; i < files.length; i++) {
-          console.log("start");
-          const fileSizeInMB = files[i].size;
-          console.log(files[i]);
-          if (
-            i < currentTariff.max_file_in_folder &&
-            fileSizeInMB <= +currentTariff.max_file_size
-          ) {
-            uploadFile({ file: files[i], folder_id: data.folder_id });
-          }
-        }
+
         // navigation("/");
       });
     }
