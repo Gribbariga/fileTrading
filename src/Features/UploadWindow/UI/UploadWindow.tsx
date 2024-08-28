@@ -63,38 +63,52 @@ export const UploadWindow = () => {
 
   return (
     <>
-      {createPortal(
-        <DropZoneSC onDrop={handleUploadFile}>
-          <InputSC multiple={true} type="file" onChange={handleFileChange} />
-        </DropZoneSC>,
-        document.body
+      {tariffsState && (
+        <>
+          {createPortal(
+            <DropZoneSC onDrop={handleUploadFile}>
+              <InputSC
+                multiple={true}
+                type="file"
+                onChange={handleFileChange}
+              />
+            </DropZoneSC>,
+            document.body
+          )}
+          <WindowWrapperSC>
+            <Heading
+              size={"2"}
+              weight={"bold"}
+              align={"left"}
+              highContrast={true}
+            >
+              Передавайте файлы одним касанием!
+            </Heading>
+            <FileUploadBaseSC>
+              <DownloadSC>
+                <UploadIcon />
+              </DownloadSC>
+              <Text
+                size={"1"}
+                weight={"regular"}
+                align={"left"}
+                highContrast={true}
+              >
+                Нажмите «Загрузить» или перетащите файлы в эту область
+              </Text>
+            </FileUploadBaseSC>
+            <Text
+              size={"1"}
+              weight={"regular"}
+              align={"center"}
+              highContrast={true}
+            >
+              Вы можете загрузить {tariffsState?.max_file_at_time} файл до{" "}
+              {(+tariffsState.max_file_size / (1024 * 1024)).toFixed(0)} МБ
+            </Text>
+          </WindowWrapperSC>
+        </>
       )}
-      <WindowWrapperSC>
-        <Heading size={"2"} weight={"bold"} align={"left"} highContrast={true}>
-          Передавайте файлы одним касанием!
-        </Heading>
-        <FileUploadBaseSC>
-          <DownloadSC>
-            <UploadIcon />
-          </DownloadSC>
-          <Text
-            size={"1"}
-            weight={"regular"}
-            align={"left"}
-            highContrast={true}
-          >
-            Нажмите «Загрузить» или перетащите файлы в эту область
-          </Text>
-        </FileUploadBaseSC>
-        <Text
-          size={"1"}
-          weight={"regular"}
-          align={"center"}
-          highContrast={true}
-        >
-          Вы можете загрузить 1 файл до 100 МБ
-        </Text>
-      </WindowWrapperSC>
     </>
   );
 };
