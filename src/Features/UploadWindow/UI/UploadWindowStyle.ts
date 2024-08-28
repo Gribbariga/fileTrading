@@ -2,32 +2,50 @@ import { headerDesktopHeight } from "shared/constant/headerSize";
 import { ZIndexEight, ZIndexNine } from "shared/constant/z-index";
 import styled from "styled-components";
 
-const UploadWrapperSC = styled("div")`
+const UploadWrapperSC = styled("div")<{ $screenHeight: number }>`
   width: 100%;
-  height: 100%;
+  height: ${({ $screenHeight }) => `${$screenHeight - headerDesktopHeight}px`};
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
-const DropZoneSC = styled("div")`
-  position: fixed;
-  top: ${`${headerDesktopHeight}px`};
+const DropZoneSC = styled("div")<{
+  $screenHeight: number;
+  $screenWidth: number;
+}>`
+  position: absolute;
+  top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
-  width: ${`${window.innerWidth}px`};
-  height: ${`${window.innerHeight}px`};
+  width: ${({ $screenWidth }) => `${$screenWidth}px`};
+  height: ${({ $screenHeight }) => `${$screenHeight}px`};
   z-index: ${ZIndexEight};
 `;
 
-const InputSC = styled("input")`
-  width: ${`${window.innerWidth}px`};
-  height: ${`${window.innerHeight}px`};
+const InputSC = styled("input")<{
+  $screenHeight: number;
+  $screenWidth: number;
+}>`
+  width: ${({ $screenWidth }) => `${$screenWidth}px`};
+  height: ${({ $screenHeight }) => `${$screenHeight}px`};
+  opacity: 0;
+`;
+
+const FileUploadInputSC = styled("input")`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   opacity: 0;
 `;
 
 const WindowWrapperSC = styled("div")`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   max-width: 346px;
   padding: var(--space-3) var(--space-5);
@@ -47,6 +65,7 @@ const WindowWrapperSC = styled("div")`
 `;
 
 const FileUploadBaseSC = styled("div")`
+  position: relative;
   display: flex;
   padding: var(--space-4, 16px) var(--space-5, 24px);
   flex-direction: column;
@@ -85,4 +104,5 @@ export const UploadWindowStyle = () => ({
   UploadWrapperSC,
   WindowWrapperSC,
   FileUploadBaseSC,
+  FileUploadInputSC,
 });
