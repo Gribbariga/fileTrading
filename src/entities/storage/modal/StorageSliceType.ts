@@ -1,4 +1,4 @@
 export interface IStorageSlice {
-  folderId: number | undefined;
-  setFolderId: (folderId: number) => void;
+  folderId: string | undefined;
+  setFolderId: (folderId: string) => void;
 }
