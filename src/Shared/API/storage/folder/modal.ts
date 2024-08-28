@@ -8,6 +8,8 @@ export interface IFiles {
   name: string;
   size: number;
   extension: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IGetFilesResponse {
@@ -15,7 +17,12 @@ export interface IGetFilesResponse {
   folder_name: string;
   lifetime: number;
   folder_size: number;
+  description_id: number;
   folder_id: string;
+  owner_id: number;
+  download_count: number;
+  created_at: string;
+  updated_at: string;
   files: IFiles[];
 }
 

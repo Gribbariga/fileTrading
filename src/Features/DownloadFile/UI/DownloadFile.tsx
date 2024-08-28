@@ -9,11 +9,11 @@ interface IDownloadFileProps {
 }
 
 export const DownloadFile: FC<IDownloadFileProps> = ({ fileDbId }) => {
-  const { folderId } = storageSlice((state) => state);
+  const { storage } = storageSlice((state) => state);
 
   const handleDownloadFile = () => {
-    if (folderId) {
-      downloadFile({ folder_id: folderId, file_db_id: fileDbId });
+    if (storage) {
+      downloadFile({ folder_id: storage.folder_id, file_db_id: fileDbId });
     }
   };
 

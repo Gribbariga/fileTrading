@@ -3,11 +3,11 @@ import { Button } from "@radix-ui/themes";
 import { downLoadFolder } from "shared/API/storage/folder/api.ts";
 
 export const DownloadAll = () => {
-  const { folderId } = storageSlice((state) => state);
+  const { storage } = storageSlice((state) => state);
 
   const handleDownload = () => {
-    if (folderId) {
-      downLoadFolder({ folder_id: folderId });
+    if (storage?.folder_id) {
+      downLoadFolder({ folder_id: storage?.folder_id });
     }
   };
 

@@ -6,16 +6,16 @@ import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSl
 import { UploadsFileStyle } from "./UploadsFileStyle";
 
 export const UploadsFile = () => {
-  const { folderId } = storageSlice((state) => state);
+  const { storage } = storageSlice((state) => state);
   const { subscription_id, tariffs } = subscriptionSlice((state) => state);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFetchFile = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (tariffs && files && folderId) {
+    if (tariffs && files && storage) {
       e.preventDefault();
-      uploadFileHelper(files, tariffs[subscription_id], folderId);
+      uploadFileHelper(files, tariffs[subscription_id], storage.folder_id);
     }
   };
 
