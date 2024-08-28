@@ -58,9 +58,8 @@ const WindowWrapperSC = styled("div")`
 
   border: 1px solid var(--gray-a3);
   background: var(--color-panel-solid);
-  /* Shadows/shadow-5 */
-  box-shadow: 0px 12px 32px -16px var(--gray-a5),
-    0px 12px 60px 0px var(--Overlays-Black-Alpha-3);
+
+  box-shadow: var(--shadow-5);
   z-index: ${ZIndexNine};
 `;
 
