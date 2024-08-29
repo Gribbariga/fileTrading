@@ -10,7 +10,7 @@ const ListHeaderSC = styled("div")`
   padding: 12px 0px 12px var(--space-2, 8px);
 
   align-items: center;
-  border-radius: var(--Radius-3, 6px) var(--Radius-3-max, 6px)
+  border-radius: var(--radius-3, 6px) var(--radius-3, 6px)
     var(--radius-none, 0px) var(--radius-none, 0px);
 
   background: var(--gray-a2);

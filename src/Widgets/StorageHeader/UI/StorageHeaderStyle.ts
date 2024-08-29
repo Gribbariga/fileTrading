@@ -7,7 +7,7 @@ const StorageHeaderSC = styled("div")`
   align-items: center;
   justify-content: space-between;
   align-self: stretch;
-  border-radius: var(--Radius-4, 8px);
+  border-radius: var(--radius-4, 8px);
   border: 1px solid var(--gray-a6);
   background: var(--color-panel-solid, #fff);
   margin-bottom: var(--space-4);

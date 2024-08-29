@@ -8,7 +8,7 @@ const InfoWrapperSC = styled("div")`
   align-items: flex-start;
   gap: 4px;
   align-self: stretch;
-  border-radius: var(--Radius-4, 8px);
+  border-radius: var(--radius-4, 8px);
   border: 1px solid var(----gray-a6, rgba(0, 0, 0, 0.15));
   background: var(--color-panel-solid, #fff);
   margin-bottom: var(--space-4);
@@ -17,7 +17,7 @@ const InfoWrapperSC = styled("div")`
 const InfoItemSC = styled("div")`
   width: 100%;
   display: flex;
-  justify-content: justify-content;
+  justify-content: space-between;
 `;
 
 export const InfoStyle = () => ({ InfoWrapperSC, InfoItemSC });

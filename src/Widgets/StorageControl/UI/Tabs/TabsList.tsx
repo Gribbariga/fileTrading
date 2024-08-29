@@ -1,16 +1,15 @@
-import { List, Trigger } from "@radix-ui/themes/src/components/tabs.js";
 import { TabsListStyle } from "./TabsStyle.ts";
 
 export const TabsList = () => {
   return (
     <TabsWrapperSC>
-      <List>
-        <Trigger value="info" />
-        <Trigger value="settings" />
-        <Trigger value="link" />
-      </List>
+      <ListSC size={"2"}>
+        <TriggetSC value="info">Инфо</TriggetSC>
+        <TriggetSC value="settings">Настройки</TriggetSC>
+        <TriggetSC value="link">Ссылка</TriggetSC>
+      </ListSC>
     </TabsWrapperSC>
   );
 };
 
-const { TabsWrapperSC } = TabsListStyle();
+const { ListSC, TriggetSC, TabsWrapperSC } = TabsListStyle();

@@ -69,7 +69,7 @@ export const Info = () => {
         weight={"medium"}
         align={"left"}
         highContrast={true}
-        m={"-8"}
+        mb={"-8"}
       >
         Описание хранилища
       </Text>

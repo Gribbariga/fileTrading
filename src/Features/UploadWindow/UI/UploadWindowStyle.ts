@@ -71,7 +71,7 @@ const FileUploadBaseSC = styled("div")`
   align-items: center;
   gap: var(--space-1, 4px);
   align-self: stretch;
-  border-radius: var(--Radius-3-max, 6px);
+  border-radius: var(--radius-3, 6px);
   border: 1.5px solid var(--Colors-Accent-Accent-9, #f76b15);
 `;
 
@@ -84,7 +84,7 @@ const DownloadSC = styled("div")`
   padding: 10px;
   justify-content: center;
   align-items: center;
-  border-radius: var(--Radius-4, 8px);
+  border-radius: var(--radius-4, 8px);
   border: 1px solid var(--Colors-Neutral-Neutral-Alpha-4, rgba(0, 0, 0, 0.09));
   background: var(--Overlays-White-Alpha-7, rgba(255, 255, 255, 0.5));
   /* Shadows/shadow-xs */
