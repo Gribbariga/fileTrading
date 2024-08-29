@@ -13,6 +13,23 @@ export const storageSlice = create<IStorageSlice>((set) => ({
       }
     );
   },
+  deleteFile: (id) => {
+    set((state) => {
+      if (state.storage) {
+        return {
+          ...state,
+          storage: {
+            ...state.storage,
+            files: state.storage.files.filter((item) => item.id !== id),
+          },
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+    });
+  },
   setFolderId: (id) => {
     set((state) => ({ ...state, folderId: id }));
   },

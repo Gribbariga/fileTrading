@@ -15,6 +15,7 @@ const StorageHeaderSC = styled("div")`
 
 const InfoWrapperSC = styled("div")`
   display: flex;
+  align-items: center;
   gap: var(--space-3);
 `;
 
