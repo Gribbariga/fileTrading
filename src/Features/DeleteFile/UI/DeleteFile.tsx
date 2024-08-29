@@ -9,11 +9,16 @@ interface IDeleteFileProps {
 }
 
 export const DeleteFile: FC<IDeleteFileProps> = ({ fileDbId }) => {
-  const { storage } = storageSlice((state) => state);
+  const { storage, deleteFile } = storageSlice((state) => state);
 
   const handleDeleteFile = () => {
     if (storage) {
-      deleteFileFetch({ file_db_id: fileDbId, folder_id: storage.folder_id });
+      deleteFileFetch({
+        file_db_id: fileDbId,
+        folder_id: storage.folder_id,
+      }).then(() => {
+        deleteFile(fileDbId);
+      });
     }
   };
 
