@@ -19,6 +19,5 @@ const TabsContentWRapperSC = styled("div")`
 
 export const StorageControlStyle = () => ({
   WrapperSC,
-  InfoWrapperSC,
   TabsContentWRapperSC,
 });

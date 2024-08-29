@@ -1,6 +1,7 @@
 import { Content, Root } from "@radix-ui/themes/src/components/tabs.js";
 import { StorageControlStyle } from "./StorageControlStyle.ts";
 import { TabsList } from "./Tabs/TabsList.tsx";
+import { Info } from "./Info/Info.tsx";
 
 export const StorageControl = () => {
   return (
@@ -9,7 +10,7 @@ export const StorageControl = () => {
         <TabsList />
         <TabsContentWRapperSC>
           <Content value="info">
-            <InfoWrapperSC></InfoWrapperSC>
+            <Info />
           </Content>
           <Content value="settings"></Content>
           <Content value="link"></Content>
@@ -20,5 +21,4 @@ export const StorageControl = () => {
   );
 };
 
-const { WrapperSC, InfoWrapperSC, TabsContentWRapperSC } =
-  StorageControlStyle();
+const { WrapperSC, TabsContentWRapperSC } = StorageControlStyle();
