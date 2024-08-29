@@ -7,13 +7,18 @@ export const StorageControl = () => {
     <WrapperSC>
       <Root defaultValue={"info"}>
         <TabsList />
-        <Content value="info"></Content>
-        <Content value="settings"></Content>
-        <Content value="link"></Content>
+        <TabsContentWRapperSC>
+          <Content value="info">
+            <InfoWrapperSC></InfoWrapperSC>
+          </Content>
+          <Content value="settings"></Content>
+          <Content value="link"></Content>
+        </TabsContentWRapperSC>
       </Root>
       <></>
     </WrapperSC>
   );
 };
 
-const { WrapperSC } = StorageControlStyle();
+const { WrapperSC, InfoWrapperSC, TabsContentWRapperSC } =
+  StorageControlStyle();
