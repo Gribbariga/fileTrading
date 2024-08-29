@@ -1,6 +1,6 @@
 import { Share1Icon } from "@radix-ui/react-icons";
-import { IconButton } from "@radix-ui/themes";
 import { useLocation } from "react-router-dom";
+import { IconButtonUI } from "shared/IconButtonUI/IconButtonUI";
 
 export const ShareStorage = () => {
   const location = useLocation(); // Получаем текущий маршрут
@@ -11,7 +11,7 @@ export const ShareStorage = () => {
   };
   return (
     <>
-      <IconButton
+      <IconButtonUI
         onClick={handleClick}
         size={"3"}
         variant="outline"
@@ -19,7 +19,7 @@ export const ShareStorage = () => {
         loading={false}
       >
         <Share1Icon />
-      </IconButton>
+      </IconButtonUI>
     </>
   );
 };

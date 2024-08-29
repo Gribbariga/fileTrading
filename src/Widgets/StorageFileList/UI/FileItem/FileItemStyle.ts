@@ -22,12 +22,15 @@ const SegmentWrapperSC = styled("div")`
   gap: 16px;
 `;
 
-const IconWrapperCS = styled("div")`
+const IconWrapperSC = styled("div")`
   max-width: 10%;
+  justify-content: space-around;
+  width: 100%;
+  display: flex;
 `;
 
 export const FileItemStyle = () => ({
-  IconWrapperCS,
+  IconWrapperSC,
   ItemWrapperSC,
   SegmentWrapperSC,
 });

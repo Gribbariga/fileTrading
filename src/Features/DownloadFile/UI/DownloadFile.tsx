@@ -1,7 +1,7 @@
 import { DownloadIcon } from "@radix-ui/react-icons";
-import { IconButton } from "@radix-ui/themes";
 import { FC } from "react";
 import { downloadFile } from "shared/API/storage/files/api";
+import { IconButtonUI } from "shared/IconButtonUI/IconButtonUI";
 import { storageSlice } from "src/entities/storage/modal/storageSlice";
 
 interface IDownloadFileProps {
@@ -18,7 +18,7 @@ export const DownloadFile: FC<IDownloadFileProps> = ({ fileDbId }) => {
   };
 
   return (
-    <IconButton
+    <IconButtonUI
       size={"4"}
       variant="ghost"
       highContrast={false}
@@ -26,6 +26,6 @@ export const DownloadFile: FC<IDownloadFileProps> = ({ fileDbId }) => {
       onClick={handleDownloadFile}
     >
       <DownloadIcon />
-    </IconButton>
+    </IconButtonUI>
   );
 };

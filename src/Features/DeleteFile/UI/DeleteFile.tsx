@@ -1,7 +1,7 @@
 import { Cross1Icon } from "@radix-ui/react-icons";
-import { IconButton } from "@radix-ui/themes";
 import { FC } from "react";
 import { deleteFile as deleteFileFetch } from "shared/API/storage/files/api";
+import { IconButtonUI } from "shared/IconButtonUI/IconButtonUI";
 import { storageSlice } from "src/entities/storage/modal/storageSlice";
 
 interface IDeleteFileProps {
@@ -23,7 +23,7 @@ export const DeleteFile: FC<IDeleteFileProps> = ({ fileDbId }) => {
   };
 
   return (
-    <IconButton
+    <IconButtonUI
       onClick={handleDeleteFile}
       size={"4"}
       variant="ghost"
@@ -31,6 +31,6 @@ export const DeleteFile: FC<IDeleteFileProps> = ({ fileDbId }) => {
       loading={false}
     >
       <Cross1Icon />
-    </IconButton>
+    </IconButtonUI>
   );
 };

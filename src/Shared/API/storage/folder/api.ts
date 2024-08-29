@@ -16,7 +16,7 @@ import {
 
 export const getFiles = async (arg: IGetFilesArg) => {
   return await axiosBase.get<IGetFilesResponse>(
-    `view/${arg.folder_id}/${arg.view_password}`
+    `api/storage/folder/view/${arg.folder_id}/${arg.view_password}`
   );
 };
 

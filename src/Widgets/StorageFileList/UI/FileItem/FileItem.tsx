@@ -46,12 +46,12 @@ export const FileItem: FC<IFileItemProps> = ({
           highContrast={false}
         ></Text>
       </SegmentWrapperSC>
-      <IconWrapperCS>
+      <IconWrapperSC>
         <DownloadFile fileDbId={fileDbId} />
         <DeleteFile fileDbId={fileDbId} />
-      </IconWrapperCS>
+      </IconWrapperSC>
     </ItemWrapperSC>
   );
 };
 
-const { IconWrapperCS, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();
+const { IconWrapperSC, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();
