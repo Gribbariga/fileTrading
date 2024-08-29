@@ -1,8 +1,9 @@
-import { Avatar, IconButton, Text } from "@radix-ui/themes";
+import { Avatar, Text } from "@radix-ui/themes";
 import { FileItemStyle } from "./FileItemStyle.ts";
-import { Cross1Icon, DownloadIcon, FileIcon } from "@radix-ui/react-icons";
+import { FileIcon } from "@radix-ui/react-icons";
 import { FC } from "react";
 import { DownloadFile } from "src/Features/DownloadFile/publicApi.ts";
+import { DeleteFile } from "src/Features/DeleteFile/UI/DeleteFile.tsx";
 
 interface IFileItemProps {
   fileDbId: number;
@@ -12,7 +13,7 @@ interface IFileItemProps {
 }
 
 export const FileItem: FC<IFileItemProps> = ({
-  createAt,
+  //   createAt,
   fileDbId,
   name,
   size,
@@ -47,6 +48,7 @@ export const FileItem: FC<IFileItemProps> = ({
       </SegmentWrapperSC>
       <IconWrapperCS>
         <DownloadFile fileDbId={fileDbId} />
+        <DeleteFile fileDbId={fileDbId} />
       </IconWrapperCS>
     </ItemWrapperSC>
   );
