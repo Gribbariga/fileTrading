@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const ItemWrapperSC = styled("div")`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  height: 48px;
+  height: 72px;
   width: 100%;
-  padding: var(--space-3) 0px var(--space-3) var(--space-2);
+  padding: var(--space-3) var(--space-3) var(--space-2);
   align-items: center;
   align-self: stretch;
   border-bottom: 1px solid var(--gray-a6);
@@ -18,7 +18,6 @@ const SegmentWrapperSC = styled("div")`
   width: 28%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 16px;
 `;

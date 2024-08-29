@@ -13,7 +13,7 @@ const ListHeaderSC = styled("div")`
   border-radius: var(--Radius-3, 6px) var(--Radius-3-max, 6px)
     var(--radius-none, 0px) var(--radius-none, 0px);
 
-  background: var(--gray-a3);
+  background: var(--gray-a2);
 `;
 
 const SegmentWrapperSC = styled("div")`

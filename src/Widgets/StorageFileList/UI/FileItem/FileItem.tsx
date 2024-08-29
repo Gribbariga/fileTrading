@@ -13,11 +13,20 @@ interface IFileItemProps {
 }
 
 export const FileItem: FC<IFileItemProps> = ({
-  //   createAt,
+  createAt,
   fileDbId,
   name,
   size,
 }) => {
+  const date = new Date(createAt.replace(" ", "T"));
+
+  // Получаем день, месяц и год
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Месяцы начинаются с 0
+  const year = date.getFullYear();
+
+  // Форматируем дату в нужный формат
+  const formattedDate = `${day}.${month}.${year}`;
   return (
     <ItemWrapperSC>
       <SegmentWrapperSC>
@@ -34,16 +43,13 @@ export const FileItem: FC<IFileItemProps> = ({
       </SegmentWrapperSC>
       <SegmentWrapperSC>
         <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-          {(size / 1024 / 1024).toFixed(1)}
+          {(size / 1024 / 1024).toFixed(1)}MB
         </Text>
       </SegmentWrapperSC>
       <SegmentWrapperSC>
-        <Text
-          size={"2"}
-          weight={"regular"}
-          align={"left"}
-          highContrast={false}
-        ></Text>
+        <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
+          {formattedDate}
+        </Text>
       </SegmentWrapperSC>
       <IconWrapperSC>
         <DownloadFile fileName={name} fileDbId={fileDbId} />
