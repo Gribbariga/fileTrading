@@ -1,6 +1,6 @@
 import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
-import { Button } from "@radix-ui/themes";
 import { downLoadFolder } from "shared/API/storage/folder/api.ts";
+import { ButtonUI } from "shared/ButtonUI/ButtonUI";
 
 export const DownloadAll = () => {
   const { storage } = storageSlice((state) => state);
@@ -13,7 +13,7 @@ export const DownloadAll = () => {
 
   return (
     <>
-      <Button
+      <ButtonUI
         size={"3"}
         onClick={handleDownload}
         variant="outline"
@@ -21,7 +21,7 @@ export const DownloadAll = () => {
         loading={false}
       >
         Скачать все
-      </Button>
+      </ButtonUI>
     </>
   );
 };

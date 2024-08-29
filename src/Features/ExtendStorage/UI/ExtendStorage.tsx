@@ -1,11 +1,11 @@
-import { Button } from "@radix-ui/themes";
+import { ButtonUI } from "shared/ButtonUI/ButtonUI";
 
 export const ExtendStorage = () => {
   return (
     <>
-      <Button size={"4"} variant="solid" highContrast={false} loading={false}>
+      <ButtonUI size={"4"} variant="solid" highContrast={false} loading={false}>
         Продлить
-      </Button>
+      </ButtonUI>
     </>
   );
 };

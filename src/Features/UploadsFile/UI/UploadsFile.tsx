@@ -1,9 +1,9 @@
-import { Button } from "@radix-ui/themes";
 import { ChangeEvent, useRef } from "react";
 import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper";
 import { storageSlice } from "src/entities/storage/modal/storageSlice";
 import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSlice";
 import { UploadsFileStyle } from "./UploadsFileStyle";
+import { ButtonUI } from "shared/ButtonUI/ButtonUI";
 
 export const UploadsFile = () => {
   const { storage } = storageSlice((state) => state);
@@ -27,7 +27,7 @@ export const UploadsFile = () => {
 
   return (
     <>
-      <Button
+      <ButtonUI
         onClick={handleClick}
         size={"3"}
         variant="soft"
@@ -35,8 +35,13 @@ export const UploadsFile = () => {
         loading={false}
       >
         Добавить файлы
-      </Button>
-      <InputSC onChange={handleFetchFile} ref={inputRef} />
+      </ButtonUI>
+      <InputSC
+        type="file"
+        multiple={true}
+        onChange={handleFetchFile}
+        ref={inputRef}
+      />
     </>
   );
 };

@@ -22,8 +22,11 @@ export const uploadFile = async (arg: IUploadFileArg) => {
 };
 
 export const downloadFile = async (arg: IDownloadFileArg) => {
-  return await axiosBase.get<null>(
-    `/api/storage/file/download/${arg.folder_id}/${arg.file_db_id}`
+  return await axiosBase.get(
+    `/api/storage/file/download/${arg.folder_id}/${arg.file_db_id}`,
+    {
+      responseType: "blob",
+    }
   );
 };
 

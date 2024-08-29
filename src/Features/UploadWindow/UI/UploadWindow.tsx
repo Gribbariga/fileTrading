@@ -29,10 +29,9 @@ export const UploadWindow = () => {
       }).then(({ data }) => {
         setCookie("folderId", data.folder_id);
         console.log("?");
-        uploadFileHelper(files, currentTariff, data.folder_id);
-        console.log(files);
-
-        navigation(`/storage/${data.folder_id}`);
+        uploadFileHelper(files, currentTariff, data.folder_id)?.then(() => {
+          navigation(`/storage/${data.folder_id}`);
+        });
       });
     }
   };
