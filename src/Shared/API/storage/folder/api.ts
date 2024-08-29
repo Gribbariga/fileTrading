@@ -38,9 +38,9 @@ export const renameFolder = async (arg: IRenameFolderArg) => {
 };
 
 export const downLoadFolder = async (arg: IDownloadFolderArg) => {
-  return await axiosBase.get<null>(
-    `/api/storage/folder/download/${arg.folder_id}`
-  );
+  return await axiosBase.get(`/api/storage/folder/download/${arg.folder_id}`, {
+    responseType: "blob",
+  });
 };
 
 export const deleteFolder = async (arg: IDeleteFolderArg) => {
