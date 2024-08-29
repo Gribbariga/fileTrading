@@ -1,3 +1,4 @@
+import { getCookie } from "shared/lib/helper/getCookie/getCookie";
 import { axiosBase } from "../../../config/axiosConfig/axiosConfig";
 import {
   IDeleteFileArg,
@@ -31,7 +32,13 @@ export const downloadFile = async (arg: IDownloadFileArg) => {
 };
 
 export const deleteFile = async (arg: IDeleteFileArg) => {
+  const token = getCookie("folderId");
   return await axiosBase.delete<null>(
-    `/api/storage/file/delete/${arg.folder_id}/${arg.file_db_id}`
+    `/api/storage/file/delete/${arg.folder_id}/${arg.file_db_id}`,
+    {
+      headers: {
+        token: token,
+      },
+    }
   );
 };

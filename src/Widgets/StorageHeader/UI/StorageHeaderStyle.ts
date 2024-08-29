@@ -19,7 +19,10 @@ const InfoWrapperSC = styled("div")`
   gap: var(--space-3);
 `;
 
-const TimeStorageSC = styled("div")``;
+const TimeStorageSC = styled("div")`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const StorageHeaderStyle = () => ({
   TimeStorageSC,
