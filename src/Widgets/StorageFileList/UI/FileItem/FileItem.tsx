@@ -36,6 +36,7 @@ export const FileItem: FC<IFileItemProps> = ({
         <Avatar
           size={"4"}
           variant="soft"
+          color="gray"
           highContrast={false}
           fallback={<FileIcon />}
         />

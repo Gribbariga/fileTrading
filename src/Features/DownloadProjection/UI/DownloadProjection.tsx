@@ -12,7 +12,7 @@ export const DownloadProjection = () => {
           <Text align={"left"} highContrast={true} size={"3"} weight={"medium"}>
             Защита при скачивании
           </Text>
-          <Badge size={"1"} variant="soft" highContrast={false} />
+          <Badge>Premium</Badge>
         </TitleWrapperSC>
         <Switch
           size={"3"}

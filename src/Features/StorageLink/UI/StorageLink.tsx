@@ -31,9 +31,9 @@ export const StorageLink = () => {
           Ссылка для скачивания
         </Text>
         <TextFieldSC value={fullUrl} size={"3"} variant="surface" readOnly>
-          <TextField.Slot>
+          <TextField.Slot side="right">
             <IconButton
-              onClick={() => copyToClipboard(location.key)}
+              onClick={() => copyToClipboard(fullUrl)}
               size={"2"}
               variant="ghost"
               highContrast={false}
@@ -48,7 +48,7 @@ export const StorageLink = () => {
           Одноразовая ссылка
         </Text>
         <TextFieldSC value={oneTimeLink} size={"3"} variant="surface" readOnly>
-          <TextField.Slot>
+          <TextField.Slot side="right">
             <IconButton
               onClick={() => copyToClipboard(oneTimeLink)}
               size={"2"}

@@ -7,7 +7,7 @@ const StorageListWrapperSC = styled("div")`
 
 const ListHeaderSC = styled("div")`
   display: flex;
-  padding: 12px 0px 12px var(--space-2, 8px);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
 
   align-items: center;
   border-radius: var(--radius-3, 6px) var(--radius-3, 6px)

@@ -4,7 +4,7 @@ const TopWrapperSC = styled("div")`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--space-1);
+  /* margin-bottom: var(--space-1); */
 `;
 
 const TitleWrapperSC = styled("div")`
