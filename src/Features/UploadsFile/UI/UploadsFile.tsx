@@ -11,7 +11,7 @@ export const UploadsFile = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleFetchFile = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFetchFile = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (tariffs && files && storage) {
       e.preventDefault();

@@ -10,9 +10,10 @@ import { getCookie } from "shared/lib/helper/getCookie/getCookie.ts";
 import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSlice.ts";
 import { useResize } from "shared/lib/hooks/useResize/useResize.ts";
 import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper.ts";
+import { useNavigate } from "react-router-dom";
 
 export const UploadWindow = () => {
-  // const navigation = useNavigate();
+  const navigation = useNavigate();
   const { tariffs, subscription_id } = subscriptionSlice((state) => state);
 
   const { height, width } = useResize();
@@ -26,15 +27,14 @@ export const UploadWindow = () => {
       createFolder({
         lifetime: currentTariff.max_lifetime,
         download_password: false,
-      }).then(({ data }) => {
+      }).then(async ({ data }) => {
         setCookie("folderId", data.folder_id, {
           "max-age": currentTariff.max_lifetime * 24 * 60 * 60 * 1000,
           maxAge: currentTariff.max_lifetime * 24 * 60 * 60 * 1000,
         });
         console.log("?");
-        uploadFileHelper(files, currentTariff, data.folder_id)?.then(() => {
-          // navigation(`/storage/${data.folder_id}`);
-        });
+        await uploadFileHelper(files, currentTariff, data.folder_id);
+        navigation(`/storage/${data.folder_id}`);
       });
     }
   };
