@@ -3,7 +3,7 @@ import { ContainerSC } from "./ContainerStyle";
 
 interface IContainerProps {
   children: ReactNode;
-  maxWidth: number;
+  maxWidth?: number;
 }
 
 export const Container: FC<IContainerProps> = ({ children, maxWidth }) => {
