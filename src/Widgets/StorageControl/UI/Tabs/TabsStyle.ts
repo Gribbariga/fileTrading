@@ -13,8 +13,8 @@ const TabsWrapperSC = styled("div")`
   background: var(--gray-a2, #f9f9f9);
 `;
 
-const TriggetSC = styled(Tabs.Trigger)`
-  width: 33%;
+const TriggetSC = styled(Tabs.Trigger)<{ $isGuest: boolean }>`
+  width: ${({ $isGuest }) => ($isGuest ? "100%" : "33%")};
 `;
 const ListSC = styled(Tabs.List)`
   width: 100%;

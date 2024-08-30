@@ -18,7 +18,7 @@ const StorageViewPage = () => {
     console.log(storageLink);
     if (storageLink) {
       const id = getCookie("folderId");
-      setIsGuest(id === storageLink);
+      setIsGuest(id !== storageLink);
       getStorage(storageLink, "0");
     }
   }, [storageLink]);

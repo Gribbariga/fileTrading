@@ -4,8 +4,11 @@ import { Info } from "./Info/Info.tsx";
 import { Tabs } from "@radix-ui/themes";
 import { StorageConfig } from "./StorageConfig/StorageConfig.tsx";
 import { Links } from "./Links/Links.tsx";
+import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 
 export const StorageControl = () => {
+  const { isGuest } = storageSlice((state) => state);
+
   return (
     <WrapperSC>
       <Tabs.Root defaultValue={"info"}>
@@ -14,12 +17,16 @@ export const StorageControl = () => {
           <TabsContent value="info">
             <Info />
           </TabsContent>
-          <TabsContent value="settings">
-            <StorageConfig />
-          </TabsContent>
-          <TabsContent value="link">
-            <Links />
-          </TabsContent>
+          {!isGuest && (
+            <>
+              <TabsContent value="settings">
+                <StorageConfig />
+              </TabsContent>
+              <TabsContent value="link">
+                <Links />
+              </TabsContent>
+            </>
+          )}
         </TabsContentWrapperSC>
       </Tabs.Root>
       <></>
