@@ -48,7 +48,7 @@ const WindowWrapperSC = styled("div")`
   transform: translate(-50%, -50%);
   display: flex;
   max-width: 346px;
-  padding: var(--space-3) var(--space-5);
+  padding: var(--space-5) var(--space-5);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -69,12 +69,11 @@ const FileUploadBaseSC = styled("div")`
   padding: var(--space-4, 16px) var(--space-5, 24px);
   flex-direction: column;
   align-items: center;
-  gap: var(--space-1, 4px);
+  gap: var(--space-3, 4px);
   align-self: stretch;
   border-radius: var(--radius-3, 6px);
   border: 1.5px solid var(--Colors-Accent-Accent-9, #f76b15);
 `;
-
 const DownloadSC = styled("div")`
   display: flex;
   width: 40px;

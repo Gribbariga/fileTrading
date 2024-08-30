@@ -92,7 +92,7 @@ export const UploadWindow = () => {
             <Theme>
               <WindowWrapperSC>
                 <Heading
-                  size={"3"}
+                  size={"4"}
                   weight={"bold"}
                   align={"center"}
                   highContrast={true}
@@ -111,7 +111,7 @@ export const UploadWindow = () => {
                     <UploadIcon />
                   </DownloadSC>
                   <Text
-                    size={"1"}
+                    size={"3"}
                     color="gray"
                     weight={"regular"}
                     align={"center"}
@@ -121,7 +121,7 @@ export const UploadWindow = () => {
                   </Text>
                 </FileUploadBaseSC>
                 <Text
-                  size={"1"}
+                  size={"3"}
                   weight={"regular"}
                   align={"center"}
                   color="gray"
