@@ -1,4 +1,4 @@
-import { Badge, Switch, Text, TextField } from "@radix-ui/themes";
+import { Badge, Switch, Text } from "@radix-ui/themes";
 import { StoragePasswordStyle } from "./StoragePasswordStyle.ts";
 import { useEffect, useState } from "react";
 import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
@@ -18,7 +18,7 @@ export const StoragePassword = () => {
     <>
       <TopWrapperSC>
         <TitleWrapperSC>
-          <Text mr={"2"}></Text>
+          <Text mr={"2"}>Пароль хранилища</Text>
           <Badge size={"1"} variant="soft" highContrast={false}>
             Premium
           </Badge>
@@ -34,7 +34,7 @@ export const StoragePassword = () => {
         Установите пароль, который должен будет ввести получатель при открытии
         ссылки
       </Text>
-      <TextField.Root
+      <TextFieldSC
         size={"3"}
         variant="surface"
         value={password}
@@ -44,4 +44,4 @@ export const StoragePassword = () => {
   );
 };
 
-const { TopWrapperSC, TitleWrapperSC } = StoragePasswordStyle();
+const { TextFieldSC, TopWrapperSC, TitleWrapperSC } = StoragePasswordStyle();

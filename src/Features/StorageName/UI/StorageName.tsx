@@ -1,8 +1,9 @@
 import { TextField } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { storageSlice } from "src/entities/storage/modal/storageSlice";
+import styled from "styled-components";
 
-export const StorageNeme = () => {
+export const StorageName = () => {
   const { storage } = storageSlice((state) => state);
 
   const [value, setValue] = useState("");
@@ -15,7 +16,7 @@ export const StorageNeme = () => {
 
   return (
     <>
-      <TextField.Root
+      <TextFieldSC
         size={"3"}
         variant="surface"
         placeholder="Хранилище"
@@ -24,3 +25,7 @@ export const StorageNeme = () => {
     </>
   );
 };
+
+export const TextFieldSC = styled(TextField.Root)`
+  width: 100%;
+`;

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Container } from "shared/lib/Container/Container";
 import { storageSlice } from "src/entities/storage/modal/storageSlice";
 import styled from "styled-components";
 import { Layout } from "widgets/layout/publicApi";
@@ -23,14 +24,14 @@ const StorageViewPage = () => {
     <>
       <Layout>
         {!isLoading && (
-          <>
+          <Container maxWidth={1357}>
             <StorageActionBar />
             <StorageHeader />
             <ContantWrapperSC>
               <StorageFileList />
               <StorageControl />
             </ContantWrapperSC>
-          </>
+          </Container>
         )}
       </Layout>
     </>

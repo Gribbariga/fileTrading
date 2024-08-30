@@ -1,6 +1,6 @@
 import { RadioGroup } from "@radix-ui/themes";
 
-export const StorageTimeChange = () => {
+export const StorageLifeTimeChange = () => {
   return (
     <>
       <RadioGroup.Root defaultValue="7">

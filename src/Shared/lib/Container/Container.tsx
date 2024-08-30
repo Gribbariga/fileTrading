@@ -3,12 +3,13 @@ import { ContainerSC } from "./ContainerStyle";
 
 interface IContainerProps {
   children: ReactNode;
+  maxWidth: number;
 }
 
-export const Container: FC<IContainerProps> = ({ children }) => {
+export const Container: FC<IContainerProps> = ({ children, maxWidth }) => {
   return (
     <>
-      <ContainerSC>{children}</ContainerSC>
+      <ContainerSC $maxWidth={maxWidth}>{children}</ContainerSC>
     </>
   );
 };
