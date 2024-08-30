@@ -4,6 +4,7 @@ import { FC } from "react";
 import { DownloadFile } from "src/Features/DownloadFile/publicApi.ts";
 import { DeleteFile } from "src/Features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
+import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 
 interface IFileItemProps {
   fileDbId: number;
@@ -18,6 +19,8 @@ export const FileItem: FC<IFileItemProps> = ({
   name,
   size,
 }) => {
+  const { isGuest } = storageSlice((state) => state);
+
   const date = new Date(createAt.replace(" ", "T"));
 
   // Получаем день, месяц и год
@@ -53,7 +56,11 @@ export const FileItem: FC<IFileItemProps> = ({
       </SegmentWrapperSC>
       <IconWrapperSC>
         <DownloadFile fileName={name} fileDbId={fileDbId} />
-        <DeleteFile fileDbId={fileDbId} />
+        {!isGuest && (
+          <>
+            <DeleteFile fileDbId={fileDbId} />
+          </>
+        )}
       </IconWrapperSC>
     </ItemWrapperSC>
   );
