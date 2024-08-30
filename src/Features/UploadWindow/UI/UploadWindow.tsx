@@ -27,7 +27,10 @@ export const UploadWindow = () => {
         lifetime: currentTariff.max_lifetime,
         download_password: false,
       }).then(({ data }) => {
-        setCookie("folderId", data.folder_id);
+        setCookie("folderId", data.folder_id, {
+          "max-age": currentTariff.max_lifetime * 24 * 60 * 60 * 1000,
+          maxAge: currentTariff.max_lifetime * 24 * 60 * 60 * 1000,
+        });
         console.log("?");
         uploadFileHelper(files, currentTariff, data.folder_id)?.then(() => {
           // navigation(`/storage/${data.folder_id}`);
