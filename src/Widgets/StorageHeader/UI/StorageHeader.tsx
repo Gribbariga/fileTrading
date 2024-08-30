@@ -6,7 +6,7 @@ import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 import { useEffect, useState } from "react";
 
 export const StorageHeader = () => {
-  const { storage } = storageSlice((state) => state);
+  const { storage, isGuest } = storageSlice((state) => state);
 
   const [time, setTime] = useState("");
 
@@ -56,7 +56,11 @@ export const StorageHeader = () => {
           </Text>
         </TimeStorageSC>
       </InfoWrapperSC>
-      <ExtendStorage />
+      {!isGuest && (
+        <>
+          <ExtendStorage />
+        </>
+      )}
     </StorageHeaderSC>
   );
 };
