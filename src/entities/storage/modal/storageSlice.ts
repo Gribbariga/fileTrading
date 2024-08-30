@@ -5,6 +5,7 @@ import { getFiles } from "shared/API/storage/folder/api";
 export const storageSlice = create<IStorageSlice>((set) => ({
   storage: undefined,
   isLoading: false,
+  isPassword: false,
   getStorage: (folder_id, view_password) => {
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password }).then(
