@@ -10,8 +10,9 @@ const StorageActionBarWrapperSC = styled("div")`
 `;
 
 const ActionWrapperSC = styled("div")`
-  max-width: 358px;
-  width: 100%;
+  /* max-width: 358px;
+  width: 100%; */
+  gap: 20px;
   height: 100%;
   display: flex;
   justify-content: space-between;

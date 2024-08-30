@@ -6,7 +6,7 @@ import { UploadsFile } from "src/Features/UploadsFile/publicApi.ts";
 import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 
 export const StorageActionBar = () => {
-  const { storage } = storageSlice((state) => state);
+  const { storage, isGuest } = storageSlice((state) => state);
 
   return (
     <StorageActionBarWrapperSC>
@@ -16,7 +16,11 @@ export const StorageActionBar = () => {
       <ActionWrapperSC>
         <ShareStorage />
         <DownloadAll />
-        <UploadsFile />
+        {!isGuest && (
+          <>
+            <UploadsFile />
+          </>
+        )}
       </ActionWrapperSC>
     </StorageActionBarWrapperSC>
   );
