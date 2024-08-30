@@ -6,7 +6,7 @@ const ItemWrapperSC = styled("div")`
   align-items: center;
   height: 72px;
   width: 100%;
-  padding: var(--space-3) var(--space-3) var(--space-2);
+  padding: var(--space-3);
   align-items: center;
   align-self: stretch;
   border-bottom: 1px solid var(--gray-a6);
@@ -15,7 +15,7 @@ const ItemWrapperSC = styled("div")`
 
 const SegmentWrapperSC = styled("div")`
   max-width: 274px;
-  width: 28%;
+  width: 30%;
   height: 100%;
   display: flex;
   align-items: center;

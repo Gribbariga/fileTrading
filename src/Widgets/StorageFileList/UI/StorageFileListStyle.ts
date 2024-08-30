@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 const StorageListWrapperSC = styled("div")`
   max-width: 928px;
+  height: 100%;
   width: 100%;
+  border-radius: 0px 0px var(--radius-4) var(--radius-4);
+  overflow: hidden;
 `;
 
 const ListHeaderSC = styled("div")`
