@@ -5,7 +5,8 @@ const StorageActionBarWrapperSC = styled("div")`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 40px;
+  padding-top: 20px;
+  height: 60px;
   margin-bottom: var(--space-4);
 `;
 

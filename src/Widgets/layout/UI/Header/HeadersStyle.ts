@@ -9,7 +9,6 @@ const HeaderSC = styled("header")`
   align-items: center;
   height: ${`${headerDesktopHeight}px`};
   padding: 20px 25px 20px 20px;
-
   background-color: var(--Colors-Default-white);
 `;
 
