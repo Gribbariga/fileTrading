@@ -10,10 +10,7 @@ export const uploadFileHelper = (
     console.log("start");
     const fileSizeInMB = files[i].size;
     console.log(files[i]);
-    if (
-      i < currentTariff.max_file_in_folder &&
-      fileSizeInMB <= +currentTariff.max_file_size
-    ) {
+    if (i < 3 && fileSizeInMB <= +currentTariff.max_file_size) {
       return uploadFile({ file: files[i], folder_id: folder_id });
     }
   }

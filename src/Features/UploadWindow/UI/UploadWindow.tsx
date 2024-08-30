@@ -4,7 +4,7 @@ import { Heading, Text, Theme } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
 import { ChangeEvent, MouseEvent, useEffect, useRef } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { setCookie } from "shared/lib/helper/setCookie/setCookie.ts";
 import { getCookie } from "shared/lib/helper/getCookie/getCookie.ts";
 import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSlice.ts";
@@ -12,7 +12,7 @@ import { useResize } from "shared/lib/hooks/useResize/useResize.ts";
 import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper.ts";
 
 export const UploadWindow = () => {
-  const navigation = useNavigate();
+  // const navigation = useNavigate();
   const { tariffs, subscription_id } = subscriptionSlice((state) => state);
 
   const { height, width } = useResize();
@@ -30,7 +30,7 @@ export const UploadWindow = () => {
         setCookie("folderId", data.folder_id);
         console.log("?");
         uploadFileHelper(files, currentTariff, data.folder_id)?.then(() => {
-          navigation(`/storage/${data.folder_id}`);
+          // navigation(`/storage/${data.folder_id}`);
         });
       });
     }
