@@ -3,6 +3,7 @@ import { TabsList } from "./Tabs/TabsList.tsx";
 import { Info } from "./Info/Info.tsx";
 import { Tabs } from "@radix-ui/themes";
 import { StorageConfig } from "./StorageConfig/StorageConfig.tsx";
+import { Links } from "./Links/Links.tsx";
 
 export const StorageControl = () => {
   return (
@@ -16,7 +17,9 @@ export const StorageControl = () => {
           <TabsContent value="settings">
             <StorageConfig />
           </TabsContent>
-          <TabsContent value="link"></TabsContent>
+          <TabsContent value="link">
+            <Links />
+          </TabsContent>
         </TabsContentWrapperSC>
       </Tabs.Root>
       <></>

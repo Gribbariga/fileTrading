@@ -6,6 +6,10 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   storage: undefined,
   isLoading: false,
   isPassword: false,
+  isGuest: true,
+  setIsGuest: (value) => {
+    set((state) => ({ ...state, isGuest: value }));
+  },
   getStorage: (folder_id, view_password) => {
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password }).then(

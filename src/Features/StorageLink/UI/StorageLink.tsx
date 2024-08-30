@@ -12,6 +12,8 @@ export const StorageLink = () => {
   const [oneTimeLink, setOneTimeLink] = useState("");
   const location = useLocation();
 
+  const fullUrl = `${window.location.origin}${location.pathname}${location.search}${location.hash}`;
+
   useEffect(() => {
     if (storage?.folder_id) {
       createOneTimeLink({ folder_id: storage.folder_id }).then(({ data }) => {
@@ -20,13 +22,15 @@ export const StorageLink = () => {
     }
   }, [storage]);
 
+  console.log(location);
+
   return (
     <>
       <LinkWrapperSC>
         <Text align={"left"} highContrast={true} size={"3"} weight={"medium"}>
           Ссылка для скачивания
         </Text>
-        <TextFieldSC value={location.key} size={"3"} variant="surface" readOnly>
+        <TextFieldSC value={fullUrl} size={"3"} variant="surface" readOnly>
           <TextField.Slot>
             <IconButton
               onClick={() => copyToClipboard(location.key)}

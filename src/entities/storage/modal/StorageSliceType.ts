@@ -4,6 +4,8 @@ export interface IStorageSlice {
   isLoading: boolean;
   storage: IStorage | undefined;
   isPassword: boolean;
+  isGuest: boolean;
+  setIsGuest: (value: boolean) => void;
   deleteFile: (id: number) => void;
   setFolderId: (folderId: string) => void;
   getStorage: (folder_id: string, view_password: string) => void;
