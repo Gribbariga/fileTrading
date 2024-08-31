@@ -9,6 +9,7 @@ import { StorageActionBar } from "widgets/StorageActionBar/publicApi";
 import { StorageControl } from "widgets/StorageControl/publicApi";
 import { StorageFileList } from "widgets/StorageFileList/UI/StorageFileList";
 import { StorageHeader } from "widgets/StorageHeader/UI/StorageHeader";
+import { StorageViewSkeleton } from "./StorageViewSkeleton/StorageViewSkeleton";
 
 const StorageViewPage = () => {
   const { isLoading, setIsGuest, getStorage } = storageSlice((state) => state);
@@ -26,16 +27,19 @@ const StorageViewPage = () => {
   return (
     <>
       <Layout>
-        {!isLoading && (
-          <Container maxWidth={1357}>
-            <StorageActionBar />
-            <StorageHeader />
-            <ContantWrapperSC>
-              <StorageFileList />
-              <StorageControl />
-            </ContantWrapperSC>
-          </Container>
-        )}
+        <Container maxWidth={1357}>
+          {!isLoading && (
+            <>
+              <StorageActionBar />
+              <StorageHeader />
+              <ContantWrapperSC>
+                <StorageFileList />
+                <StorageControl />
+              </ContantWrapperSC>
+            </>
+          )}
+          {isLoading && <StorageViewSkeleton />}
+        </Container>
       </Layout>
     </>
   );
