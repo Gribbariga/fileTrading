@@ -29,14 +29,14 @@ export const setCookie = (
     let updatedCookie =
         encodeURIComponent(name) + '=' + encodeURIComponent(value);
 
-    for (let optionKey in options) {
+    for (const optionKey in options) {
         updatedCookie += '; ' + optionKey;
         console.log(options[optionKey]);
-        let optionValue = options[optionKey];
+        const optionValue = options[optionKey];
         console.log(optionValue);
         console.log(!!optionValue);
         console.log(!!optionValue !== true);
-        if (!!optionValue) {
+        if (optionValue) {
             updatedCookie += '=' + optionValue;
         }
     }

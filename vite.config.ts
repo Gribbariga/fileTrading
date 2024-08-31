@@ -4,7 +4,7 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
-  base: "/",
+  base: "./",
   resolve: {
     alias: {
       src: "/src",
@@ -15,7 +15,9 @@ export default defineConfig({
       public: "/public",
     },
   },
+
   server: {
+    open: "/storage",
     watch: {
       usePolling: true,
     },
