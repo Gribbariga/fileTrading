@@ -4,7 +4,7 @@ import { Info } from "./Info/Info.tsx";
 import { Tabs } from "@radix-ui/themes";
 import { StorageConfig } from "./StorageConfig/StorageConfig.tsx";
 import { Links } from "./Links/Links.tsx";
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
 export const StorageControl = () => {
   const { isGuest } = storageSlice((state) => state);

@@ -1,7 +1,7 @@
 import { Badge, Switch, Text } from "@radix-ui/themes";
 import { StoragePasswordStyle } from "./StoragePasswordStyle.ts";
 import { useEffect, useState } from "react";
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
 export const StoragePassword = () => {
   const { isPassword } = storageSlice((state) => state);

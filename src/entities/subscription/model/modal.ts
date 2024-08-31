@@ -1,4 +1,4 @@
-import { TGetTarrifs } from "shared/API/subscription/modal";
+import { TGetTarrifs } from "src/shared/API/subscription/model";
 
 type TTariffs = TGetTarrifs;
 

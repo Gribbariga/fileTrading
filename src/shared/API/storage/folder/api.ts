@@ -12,7 +12,7 @@ import {
   IGetOneTimesViewResponse,
   IPreviewImageArg,
   IRenameFolderArg,
-} from "./modal";
+} from "./model";
 
 export const getFiles = async (arg: IGetFilesArg) => {
   return await axiosBase.get<IGetFilesResponse>(

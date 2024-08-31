@@ -1,4 +1,4 @@
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { TabsListStyle } from "./TabsStyle.ts";
 
 export const TabsList = () => {

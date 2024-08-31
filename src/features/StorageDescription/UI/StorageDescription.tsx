@@ -1,6 +1,6 @@
 import { TextArea } from "@radix-ui/themes";
 import { useEffect } from "react";
-import { storageSlice } from "src/entities/storage/modal/storageSlice";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
 
 export const StorageDescription = () => {
   const { storage } = storageSlice((state) => state);

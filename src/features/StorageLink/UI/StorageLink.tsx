@@ -4,7 +4,7 @@ import { CopyIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { createOneTimeLink } from "shared/API/storage/folder/api.ts";
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { copyToClipboard } from "shared/lib/helper/copyToClipboard/copyToClipboard.ts";
 
 export const StorageLink = () => {

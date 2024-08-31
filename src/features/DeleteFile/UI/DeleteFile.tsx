@@ -2,7 +2,7 @@ import { Cross1Icon } from "@radix-ui/react-icons";
 import { FC } from "react";
 import { deleteFile as deleteFileFetch } from "shared/API/storage/files/api";
 import { IconButtonUI } from "shared/IconButtonUI/IconButtonUI";
-import { storageSlice } from "src/entities/storage/modal/storageSlice";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
 
 interface IDeleteFileProps {
   fileDbId: number;

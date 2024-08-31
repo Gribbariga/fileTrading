@@ -1,4 +1,4 @@
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { InfoStyle } from "./InfoStyle.ts";
 import { formattedData } from "shared/lib/helper/formattedData/formattedData.ts";
 import { Text } from "@radix-ui/themes";

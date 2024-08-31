@@ -7,7 +7,7 @@ import { createFolder } from "shared/API/storage/folder/api.ts";
 // import { useNavigate } from "react-router-dom";
 import { setCookie } from "shared/lib/helper/setCookie/setCookie.ts";
 import { getCookie } from "shared/lib/helper/getCookie/getCookie.ts";
-import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSlice.ts";
+import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { useResize } from "shared/lib/hooks/useResize/useResize.ts";
 import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper.ts";
 import { useNavigate } from "react-router-dom";

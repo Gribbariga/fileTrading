@@ -3,7 +3,7 @@ import { StorageActionBarStyle } from "./StorageActionBarStyle.ts";
 import { ShareStorage } from "src/features/ShareStorage/publicApi.ts";
 import { DownloadAll } from "src/features/DownloadAll/publicApi.ts";
 import { UploadsFile } from "src/features/UploadsFile/publicApi.ts";
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
 export const StorageActionBar = () => {
   const { storage, isGuest } = storageSlice((state) => state);

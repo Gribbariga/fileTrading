@@ -1,7 +1,7 @@
 import { ChangeEvent, useRef } from "react";
 import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper";
-import { storageSlice } from "src/entities/storage/modal/storageSlice";
-import { subscriptionSlice } from "src/entities/subscription/modal/subcriptionSlice";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
+import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { UploadsFileStyle } from "./UploadsFileStyle";
 import { ButtonUI } from "shared/ButtonUI/ButtonUI";
 

@@ -1,4 +1,4 @@
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
 import { downLoadFolder } from "shared/API/storage/folder/api.ts";
 import { ButtonUI } from "shared/ButtonUI/ButtonUI";
 

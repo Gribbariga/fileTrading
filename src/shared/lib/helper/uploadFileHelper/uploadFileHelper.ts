@@ -1,5 +1,5 @@
 import { uploadFile } from "shared/API/storage/files/api";
-import { ITariffs } from "shared/API/subscription/modal";
+import { ITariffs } from "src/shared/API/subscription/model";
 
 export const uploadFileHelper = (
   files: FileList,

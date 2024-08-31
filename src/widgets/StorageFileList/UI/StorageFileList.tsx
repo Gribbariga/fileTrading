@@ -1,6 +1,6 @@
 import { ScrollArea, Text } from "@radix-ui/themes";
 import { StorageFileListStyle } from "./StorageFileListStyle.ts";
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { FileItem } from "./FileItem/FileItem.tsx";
 
 export const StorageFileList = () => {

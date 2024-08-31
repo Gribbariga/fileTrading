@@ -4,7 +4,7 @@ import { FC } from "react";
 import { DownloadFile } from "src/features/DownloadFile/publicApi.ts";
 import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
-import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
 interface IFileItemProps {
   fileDbId: number;

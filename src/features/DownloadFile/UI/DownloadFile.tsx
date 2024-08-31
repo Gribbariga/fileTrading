@@ -2,7 +2,7 @@ import { DownloadIcon } from "@radix-ui/react-icons";
 import { FC } from "react";
 import { downloadFile } from "shared/API/storage/files/api";
 import { IconButtonUI } from "shared/IconButtonUI/IconButtonUI";
-import { storageSlice } from "src/entities/storage/modal/storageSlice";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
 
 interface IDownloadFileProps {
   fileDbId: number;

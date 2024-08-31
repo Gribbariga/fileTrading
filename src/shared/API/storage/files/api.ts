@@ -4,7 +4,7 @@ import {
   IDownloadFileArg,
   IUploadFileArg,
   IUploadFileResponse,
-} from "./modal";
+} from "./model";
 
 export const uploadFile = async (arg: IUploadFileArg) => {
   const newFormData = new FormData();

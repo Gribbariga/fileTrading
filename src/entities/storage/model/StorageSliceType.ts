@@ -1,4 +1,4 @@
-import { IGetFilesResponse as IStorage } from "shared/API/storage/folder/modal";
+import { IGetFilesResponse as IStorage } from "src/shared/API/storage/folder/model";
 
 export interface IStorageSlice {
   isLoading: boolean;

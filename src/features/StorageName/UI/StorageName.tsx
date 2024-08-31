@@ -1,6 +1,6 @@
 import { TextField } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { storageSlice } from "src/entities/storage/modal/storageSlice";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
 import styled from "styled-components";
 
 export const StorageName = () => {

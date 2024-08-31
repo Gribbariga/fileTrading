@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "shared/lib/Container/Container";
 import { getCookie } from "shared/lib/helper/getCookie/getCookie";
-import { storageSlice } from "src/entities/storage/modal/storageSlice";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
 import styled from "styled-components";
 import { Layout } from "widgets/layout/publicApi";
 import { StorageActionBar } from "widgets/StorageActionBar/publicApi";
