@@ -16,10 +16,10 @@ const DropZoneSC = styled("div")<{
   $screenWidth: number;
 }>`
   position: absolute;
-  top: 0;
+  top: ${`${headerDesktopHeight}px`};
   left: 0;
   width: ${({ $screenWidth }) => `${$screenWidth}px`};
-  height: ${({ $screenHeight }) => `${$screenHeight}px`};
+  height: ${({ $screenHeight }) => `${$screenHeight - headerDesktopHeight}px`};
   z-index: ${ZIndexEight};
 `;
 
@@ -28,7 +28,7 @@ const InputSC = styled("input")<{
   $screenWidth: number;
 }>`
   width: ${({ $screenWidth }) => `${$screenWidth}px`};
-  height: ${({ $screenHeight }) => `${$screenHeight}px`};
+  height: ${({ $screenHeight }) => `${$screenHeight - headerDesktopHeight}px`};
   opacity: 0;
 `;
 

@@ -1,5 +1,5 @@
+import { headerDesktopHeight } from "src/shared/constant/headerSize";
 import styled from "styled-components";
-import { headerDesktopHeight } from "../../../shared/constant/headerSize";
 
 const MainWindowsSC = styled("div")<{ screenHeight: number }>`
   height: ${({ screenHeight }) => `${screenHeight - headerDesktopHeight}px`};

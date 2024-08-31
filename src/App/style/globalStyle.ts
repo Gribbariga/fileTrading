@@ -17,6 +17,10 @@ main {
 
 
 }
+body {
+  overflow-x:hidden;
+
+}
 a {
   text-decoration:none;
 }
@@ -35,7 +39,6 @@ a {
             user-select: none;
 }
 #root {
-  
 }
 
 

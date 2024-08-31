@@ -12,21 +12,32 @@ export const StorageHeader = () => {
 
   useEffect(() => {
     const createAt = storage?.created_at || "";
-    const date = new Date(createAt);
+    const date = new Date(createAt + "Z");
+
+    // Задайте количество дней, через которое должно истечь время
+    const daysToExpire = storage?.lifetime || 7; // например, 7 дней
+    const expirationDate = new Date(
+      date.getTime() + daysToExpire * 24 * 60 * 60 * 1000
+    );
+
     setInterval(() => {
       const now = new Date();
-      const elapsedTime = now.getTime() - date.getTime();
+      const remainingTime = expirationDate.getTime() - now.getTime();
 
-      // Переводим миллисекунды в секунды
-      const totalSeconds = Math.floor(elapsedTime / 1000);
+      // Если время истекло, остановите таймер
+      if (remainingTime <= 0) {
+        setTime("Время истекло");
+        clearInterval(this); // останавливает интервал
+        return;
+      }
 
-      // Вычисляем дни, часы, минуты и секунды
+      const totalSeconds = Math.floor(remainingTime / 1000);
+
       const days = Math.floor(totalSeconds / (24 * 60 * 60));
       const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
       const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
       const seconds = totalSeconds % 60;
 
-      // Форматируем результат
       const formattedTime = `${days} дней ${String(hours).padStart(
         2,
         "0"
