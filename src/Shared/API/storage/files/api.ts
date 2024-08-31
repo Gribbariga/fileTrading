@@ -1,4 +1,3 @@
-import { getCookie } from "shared/lib/helper/getCookie/getCookie";
 import { axiosBase } from "../../../config/axiosConfig/axiosConfig";
 import {
   IDeleteFileArg,

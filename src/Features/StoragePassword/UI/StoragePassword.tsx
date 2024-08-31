@@ -6,7 +6,7 @@ import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 export const StoragePassword = () => {
   const { isPassword } = storageSlice((state) => state);
 
-  const [password, setPassword] = useState("");
+  const [password] = useState("");
 
   const [isChecked, setIsChecked] = useState(false);
 
