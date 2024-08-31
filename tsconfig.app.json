@@ -20,6 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
+      "src/*": ["./src/*"],
       "shared/*": ["src/shared/*"],
       "widgets/*": ["src/widgets/*"],
       "page/*": ["src/page/*"],
