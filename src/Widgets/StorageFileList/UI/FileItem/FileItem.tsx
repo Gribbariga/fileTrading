@@ -1,8 +1,8 @@
 import { Avatar, Text } from "@radix-ui/themes";
 import { FileItemStyle } from "./FileItemStyle.ts";
 import { FC } from "react";
-import { DownloadFile } from "src/Features/DownloadFile/publicApi.ts";
-import { DeleteFile } from "src/Features/DeleteFile/UI/DeleteFile.tsx";
+import { DownloadFile } from "src/features/DownloadFile/publicApi.ts";
+import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
 import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 

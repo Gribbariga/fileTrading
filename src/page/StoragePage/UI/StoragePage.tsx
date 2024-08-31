@@ -1,4 +1,4 @@
-import { UploadWindow } from "src/Features/UploadWindow/publicApi";
+import { UploadWindow } from "src/features/UploadWindow/publicApi";
 import { Layout } from "widgets/layout/publicApi";
 
 const StoragePage = () => {

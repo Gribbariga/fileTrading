@@ -1,8 +1,8 @@
 import { Badge, Text } from "@radix-ui/themes";
 import { StorageConfigStyle } from "./StorageConfigStyle.ts";
-import { StorageName } from "src/Features/StorageName/PublicApi.ts";
-import { StorageLifeTimeChange } from "src/Features/StorageLifeTimeChange/publicApi.ts";
-import { StoragePassword } from "src/Features/StoragePassword/publicApi.ts";
+import { StorageName } from "src/features/StorageName/PublicApi.ts";
+import { StorageLifeTimeChange } from "src/features/StorageLifeTimeChange/publicApi.ts";
+import { StoragePassword } from "src/features/StoragePassword/publicApi.ts";
 
 export const StorageConfig = () => {
   return (

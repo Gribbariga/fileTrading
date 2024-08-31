@@ -1,7 +1,7 @@
 import { ClockIcon } from "@radix-ui/react-icons";
 import { StorageHeaderStyle } from "./StorageHeaderStyle.ts";
 import { Text } from "@radix-ui/themes";
-import { ExtendStorage } from "src/Features/ExtendStorage/publicApi.ts";
+import { ExtendStorage } from "src/features/ExtendStorage/publicApi.ts";
 import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 import { useEffect, useState } from "react";
 

@@ -2,7 +2,7 @@ import { storageSlice } from "src/entities/storage/modal/storageSlice.ts";
 import { InfoStyle } from "./InfoStyle.ts";
 import { formattedData } from "shared/lib/helper/formattedData/formattedData.ts";
 import { Text } from "@radix-ui/themes";
-import { StorageDescription } from "src/Features/StorageDescription/UI/StorageDescription.tsx";
+import { StorageDescription } from "src/features/StorageDescription/UI/StorageDescription.tsx";
 
 export const Info = () => {
   const { storage } = storageSlice((state) => state);
