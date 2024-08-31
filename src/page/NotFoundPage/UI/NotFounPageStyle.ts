@@ -15,8 +15,12 @@ const ContentWrapperSC = styled("div")`
   /* Shadows/shadow-4 */
   box-shadow: 0px 12px 32px -16px var(--gray-a3),
     0px 8px 40px 0px var(--black-a3);
-  display: flex;
+
+  display: inline-flex;
+  padding: var(--space-3, 12px) var(--space-5, 24px);
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Text404SC = styled("span")`
@@ -32,7 +36,7 @@ const Text404SC = styled("span")`
 `;
 
 const NotFoundTextSC = styled("span")`
-  color: var(--Tokens-Colors-text, #202020);
+  color: #202020;
   /* Typography/2/Regular */
   font-family: var(--Typography-Font-family-text, "SF Pro Display");
   font-size: var(--Typography-Font-size-2, 14px);

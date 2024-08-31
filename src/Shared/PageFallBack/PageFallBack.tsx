@@ -1,4 +1,4 @@
-import { Description } from "@radix-ui/themes/src/components/alert-dialog.js";
+import { Text } from "@radix-ui/themes";
 import { PageFallBackStyle } from "./PageFallBackStyle";
 import { Spinner } from "@radix-ui/themes";
 
@@ -7,14 +7,14 @@ export const PageFallBack = () => {
     <>
       <WrapperSC>
         <ContentWrapperSC>
-          <Description
+          <Text
             size={"3"}
             weight={"medium"}
             align={"center"}
             highContrast={true}
           >
             Загрузка
-          </Description>
+          </Text>
           <Spinner size={"1"} />
         </ContentWrapperSC>
       </WrapperSC>
