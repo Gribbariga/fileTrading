@@ -3,6 +3,7 @@ import { IGetFilesResponse as IStorage } from "shared/API/storage/folder/modal";
 export interface IStorageSlice {
   isLoading: boolean;
   storage: IStorage | undefined;
+  isNotFound: boolean;
   isPassword: boolean;
   isGuest: boolean;
   setIsGuest: (value: boolean) => void;

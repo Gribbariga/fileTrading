@@ -1,4 +1,5 @@
-import { StoragePage } from "page/StoragePage/publickApi";
+import { NotFoundPage } from "page/NotFoundPage/UI/NotFoundPage";
+import { StoragePage } from "page/StoragePage/publicApi";
 import { StorageViewPage } from "page/StorageViewPage/publicApi";
 import { Suspense } from "react";
 import { Route, RouteProps, Routes } from "react-router-dom";
@@ -13,7 +14,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
 
   [AppRoutes.NOT_FOUND]: {
     path: AppRoutes.NOT_FOUND,
-    element: <div />,
+    element: <NotFoundPage />,
   },
   [AppRoutes.STORAGE_VIEW]: {
     path: AppRoutes.STORAGE_VIEW,
@@ -27,7 +28,7 @@ const AppRouter = () => (
       <Route
         key={path}
         path={path}
-        element={<Suspense fallback={<PageFallBack />}>{element}</Suspense>}
+        element={<Suspense fallback={<div />}>{element}</Suspense>}
       />
     ))}
   </Routes>

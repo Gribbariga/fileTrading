@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "shared/lib/Container/Container";
 import { getCookie } from "shared/lib/helper/getCookie/getCookie";
 import { storageSlice } from "src/entities/storage/modal/storageSlice";
@@ -12,8 +12,11 @@ import { StorageHeader } from "widgets/StorageHeader/UI/StorageHeader";
 import { StorageViewSkeleton } from "./StorageViewSkeleton/StorageViewSkeleton";
 
 const StorageViewPage = () => {
-  const { isLoading, setIsGuest, getStorage } = storageSlice((state) => state);
+  const { isLoading, isNotFound, setIsGuest, getStorage } = storageSlice(
+    (state) => state
+  );
   const { storageLink } = useParams();
+  const navigation = useNavigate();
 
   useEffect(() => {
     console.log(storageLink);
@@ -23,6 +26,12 @@ const StorageViewPage = () => {
       getStorage(storageLink, "0");
     }
   }, [storageLink]);
+
+  useEffect(() => {
+    if (isNotFound) {
+      navigation("/NotFound");
+    }
+  }, [isNotFound]);
 
   return (
     <>
