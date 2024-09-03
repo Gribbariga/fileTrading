@@ -9,18 +9,18 @@ const RegisterPage = () => {
 
   return (
     <Layout>
-      <WrapperCS height={height}>
+      <WrapperCS $height={height}>
         <RegisterForm />
       </WrapperCS>
     </Layout>
   );
 };
-const WrapperCS = styled("div")<{ height: number }>`
+const WrapperCS = styled("div")<{ $height: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: ${({ height }) => `${height - headerDesktopHeight}px`};
+  height: ${({ $height }) => `${$height - headerDesktopHeight}px`};
 `;
 
 export default RegisterPage;

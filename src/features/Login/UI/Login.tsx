@@ -1,21 +1,21 @@
-import { Callout, Text } from "@radix-ui/themes";
-import { RegisterStyle } from "./RegisterStyle.ts";
-import { useForm } from "react-hook-form";
-import { register } from "src/shared/API/user/auth/auth.ts";
-import { useState } from "react";
+import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
+import { Callout, Link, Text } from "@radix-ui/themes";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
-import { userSlice } from "src/entities/user/model/userSlice.ts";
+import { useState } from "react";
+import { userSlice } from "src/entities/user/model/userSlice";
+import { login } from "src/shared/API/user/auth/auth.ts";
 import { AxiosError, isAxiosError } from "axios";
 import { backendCodeError } from "src/shared/constant/backendCodeError.ts";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
+import { useForm } from "react-hook-form";
+import { LoginStyle } from "./LoginStyle";
 
 interface IData {
   login: string;
   password: string;
 }
 
-export const Register = () => {
+export const Login = () => {
   const {
     register: registerInput,
     setError,
@@ -34,7 +34,7 @@ export const Register = () => {
 
   const handleRegister = (data: IData) => {
     setIsLoading(true);
-    register(data)
+    login(data)
       .then(({ data }) => {
         setIsLoading(false);
         setToken(data.token);
@@ -76,18 +76,22 @@ export const Register = () => {
                 required: "Заполните все обязательные поля",
                 maxLength: { value: 250, message: "Логин слишком длинный" },
               })}
-              placeholder="Ваш логин"
+              placeholder="Введите логин"
             />
           </InputWrapperSC>
           <InputWrapperSC>
-            <Text
-              align={"left"}
-              highContrast={true}
-              size={"3"}
-              weight={"medium"}
-            >
-              Задайте пароль
-            </Text>
+            <PasswordTitleWrapperSC>
+              <Text
+                align={"left"}
+                highContrast={true}
+                size={"3"}
+                weight={"medium"}
+              >
+                Введите пароль
+              </Text>
+              <Link href="/storage">Забыли пароль?</Link>
+            </PasswordTitleWrapperSC>
+
             <TextFieldSC
               size={"3"}
               variant="surface"
@@ -136,4 +140,5 @@ const {
   InputWrapperSC,
   ButtonsGroupSC,
   InputsWrapperSC,
-} = RegisterStyle();
+  PasswordTitleWrapperSC,
+} = LoginStyle();
