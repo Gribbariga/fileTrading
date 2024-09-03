@@ -17,10 +17,13 @@ export interface IGetFilesResponse {
   folder_name: string;
   lifetime: number;
   folder_size: number;
+  owner_name: string;
   description_id: number;
   folder_id: string;
   owner_id: number;
   download_count: number;
+  view_count: number;
+  download_password: boolean;
   created_at: string;
   updated_at: string;
   files: IFiles[];
