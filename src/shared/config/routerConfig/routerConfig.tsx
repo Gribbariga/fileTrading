@@ -4,7 +4,7 @@ export enum AppRoutes {
   STORAGE_VIEW = "/storage/:storageLink",
   REGISTER = "/register",
   LOGIN = "/login",
-  TWOFA = "/2fa",
+  TWOFA = "/test",
   // NOT_FOUND = 'not_found',
 }
 

@@ -1,5 +1,6 @@
 import { Heading } from "@radix-ui/themes";
 import { TwoFaFormStyle } from "./TwoFaFormStyle.ts";
+import { TwoFA } from "src/features/TwoFA/publicApi.ts";
 
 export const TwoFaForm = () => {
   return (
@@ -12,9 +13,9 @@ export const TwoFaForm = () => {
           size={"5"}
           weight={"medium"}
         >
-          Создайте аккаунт
+          Двухфакторная аутентификация
         </Heading>
-        <TwoFaForm />
+        <TwoFA />
       </RegisterWrapperSC>
     </>
   );

@@ -1,20 +1,13 @@
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { TwoFAStyle } from "./TwoFAStyle.ts";
-import { Callout, Link, Text } from "@radix-ui/themes";
+import { Callout, Text } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
-import { userSlice } from "src/entities/user/model/userSlice.ts";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
-interface IData {
-  key: string;
-}
 
 export const TwoFA = () => {
   const {
     register: registerInput,
-    setError,
     formState: { errors },
     handleSubmit,
   } = useForm({
@@ -22,12 +15,10 @@ export const TwoFA = () => {
       key: "",
     },
   });
-  const { setToken } = userSlice((state) => state);
 
   const [, setIsLoading] = useState(false);
-  const navigation = useNavigate();
 
-  const handleRegister = (data: IData) => {
+  const handleRegister = () => {
     setIsLoading(true);
     // login(data)
     //   .then(({ data }) => {
@@ -61,7 +52,7 @@ export const TwoFA = () => {
               size={"3"}
               weight={"medium"}
             >
-              Придумайте логин
+              Введите код из Google Authenticator
             </Text>
             <TextFieldSC
               size={"3"}

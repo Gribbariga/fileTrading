@@ -11,6 +11,7 @@ const WrapperSC = styled("div")`
 const ContentWrapperSC = styled("div")`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-3);
 `;
 
