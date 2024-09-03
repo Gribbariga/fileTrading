@@ -1,6 +1,6 @@
-import { Register } from "src/features/Register/publicApi.ts";
 import { Heading } from "@radix-ui/themes";
 import { LoginFormStyle } from "./LoginFormStyle";
+import { Login } from "src/features/Login/publicApi";
 
 export const LoginForm = () => {
   return (
@@ -14,7 +14,7 @@ export const LoginForm = () => {
       >
         Войдите в аккаунт
       </Heading>
-      <Register />
+      <Login />
     </RegisterWrapperSC>
   );
 };

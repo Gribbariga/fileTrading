@@ -116,6 +116,9 @@ export const Login = () => {
         )}
 
         <ButtonsGroupSC>
+          <ButtonUI size={"2"} variant="solid" highContrast={false}>
+            Создать аккаунт
+          </ButtonUI>
           <ButtonUI
             size={"2"}
             variant="soft"
@@ -123,9 +126,6 @@ export const Login = () => {
             type="submit"
           >
             Войти
-          </ButtonUI>
-          <ButtonUI size={"2"} variant="solid" highContrast={false}>
-            Создать аккаунт
           </ButtonUI>
         </ButtonsGroupSC>
       </FormSC>

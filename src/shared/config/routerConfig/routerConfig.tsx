@@ -3,6 +3,7 @@ export enum AppRoutes {
   STORAGE = "/storage",
   STORAGE_VIEW = "/storage/:storageLink",
   REGISTER = "/register",
+  LOGIN = "/login",
   // NOT_FOUND = 'not_found',
 }
 
@@ -11,4 +12,5 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.STORAGE]: AppRoutes.STORAGE,
   [AppRoutes.STORAGE_VIEW]: AppRoutes.STORAGE_VIEW,
   [AppRoutes.REGISTER]: AppRoutes.REGISTER,
+  [AppRoutes.LOGIN]: AppRoutes.LOGIN,
 };
