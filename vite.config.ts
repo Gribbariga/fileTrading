@@ -17,7 +17,6 @@ export default defineConfig({
   },
 
   server: {
-    open: "/storage",
     watch: {
       usePolling: true,
     },

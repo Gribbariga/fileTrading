@@ -10,6 +10,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   isPassword: false,
   isGuest: true,
   yourFolderId: "",
+  description: undefined,
   setYourFolderId: (value) => {
     set((state) => ({ ...state, yourFolderId: value }));
   },
@@ -20,6 +21,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
+        console.log(data);
         set((state) => ({ ...state, storage: data, isLoading: false }));
       })
       .catch((error: Error | AxiosError) => {
