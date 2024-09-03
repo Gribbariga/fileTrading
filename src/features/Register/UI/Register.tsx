@@ -1,4 +1,4 @@
-import { Button, Callout, Text } from "@radix-ui/themes";
+import { Callout, Text } from "@radix-ui/themes";
 import { RegisterStyle } from "./RegisterStyle.ts";
 import { useForm } from "react-hook-form";
 import { register } from "src/shared/API/user/auth/auth.ts";
@@ -8,6 +8,7 @@ import { userSlice } from "src/entities/user/model/userSlice.ts";
 import { AxiosError, isAxiosError } from "axios";
 import { backendCodeError } from "src/shared/constant/backendCodeError.ts";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 
 interface IData {
   login: string;
@@ -101,7 +102,7 @@ export const Register = () => {
 
         {error && (
           <>
-            <CalloutSC size={"1"} variant="soft">
+            <CalloutSC size={"1"} mb={"5"} variant="soft">
               <Callout.Icon>
                 <InfoCircledIcon />
               </Callout.Icon>
@@ -111,12 +112,17 @@ export const Register = () => {
         )}
 
         <ButtonsGroupSC>
-          <Button size={"2"} variant="soft" highContrast={false}>
+          <ButtonUI size={"2"} variant="soft" highContrast={false}>
             Создать аккаунт
-          </Button>
-          <Button size={"2"} variant="solid" highContrast={false} type="submit">
+          </ButtonUI>
+          <ButtonUI
+            size={"2"}
+            variant="solid"
+            highContrast={false}
+            type="submit"
+          >
             Войти
-          </Button>
+          </ButtonUI>
         </ButtonsGroupSC>
       </FormSC>
     </>

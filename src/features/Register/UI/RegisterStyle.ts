@@ -12,6 +12,9 @@ const ButtonsGroupSC = styled("div")`
 
 const InputsWrapperSC = styled("div")`
   margin-bottom: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 `;
 
 const TextFieldSC = styled(TextField.Root)`

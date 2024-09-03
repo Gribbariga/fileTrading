@@ -4,8 +4,14 @@ import { Heading } from "@radix-ui/themes";
 
 export const RegisterForm = () => {
   return (
-    <RegisterWrapperSC>
-      <Heading align={"left"} highContrast={true} size={"5"} weight={"medium"}>
+    <RegisterWrapperSC size={"3"} variant="surface">
+      <Heading
+        align={"left"}
+        mb={"5"}
+        highContrast={true}
+        size={"5"}
+        weight={"medium"}
+      >
         Войдите в аккаунт
       </Heading>
       <Register />
