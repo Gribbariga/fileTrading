@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ISubcriptionSlice } from "./modal";
+import { ISubcriptionSlice } from "./model";
 import { getTarrifs } from "shared/API/subscription/subscription";
 
 export const subscriptionSlice = create<ISubcriptionSlice>((set) => ({
