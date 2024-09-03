@@ -45,7 +45,9 @@ export const Login = () => {
         if (isAxiosError(error)) {
           const errorMessage = backendCodeError[error.status || 500];
           if (typeof errorMessage !== "string") {
-            setError("root", { message: errorMessage[error.message] });
+            setError("root", {
+              message: errorMessage[error.response?.data.error],
+            });
           } else {
             setError("root", { message: errorMessage });
           }
