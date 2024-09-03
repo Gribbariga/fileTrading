@@ -1,5 +1,5 @@
 import { Button, Callout, Text } from "@radix-ui/themes";
-import { RegisterFormStyle } from "./RegisterFormStyle.ts";
+import { RegisterStyle } from "./RegisterStyle.ts";
 import { useForm } from "react-hook-form";
 import { register } from "src/shared/API/user/auth/auth.ts";
 import { useState } from "react";
@@ -14,7 +14,7 @@ interface IData {
   password: string;
 }
 
-export const RegisterForm = () => {
+export const Register = () => {
   const {
     register: registerInput,
     setError,
@@ -130,4 +130,4 @@ const {
   InputWrapperSC,
   ButtonsGroupSC,
   InputsWrapperSC,
-} = RegisterFormStyle();
+} = RegisterStyle();

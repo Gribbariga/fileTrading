@@ -26,7 +26,7 @@ const FormSC = styled("form")`
   width: 100%;
 `;
 
-export const RegisterFormStyle = () => ({
+export const RegisterStyle = () => ({
   FormSC,
   CalloutSC,
   TextFieldSC,
