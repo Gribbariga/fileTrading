@@ -9,6 +9,10 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   isNotFound: false,
   isPassword: false,
   isGuest: true,
+  yourFolderId: "",
+  setYourFolderId: (value) => {
+    set((state) => ({ ...state, yourFolderId: value }));
+  },
   setIsGuest: (value) => {
     set((state) => ({ ...state, isGuest: value }));
   },

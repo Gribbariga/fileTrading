@@ -31,7 +31,6 @@ export const downloadFile = async (arg: IDownloadFileArg) => {
 };
 
 export const deleteFile = async (arg: IDeleteFileArg) => {
-  // const token = getCookie("folderId");
   return await axiosBase.delete<null>(
     `/api/storage/file/delete/${arg.folder_id}/${arg.file_db_id}`
   );

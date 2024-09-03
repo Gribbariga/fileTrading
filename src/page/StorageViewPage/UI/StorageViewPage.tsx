@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "shared/lib/Container/Container";
-import { getCookie } from "shared/lib/helper/getCookie/getCookie";
 import { storageSlice } from "src/entities/storage/model/storageSlice";
 import styled from "styled-components";
 import { Layout } from "widgets/layout/publicApi";
@@ -12,16 +11,15 @@ import { StorageHeader } from "widgets/StorageHeader/UI/StorageHeader";
 import { StorageViewSkeleton } from "./StorageViewSkeleton/StorageViewSkeleton";
 
 const StorageViewPage = () => {
-  const { isLoading, isNotFound, setIsGuest, getStorage } = storageSlice(
-    (state) => state
-  );
+  const { isLoading, isNotFound, yourFolderId, setIsGuest, getStorage } =
+    storageSlice((state) => state);
   const { storageLink } = useParams();
   const navigation = useNavigate();
 
   useEffect(() => {
     console.log(storageLink);
     if (storageLink) {
-      const id = getCookie("folderId");
+      const id = yourFolderId;
       setIsGuest(id !== storageLink);
       getStorage(storageLink, "0");
     }

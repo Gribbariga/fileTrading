@@ -6,6 +6,8 @@ export interface IStorageSlice {
   isNotFound: boolean;
   isPassword: boolean;
   isGuest: boolean;
+  yourFolderId: string;
+  setYourFolderId: (value: string) => void;
   setIsGuest: (value: boolean) => void;
   deleteFile: (id: number) => void;
   setFolderId: (folderId: string) => void;

@@ -2,19 +2,20 @@ import { createPortal } from "react-dom";
 import { UploadWindowStyle } from "./UploadWindowStyle.ts";
 import { Heading, Text, Theme } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
-import { ChangeEvent, MouseEvent, useEffect, useRef } from "react";
+import { ChangeEvent, MouseEvent, useRef } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
 // import { useNavigate } from "react-router-dom";
-import { setCookie } from "shared/lib/helper/setCookie/setCookie.ts";
-import { getCookie } from "shared/lib/helper/getCookie/getCookie.ts";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { useResize } from "shared/lib/hooks/useResize/useResize.ts";
 import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper.ts";
 import { useNavigate } from "react-router-dom";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
   const { tariffs, subscription_id } = subscriptionSlice((state) => state);
+
+  const { setYourFolderId } = storageSlice((state) => state);
 
   const { height, width } = useResize();
 
@@ -28,11 +29,7 @@ export const UploadWindow = () => {
         lifetime: currentTariff.max_lifetime,
         download_password: false,
       }).then(async ({ data }) => {
-        setCookie("folderId", data.folder_id, {
-          "max-age": currentTariff.max_lifetime * 24 * 60 * 60 * 1000,
-          maxAge: currentTariff.max_lifetime * 24 * 60 * 60 * 1000,
-        });
-        console.log("?");
+        setYourFolderId(data.folder_id);
         await uploadFileHelper(files, currentTariff, data.folder_id);
         navigation(`/storage/${data.folder_id}`);
       });
@@ -51,12 +48,6 @@ export const UploadWindow = () => {
       fetchFiles(files);
     }
   };
-
-  useEffect(() => {
-    if (getCookie("folderId")) {
-      // navigation("/124512512");
-    }
-  }, []);
 
   const handleClick = (
     event: MouseEvent<HTMLInputElement, globalThis.MouseEvent>
