@@ -1,6 +1,6 @@
 export interface IRegisterArg {
   login: string;
-  passwod: string;
+  password: string;
   email?: string;
 }
 
