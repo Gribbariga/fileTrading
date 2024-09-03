@@ -91,7 +91,14 @@ export const Login = () => {
               >
                 Введите пароль
               </Text>
-              <Link href="/storage">Забыли пароль?</Link>
+              <Link
+                size={"2"}
+                weight={"regular"}
+                highContrast={false}
+                href="/storage"
+              >
+                Забыли пароль?
+              </Link>
             </PasswordTitleWrapperSC>
 
             <TextFieldSC
@@ -118,12 +125,18 @@ export const Login = () => {
         )}
 
         <ButtonsGroupSC>
-          <ButtonUI size={"2"} variant="solid" highContrast={false}>
+          <ButtonUI
+            type="button"
+            onClick={() => navigation("/register")}
+            size={"2"}
+            variant="soft"
+            highContrast={false}
+          >
             Создать аккаунт
           </ButtonUI>
           <ButtonUI
             size={"2"}
-            variant="soft"
+            variant="solid"
             highContrast={false}
             type="submit"
           >

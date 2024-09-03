@@ -116,14 +116,20 @@ export const Register = () => {
 
         <ButtonsGroupSC>
           <ButtonUI
+            onClick={() => navigation("/login")}
+            type="button"
             size={"2"}
             variant="soft"
             highContrast={false}
-            type="submit"
           >
             Войти
           </ButtonUI>
-          <ButtonUI size={"2"} variant="solid" highContrast={false}>
+          <ButtonUI
+            type="submit"
+            size={"2"}
+            variant="solid"
+            highContrast={false}
+          >
             Создать аккаунт
           </ButtonUI>
         </ButtonsGroupSC>
