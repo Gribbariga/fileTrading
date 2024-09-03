@@ -1,10 +1,15 @@
 import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
-import { IRegisterArg, IRegisterResult } from "./model";
+import {
+  ILoginArg,
+  ILoginResponse,
+  IRegisterArg,
+  IRegisterResponse,
+} from "./model";
 
 export const register = (arg: IRegisterArg) => {
-  return axiosBase.post<IRegisterResult>("api/user/register", arg);
+  return axiosBase.post<IRegisterResponse>("api/user/register", arg);
 };
 
-export const login = () => {
-  return axiosBase.post();
+export const login = (arg: ILoginArg) => {
+  return axiosBase.post<ILoginResponse>("api/user/login", arg);
 };
