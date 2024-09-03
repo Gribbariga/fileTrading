@@ -1,8 +1,8 @@
 import { Register } from "src/features/Register/publicApi.ts";
-import { RegisterFormStyle } from "./RegisterFormStyle.ts";
 import { Heading } from "@radix-ui/themes";
+import { LoginFormStyle } from "./LoginFormStyle";
 
-export const RegisterForm = () => {
+export const LoginForm = () => {
   return (
     <RegisterWrapperSC size={"3"} variant="surface">
       <Heading
@@ -12,11 +12,11 @@ export const RegisterForm = () => {
         size={"5"}
         weight={"medium"}
       >
-        Создайте аккаунт
+        Войдите в аккаунт
       </Heading>
       <Register />
     </RegisterWrapperSC>
   );
 };
 
-const { RegisterWrapperSC } = RegisterFormStyle();
+const { RegisterWrapperSC } = LoginFormStyle();
