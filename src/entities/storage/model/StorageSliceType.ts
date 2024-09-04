@@ -8,6 +8,7 @@ export interface IStorageSlice {
   isGuest: boolean;
   yourFolderId: string;
   description?: string;
+  downloadPassword?: string;
   setYourFolderId: (value: string) => void;
   setIsGuest: (value: boolean) => void;
   deleteFile: (id: number) => void;

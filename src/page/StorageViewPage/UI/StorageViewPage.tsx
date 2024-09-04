@@ -9,12 +9,23 @@ import { StorageControl } from "widgets/StorageControl/publicApi";
 import { StorageFileList } from "widgets/StorageFileList/UI/StorageFileList";
 import { StorageHeader } from "widgets/StorageHeader/UI/StorageHeader";
 import { StorageViewSkeleton } from "./StorageViewSkeleton/StorageViewSkeleton";
+import { headerDesktopHeight } from "src/shared/constant/headerSize";
+import { DownloadPassword } from "src/widgets/DownloadPassword/UI/DownloadPassword";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize";
 
 const StorageViewPage = () => {
-  const { isLoading, isNotFound, yourFolderId, setIsGuest, getStorage } =
-    storageSlice((state) => state);
+  const {
+    isLoading,
+    isNotFound,
+    yourFolderId,
+    downloadPassword,
+    setIsGuest,
+    getStorage,
+  } = storageSlice((state) => state);
   const { storageLink } = useParams();
   const navigation = useNavigate();
+
+  const { height } = useResize();
 
   useEffect(() => {
     console.log(storageLink);
@@ -35,14 +46,21 @@ const StorageViewPage = () => {
     <>
       <Layout>
         <Container maxWidth={1357}>
-          {!isLoading && (
+          {!isLoading && !downloadPassword && (
             <>
               <StorageActionBar />
               <StorageHeader />
-              <ContantWrapperSC>
+              <ContentWrapperSC>
                 <StorageFileList />
                 <StorageControl />
-              </ContantWrapperSC>
+              </ContentWrapperSC>
+            </>
+          )}
+          {downloadPassword && (
+            <>
+              <WrapperCS $height={height}>
+                <DownloadPassword />
+              </WrapperCS>
             </>
           )}
           {isLoading && <StorageViewSkeleton />}
@@ -52,12 +70,20 @@ const StorageViewPage = () => {
   );
 };
 
-const ContantWrapperSC = styled("div")`
+const ContentWrapperSC = styled("div")`
   width: 100%;
   max-width: 1357px;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
+`;
+
+const WrapperCS = styled("div")<{ $height: number }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: ${({ $height }) => `${$height - headerDesktopHeight}px`};
 `;
 
 export default StorageViewPage;

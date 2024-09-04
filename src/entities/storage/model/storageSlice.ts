@@ -11,6 +11,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   isGuest: true,
   yourFolderId: "",
   description: undefined,
+  downloadPassword: undefined,
   setYourFolderId: (value) => {
     set((state) => ({ ...state, yourFolderId: value }));
   },
