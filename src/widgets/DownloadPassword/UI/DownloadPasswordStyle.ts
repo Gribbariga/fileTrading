@@ -7,7 +7,7 @@ const WrapperSC = styled("div")`
   width: 100%;
   padding: var(--space-5);
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: var(--space-4);
   border-radius: var(--Radius-5, 12px);
   border: 1px solid var(--Colors-Neutral-Neutral-Alpha-6, rgba(0, 0, 0, 0.15));
@@ -17,8 +17,23 @@ const WrapperSC = styled("div")`
     0px 3px 12px -4px var(--black-a2), 0px 2px 3px -2px var(--gray-a3);
 `;
 
+const ButtonWrapperSC = styled("div")`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+`;
+
 const TextFieldSC = styled(TextField.Root)`
   width: 100%;
 `;
 
-export const DownloadPasswordStyle = () => ({ TextFieldSC, WrapperSC });
+const TextFieldSlotSC = styled(TextField.Slot)`
+  cursor: pointer;
+`;
+
+export const DownloadPasswordStyle = () => ({
+  WrapperSC,
+  TextFieldSC,
+  ButtonWrapperSC,
+  TextFieldSlotSC,
+});

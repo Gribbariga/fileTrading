@@ -1,4 +1,5 @@
 export function copyToClipboard(text: string) {
+  console.log("?");
   navigator.clipboard.writeText(text);
   // .then(() => {
   //   console.log("Текст успешно скопирован в буфер обмена:", text);

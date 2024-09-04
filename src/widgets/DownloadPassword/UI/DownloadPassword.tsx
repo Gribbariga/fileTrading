@@ -1,8 +1,9 @@
-import { Heading, IconButton, Text, TextField } from "@radix-ui/themes";
+import { Heading, Text } from "@radix-ui/themes";
 import { DownloadPasswordStyle } from "./DownloadPasswordStyle.ts";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
+import { copyToClipboard } from "src/shared/lib/helper/copyToClipboard/copyToClipboard.ts";
 
 export const DownloadPassword = () => {
   const { downloadPassword, setDownloadPassword } = storageSlice(
@@ -41,22 +42,26 @@ export const DownloadPassword = () => {
         size={"3"}
         variant="surface"
       >
-        <TextField.Slot side="right">
-          <IconButton>
-            <CopyIcon height="16" width="16" />
-          </IconButton>
-        </TextField.Slot>
+        <TextFieldSlotSC
+          onClick={() => copyToClipboard(downloadPassword || "")}
+          side="right"
+        >
+          <CopyIcon height="16" width="16" />
+        </TextFieldSlotSC>
       </TextFieldSC>
-      <ButtonUI
-        onClick={handleNext}
-        size={"3"}
-        highContrast={false}
-        variant="solid"
-      >
-        Продолжить
-      </ButtonUI>
+      <ButtonWrapperSC>
+        <ButtonUI
+          onClick={handleNext}
+          size={"3"}
+          highContrast={false}
+          variant="solid"
+        >
+          Продолжить
+        </ButtonUI>
+      </ButtonWrapperSC>
     </WrapperSC>
   );
 };
 
-const { TextFieldSC, WrapperSC } = DownloadPasswordStyle();
+const { WrapperSC, TextFieldSC, ButtonWrapperSC, TextFieldSlotSC } =
+  DownloadPasswordStyle();

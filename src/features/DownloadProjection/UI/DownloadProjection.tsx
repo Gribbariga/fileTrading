@@ -3,9 +3,12 @@ import { DownloadProjectionStyle } from "./DownloadProjectionStyle.ts";
 import { useEffect, useState } from "react";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { toggleDownloadPassword } from "src/shared/API/storage/folderSetting/api.ts";
+import { userSlice } from "src/entities/user/model/userSlice.ts";
 
 export const DownloadProjection = () => {
   const { storage } = storageSlice((state) => state);
+
+  const { token } = userSlice((state) => state);
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -16,12 +19,14 @@ export const DownloadProjection = () => {
   }, [storage]);
 
   const handleSwitch = () => {
-    if (storage) {
+    if (storage && token) {
       const currentValue = isChecked;
       setIsChecked((prev) => !prev);
-      toggleDownloadPassword({ folder_id: storage?.folder_id }).catch(() => {
-        setIsChecked(currentValue);
-      });
+      toggleDownloadPassword({ folder_id: storage?.folder_id }, token).catch(
+        () => {
+          setIsChecked(currentValue);
+        }
+      );
     }
   };
 
