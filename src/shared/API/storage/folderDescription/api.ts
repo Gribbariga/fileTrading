@@ -7,7 +7,7 @@ import {
 
 export const createDescription = (
   arg: ICreateDescriptionArg,
-  token: string
+  token?: string
 ) => {
   return axiosBase.post<ICreateDescriptionResponse>(
     "api/storage/folder/description/create",
@@ -21,7 +21,7 @@ export const createDescription = (
   );
 };
 
-export const editDescription = (arg: IEditDescriptionArg, token: string) => {
+export const editDescription = (arg: IEditDescriptionArg, token?: string) => {
   return axiosBase.patch("api/storage/folder/description/edit", arg, {
     headers: {
       "Content-Type": "multipart/form-data",

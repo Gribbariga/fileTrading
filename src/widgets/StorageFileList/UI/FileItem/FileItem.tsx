@@ -1,6 +1,6 @@
 import { Avatar, Text } from "@radix-ui/themes";
 import { FileItemStyle } from "./FileItemStyle.ts";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { DownloadFile } from "src/features/DownloadFile/publicApi.ts";
 import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
@@ -23,7 +23,7 @@ export const FileItem: FC<IFileItemProps> = ({
 }) => {
   const { isGuest, storage } = storageSlice((state) => state);
 
-  const [isImg, setIsImg] = useState(false);
+  // const [setIsImg] = useState(false);
 
   const date = new Date(createAt.replace(" ", "T"));
 
@@ -39,7 +39,7 @@ export const FileItem: FC<IFileItemProps> = ({
     if (checkImg(name) && storage) {
       previewImage({ folder_id: storage.folder_id, file_db_id: fileDbId }).then(
         () => {
-          setIsImg(true);
+          // setIsImg(true);
         }
       );
     }
