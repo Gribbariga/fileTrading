@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode } from "react";
 import { Header } from "./Header/Header";
 import { Container } from "shared/lib/Container/Container";
 import { LayoutStyle } from "./LayoutStyle";
@@ -9,16 +9,12 @@ interface ILayoutProps {
 }
 
 export const Layout: FC<ILayoutProps> = ({ children }) => {
-  const { height, width } = useResize();
-  const [fullPageHeight, setFullPageHeight] = useState(0);
+  const { height } = useResize();
 
-  useEffect(() => {
-    setFullPageHeight(document.body.scrollHeight);
-  }, [height, width]);
   return (
     <>
       <Header />
-      <MainWindowsSC screenHeight={fullPageHeight}>
+      <MainWindowsSC $screenHeight={height}>
         <Container>{children}</Container>
       </MainWindowsSC>
     </>
