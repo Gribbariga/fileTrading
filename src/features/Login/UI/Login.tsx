@@ -9,6 +9,8 @@ import { AxiosError, isAxiosError } from "axios";
 import { backendCodeError } from "src/shared/constant/backendCodeError.ts";
 import { useForm } from "react-hook-form";
 import { LoginStyle } from "./LoginStyle";
+import { subscriptionStatus } from "src/shared/API/subscription/subscription";
+import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 
 interface IData {
   login: string;
@@ -29,6 +31,8 @@ export const Login = () => {
   });
   const { setInfo } = userSlice((state) => state);
 
+  const { setSubscribeStatus } = subscriptionSlice((state) => state);
+
   const [, setIsLoading] = useState(false);
   const navigation = useNavigate();
 
@@ -36,9 +40,13 @@ export const Login = () => {
     setIsLoading(true);
     login(data)
       .then(({ data }) => {
-        setIsLoading(false);
         setInfo(data);
-        navigation("/storage");
+
+        subscriptionStatus({ user_id: data.user_id }).then(({ data }) => {
+          setIsLoading(false);
+          setSubscribeStatus(data);
+          navigation("/storage");
+        });
       })
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);
