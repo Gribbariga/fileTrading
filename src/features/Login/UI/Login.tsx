@@ -27,7 +27,7 @@ export const Login = () => {
       password: "",
     },
   });
-  const { setToken } = userSlice((state) => state);
+  const { setInfo } = userSlice((state) => state);
 
   const [, setIsLoading] = useState(false);
   const navigation = useNavigate();
@@ -37,8 +37,8 @@ export const Login = () => {
     login(data)
       .then(({ data }) => {
         setIsLoading(false);
-        setToken(data.token);
-        navigation("/");
+        setInfo(data);
+        navigation("/storage");
       })
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);

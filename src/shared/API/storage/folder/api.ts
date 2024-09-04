@@ -26,15 +26,24 @@ export const oneTimeView = async (arg: IGetOneTimesViewArg) => {
   );
 };
 
-export const createFolder = async (arg: ICreateFolderArg) => {
+export const createFolder = async (arg: ICreateFolderArg, token?: string) => {
   return await axiosBase.post<ICreateFolderResponse>(
     "api/storage/folder/create",
-    arg
+    arg,
+    {
+      headers: {
+        token: token,
+      },
+    }
   );
 };
 
-export const renameFolder = async (arg: IRenameFolderArg) => {
-  return await axiosBase.patch<null>("/api/storage/folder/rename", arg);
+export const renameFolder = async (arg: IRenameFolderArg, token?: string) => {
+  return await axiosBase.patch<null>("/api/storage/folder/rename", arg, {
+    headers: {
+      token: token,
+    },
+  });
 };
 
 export const downLoadFolder = async (arg: IDownloadFolderArg) => {
@@ -43,9 +52,14 @@ export const downLoadFolder = async (arg: IDownloadFolderArg) => {
   });
 };
 
-export const deleteFolder = async (arg: IDeleteFolderArg) => {
+export const deleteFolder = async (arg: IDeleteFolderArg, token?: string) => {
   return await axiosBase.delete<null>(
-    `/api/storage/folder/delete/${arg.folder_id}`
+    `/api/storage/folder/delete/${arg.folder_id}`,
+    {
+      headers: {
+        token: token,
+      },
+    }
   );
 };
 
@@ -55,9 +69,17 @@ export const previewImage = async (arg: IPreviewImageArg) => {
   );
 };
 
-export const createOneTimeLink = async (arg: ICreateOneTimeLinkArg) => {
+export const createOneTimeLink = async (
+  arg: ICreateOneTimeLinkArg,
+  token?: string
+) => {
   return await axiosBase.post<ICreateOneTimeLinkResponse>(
     "/api/storage/folder/onetime/create",
-    arg
+    arg,
+    {
+      headers: {
+        token: token,
+      },
+    }
   );
 };

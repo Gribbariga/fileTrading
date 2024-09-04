@@ -5,14 +5,32 @@ import {
   IUpdateLifeTimeArg,
 } from "./model";
 
-export const toggleDownloadPassword = (arg: IToggleDownloadPasswordArg) => {
-  return axiosBase.patch("/api/storage/folder/setting/download_password", arg);
+export const toggleDownloadPassword = (
+  arg: IToggleDownloadPasswordArg,
+  token: string
+) => {
+  return axiosBase.patch("/api/storage/folder/setting/download_password", arg, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      token: token,
+    },
+  });
 };
 
-export const editViewPassword = (arg: IEditViewPasswordArg) => {
-  return axiosBase.patch("api/storage/folder/setting/view_password", arg);
+export const editViewPassword = (arg: IEditViewPasswordArg, token: string) => {
+  return axiosBase.patch("api/storage/folder/setting/view_password", arg, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      token: token,
+    },
+  });
 };
 
-export const updateLifeTime = (arg: IUpdateLifeTimeArg) => {
-  return axiosBase.patch("api/storage/folder/setting/lifetime", arg);
+export const updateLifeTime = (arg: IUpdateLifeTimeArg, token: string) => {
+  return axiosBase.patch("api/storage/folder/setting/lifetime", arg, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      token: token,
+    },
+  });
 };

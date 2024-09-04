@@ -1,10 +1,12 @@
 import { Avatar, Text } from "@radix-ui/themes";
 import { FileItemStyle } from "./FileItemStyle.ts";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { DownloadFile } from "src/features/DownloadFile/publicApi.ts";
 import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
+import { checkImg } from "src/shared/lib/helper/checkImg/checkImg.ts";
+import { previewImage } from "src/shared/API/storage/folder/api.ts";
 
 interface IFileItemProps {
   fileDbId: number;
@@ -19,7 +21,9 @@ export const FileItem: FC<IFileItemProps> = ({
   name,
   size,
 }) => {
-  const { isGuest } = storageSlice((state) => state);
+  const { isGuest, storage } = storageSlice((state) => state);
+
+  const [isImg, setIsImg] = useState(false);
 
   const date = new Date(createAt.replace(" ", "T"));
 
@@ -31,7 +35,15 @@ export const FileItem: FC<IFileItemProps> = ({
   // Форматируем дату в нужный формат
   const formattedDate = `${day}.${month}.${year}`;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (checkImg(name) && storage) {
+      previewImage({ folder_id: storage.folder_id, file_db_id: fileDbId }).then(
+        () => {
+          setIsImg(true);
+        }
+      );
+    }
+  }, []);
 
   return (
     <ItemWrapperSC>

@@ -10,10 +10,13 @@ import { useResize } from "shared/lib/hooks/useResize/useResize.ts";
 import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileHelper.ts";
 import { useNavigate } from "react-router-dom";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
+import { userSlice } from "src/entities/user/model/userSlice.ts";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
   const { tariffs, subscription_id } = subscriptionSlice((state) => state);
+
+  const { token } = userSlice((state) => state);
 
   const { setYourFolderId } = storageSlice((state) => state);
 
@@ -25,10 +28,13 @@ export const UploadWindow = () => {
 
   const fetchFiles = (files: FileList) => {
     if (currentTariff) {
-      createFolder({
-        lifetime: currentTariff.max_lifetime,
-        download_password: false,
-      }).then(async ({ data }) => {
+      createFolder(
+        {
+          lifetime: currentTariff.max_lifetime,
+          download_password: false,
+        },
+        token
+      ).then(async ({ data }) => {
         setYourFolderId(data.folder_id);
         await uploadFileHelper(files, currentTariff, data.folder_id);
         navigation(`/storage/${data.folder_id}`);

@@ -27,7 +27,7 @@ export const Register = () => {
       password: "",
     },
   });
-  const { setToken } = userSlice((state) => state);
+  const { setInfo } = userSlice((state) => state);
 
   const [, setIsLoading] = useState(false);
   const navigation = useNavigate();
@@ -37,7 +37,7 @@ export const Register = () => {
     register(data)
       .then(({ data }) => {
         setIsLoading(false);
-        setToken(data.token);
+        setInfo(data);
         navigation("/");
       })
       .catch((error: Error | AxiosError) => {
