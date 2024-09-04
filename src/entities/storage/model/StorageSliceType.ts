@@ -9,6 +9,7 @@ export interface IStorageSlice {
   yourFolderId: string;
   description?: string;
   downloadPassword?: string;
+  addFiles: (files: FileList) => void;
   setDownloadPassword: (value: string | undefined) => void;
   setYourFolderId: (value: string) => void;
   setIsGuest: (value: boolean) => void;

@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { IStorageSlice } from "./StorageSliceType";
 import { getFiles } from "shared/API/storage/folder/api";
 import { AxiosError, isAxiosError } from "axios";
+import { IFiles } from "src/shared/API/storage/folder/model";
 
 export const storageSlice = create<IStorageSlice>((set) => ({
   storage: undefined,
@@ -12,6 +13,41 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   yourFolderId: "",
   description: undefined,
   downloadPassword: undefined,
+  addFiles: (files) => {
+    const result: IFiles[] = [];
+    const now = new Date();
+    const pad = (num: number) => String(num).padStart(2, "0");
+
+    const year = now.getFullYear();
+    const month = pad(now.getMonth() + 1); // месяцы начинаются с 0
+    const day = pad(now.getDate());
+    const hours = pad(now.getHours());
+    const minutes = pad(now.getMinutes());
+    const seconds = pad(now.getSeconds());
+
+    for (let i = 0; i < files.length; i++) {
+      result.push({
+        created_at: `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`,
+        updated_at: `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`,
+        extension: "",
+        id: i,
+        name: files[i].name,
+        size: files[i].size,
+      });
+    }
+    set((state) => {
+      if (state.storage?.files) {
+        return {
+          ...state,
+          storage: {
+            ...state.storage,
+            files: [...state.storage.files, ...result],
+          },
+        };
+      }
+      return { ...state };
+    });
+  },
   setDownloadPassword: (value) => {
     set((state) => ({ ...state, downloadPassword: value }));
   },

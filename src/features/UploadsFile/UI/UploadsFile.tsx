@@ -7,7 +7,7 @@ import { ButtonUI } from "shared/ButtonUI/ButtonUI";
 import { userSlice } from "src/entities/user/model/userSlice";
 
 export const UploadsFile = () => {
-  const { storage } = storageSlice((state) => state);
+  const { storage, addFiles } = storageSlice((state) => state);
   const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -17,12 +17,13 @@ export const UploadsFile = () => {
     const files = e.target.files;
     if (tariffs && files && storage) {
       e.preventDefault();
-      uploadFileHelper(
+      await uploadFileHelper(
         files,
         tariffs[subscribeStatus?.subscription_id || 0],
         storage.folder_id,
         token
       );
+      addFiles(files);
     }
   };
 
