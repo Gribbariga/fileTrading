@@ -14,7 +14,7 @@ import { userSlice } from "src/entities/user/model/userSlice.ts";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
-  const { tariffs, subscription_id } = subscriptionSlice((state) => state);
+  const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
 
   const { token } = userSlice((state) => state);
 
@@ -24,7 +24,8 @@ export const UploadWindow = () => {
 
   const inputUploadRef = useRef<HTMLInputElement>(null);
 
-  const currentTariff = tariffs !== null ? tariffs[subscription_id] : null;
+  const currentTariff =
+    tariffs !== null ? tariffs[subscribeStatus?.subscription_id || 0] : null;
 
   const fetchFiles = (files: FileList) => {
     if (currentTariff) {

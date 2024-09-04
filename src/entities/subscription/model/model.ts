@@ -1,9 +1,15 @@
-import { TGetTarrifs } from "src/shared/API/subscription/model";
+import {
+  ISubscriptionStatusResponse,
+  TGetTarrifs,
+} from "src/shared/API/subscription/model";
 
 type TTariffs = TGetTarrifs;
 
+type TSubscribeInfo = ISubscriptionStatusResponse;
+
 export interface ISubcriptionSlice {
   tariffs: TTariffs | null;
-  subscription_id: number;
+  subscribeStatus: TSubscribeInfo | null;
+  setSubscribeStatus: (info: TSubscribeInfo) => void;
   fetchTarrifs: () => void;
 }

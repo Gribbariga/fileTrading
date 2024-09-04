@@ -7,7 +7,7 @@ import { ButtonUI } from "shared/ButtonUI/ButtonUI";
 
 export const UploadsFile = () => {
   const { storage } = storageSlice((state) => state);
-  const { subscription_id, tariffs } = subscriptionSlice((state) => state);
+  const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -15,7 +15,11 @@ export const UploadsFile = () => {
     const files = e.target.files;
     if (tariffs && files && storage) {
       e.preventDefault();
-      uploadFileHelper(files, tariffs[subscription_id], storage.folder_id);
+      uploadFileHelper(
+        files,
+        tariffs[subscribeStatus?.subscription_id || 0],
+        storage.folder_id
+      );
     }
   };
 
