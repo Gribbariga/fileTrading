@@ -14,6 +14,12 @@ export const StoragePassword = () => {
     setIsChecked(isChecked);
   }, [isPassword]);
 
+  // const handleUnFocus = () => {
+  //   if (storage) {
+  //     editViewPassword({ folder_id: storage?.folder_id ,view_password:});
+  //   }
+  // };
+
   return (
     <>
       <TopWrapperSC>
