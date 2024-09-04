@@ -1,9 +1,29 @@
 import { Badge, Switch, Text } from "@radix-ui/themes";
 import { DownloadProjectionStyle } from "./DownloadProjectionStyle.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
+import { toggleDownloadPassword } from "src/shared/API/storage/folderSetting/api.ts";
 
 export const DownloadProjection = () => {
+  const { storage } = storageSlice((state) => state);
+
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (storage) {
+      setIsChecked(storage.download_password);
+    }
+  }, [storage]);
+
+  const handleSwitch = () => {
+    if (storage) {
+      const currentValue = isChecked;
+      setIsChecked((prev) => !prev);
+      toggleDownloadPassword({ folder_id: storage?.folder_id }).catch(() => {
+        setIsChecked(currentValue);
+      });
+    }
+  };
 
   return (
     <>
@@ -19,7 +39,7 @@ export const DownloadProjection = () => {
           variant={"surface"}
           highContrast={false}
           checked={isChecked}
-          onClick={() => setIsChecked((prev) => !prev)}
+          onClick={handleSwitch}
         />
       </TopWrapperSC>
       <Text align={"left"} highContrast={false} size={"1"} weight={"regular"}>

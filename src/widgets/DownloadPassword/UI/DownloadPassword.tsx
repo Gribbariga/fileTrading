@@ -5,7 +5,13 @@ import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
 export const DownloadPassword = () => {
-  const { downloadPassword } = storageSlice((state) => state);
+  const { downloadPassword, setDownloadPassword } = storageSlice(
+    (state) => state
+  );
+
+  const handleNext = () => {
+    setDownloadPassword(undefined);
+  };
 
   return (
     <WrapperSC>
@@ -41,7 +47,12 @@ export const DownloadPassword = () => {
           </IconButton>
         </TextField.Slot>
       </TextFieldSC>
-      <ButtonUI size={"3"} highContrast={false} variant="solid">
+      <ButtonUI
+        onClick={handleNext}
+        size={"3"}
+        highContrast={false}
+        variant="solid"
+      >
         Продолжить
       </ButtonUI>
     </WrapperSC>
