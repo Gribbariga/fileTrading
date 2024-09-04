@@ -12,6 +12,9 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   yourFolderId: "",
   description: undefined,
   downloadPassword: undefined,
+  setDownloadPassword: (value) => {
+    set((state) => ({ ...state, downloadPassword: value }));
+  },
   setYourFolderId: (value) => {
     set((state) => ({ ...state, yourFolderId: value }));
   },
