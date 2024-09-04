@@ -37,8 +37,10 @@ export const UploadWindow = () => {
         token
       ).then(async ({ data }) => {
         setYourFolderId(data.folder_id);
-        await uploadFileHelper(files, currentTariff, data.folder_id);
-        navigation(`/storage/${data.folder_id}`);
+        await uploadFileHelper(files, currentTariff, data.folder_id, token);
+        setTimeout(() => {
+          navigation(`/storage/${data.folder_id}`);
+        }, 1000);
       });
     }
   };

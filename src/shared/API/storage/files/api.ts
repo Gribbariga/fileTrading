@@ -7,7 +7,7 @@ import {
   IUploadFileResponse,
 } from "./model";
 
-export const uploadFile = async (arg: IUploadFileArg, token: string) => {
+export const uploadFile = async (arg: IUploadFileArg, token?: string) => {
   const newFormData = new FormData();
   newFormData.append("file", arg.file);
   newFormData.append("folder_id", arg.folder_id);
