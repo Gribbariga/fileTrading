@@ -1,6 +1,6 @@
 import { Avatar, Text } from "@radix-ui/themes";
 import { FileItemStyle } from "./FileItemStyle.ts";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { DownloadFile } from "src/features/DownloadFile/publicApi.ts";
 import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
@@ -30,6 +30,9 @@ export const FileItem: FC<IFileItemProps> = ({
 
   // Форматируем дату в нужный формат
   const formattedDate = `${day}.${month}.${year}`;
+
+  useEffect(() => {}, []);
+
   return (
     <ItemWrapperSC>
       <SegmentWrapperSC>

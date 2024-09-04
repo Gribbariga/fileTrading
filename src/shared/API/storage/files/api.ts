@@ -2,6 +2,7 @@ import { axiosBase } from "../../../config/axiosConfig/axiosConfig";
 import {
   IDeleteFileArg,
   IDownloadFileArg,
+  IPreviewImageArg,
   IUploadFileArg,
   IUploadFileResponse,
 } from "./model";
@@ -27,6 +28,12 @@ export const downloadFile = async (arg: IDownloadFileArg) => {
     {
       responseType: "blob",
     }
+  );
+};
+
+export const previewImage = async (arg: IPreviewImageArg) => {
+  return await axiosBase.get(
+    `api/storage/folder/view/image/${arg.folder_id}/${arg.file_id}`
   );
 };
 
