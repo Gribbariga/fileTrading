@@ -10,7 +10,7 @@ export const backendCodeError: TErrorMessages = {
     "Wrong password": "Неправильный логин или пароль",
   },
   "404": {
-    '"User not found"': "Неправильный логин или пароль",
+    "User not found": "Пользователя не существует",
   },
   "500": "Что то пошло не так",
 };
