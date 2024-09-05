@@ -58,12 +58,17 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   setIsGuest: (value) => {
     set((state) => ({ ...state, isGuest: value }));
   },
-  getStorage: (folder_id, view_password) => {
+  getStorage: (folder_id, view_password, userId) => {
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
         console.log(data);
-        set((state) => ({ ...state, storage: data, isLoading: false }));
+        set((state) => ({
+          ...state,
+          storage: data,
+          isLoading: false,
+          isGuest: state.isGuest && userId === data.owner_id,
+        }));
       })
       .catch((error: Error | AxiosError) => {
         if (isAxiosError(error)) {
