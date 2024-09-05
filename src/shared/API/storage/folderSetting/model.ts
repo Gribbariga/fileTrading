@@ -4,7 +4,7 @@ export interface IToggleDownloadPasswordArg {
 
 export interface IEditViewPasswordArg {
   folder_id: string;
-  view_password: string;
+  view_password: string | null;
 }
 
 export interface IUpdateLifeTimeArg {
