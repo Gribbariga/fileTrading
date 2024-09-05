@@ -2,7 +2,7 @@ import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { Callout, Link, Text } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userSlice } from "src/entities/user/model/userSlice";
 import { login } from "src/shared/API/user/auth/auth.ts";
 import { AxiosError, isAxiosError } from "axios";
@@ -29,7 +29,7 @@ export const Login = () => {
       password: "",
     },
   });
-  const { setInfo } = userSlice((state) => state);
+  const { setInfo, token, user_id } = userSlice((state) => state);
 
   const { setSubscribeStatus } = subscriptionSlice((state) => state);
 
@@ -40,12 +40,13 @@ export const Login = () => {
     setIsLoading(true);
     login(data)
       .then(({ data }) => {
+        console.log(data);
         setInfo(data);
-
-        subscriptionStatus({ user_id: data.user_id }).then(({ data }) => {
+        subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
           setIsLoading(false);
-          setSubscribeStatus(data);
-          navigation("/storage");
+          await setSubscribeStatus(data);
+          console.log("?");
+          navigation("/storage/RATHFvTY");
         });
       })
       .catch((error: Error | AxiosError) => {
@@ -65,6 +66,11 @@ export const Login = () => {
 
   const error =
     errors.root?.message || errors.login?.message || errors.password?.message;
+
+  useEffect(() => {
+    console.log(token);
+    console.log(user_id);
+  }, [token, user_id]);
 
   return (
     <>

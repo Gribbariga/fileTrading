@@ -13,6 +13,23 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   yourFolderId: "",
   description: undefined,
   downloadPassword: undefined,
+  setName: (name) => {
+    set((state) => {
+      if (state.storage) {
+        return {
+          ...state,
+          storage: {
+            ...state.storage,
+            folder_name: name,
+          },
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+    });
+  },
   addFiles: (files) => {
     const result: IFiles[] = [];
     const now = new Date();
@@ -58,17 +75,22 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   setIsGuest: (value) => {
     set((state) => ({ ...state, isGuest: value }));
   },
-  getStorage: (folder_id, view_password, userId) => {
+  getStorage: (folder_id, view_password, isGuest, userId) => {
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
-        console.log(data);
-        set((state) => ({
-          ...state,
-          storage: data,
-          isLoading: false,
-          isGuest: state.isGuest && userId === data.owner_id,
-        }));
+        set((state) => {
+          console.log(state.isGuest, userId, data.owner_id);
+          console.log(state.isGuest || userId === data.owner_id);
+          //true
+          //
+          return {
+            ...state,
+            storage: data,
+            isLoading: false,
+            isGuest: userId !== data.owner_id && isGuest,
+          };
+        });
       })
       .catch((error: Error | AxiosError) => {
         if (isAxiosError(error)) {

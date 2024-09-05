@@ -9,6 +9,7 @@ export interface IStorageSlice {
   yourFolderId: string;
   description?: string;
   downloadPassword?: string;
+  setName: (name: string) => void;
   addFiles: (files: FileList) => void;
   setDownloadPassword: (value: string | undefined) => void;
   setYourFolderId: (value: string) => void;
@@ -18,6 +19,7 @@ export interface IStorageSlice {
   getStorage: (
     folder_id: string,
     view_password: string,
+    isGuest: boolean,
     user_id?: number
   ) => void;
 }

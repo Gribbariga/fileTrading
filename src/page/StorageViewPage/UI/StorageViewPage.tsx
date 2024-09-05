@@ -12,27 +12,23 @@ import { StorageViewSkeleton } from "./StorageViewSkeleton/StorageViewSkeleton";
 import { headerDesktopHeight } from "src/shared/constant/headerSize";
 import { DownloadPassword } from "src/widgets/DownloadPassword/UI/DownloadPassword";
 import { useResize } from "src/shared/lib/hooks/useResize/useResize";
+import { userSlice } from "src/entities/user/model/userSlice";
 
 const StorageViewPage = () => {
-  const {
-    isLoading,
-    isNotFound,
-    yourFolderId,
-    downloadPassword,
-    setIsGuest,
-    getStorage,
-  } = storageSlice((state) => state);
+  const { isLoading, isNotFound, yourFolderId, downloadPassword, getStorage } =
+    storageSlice((state) => state);
   const { storageLink } = useParams();
   const navigation = useNavigate();
 
   const { height } = useResize();
 
+  const { user_id } = userSlice((state) => state);
+
   useEffect(() => {
-    console.log(storageLink);
+    console.log(user_id);
     if (storageLink) {
       const id = yourFolderId;
-      setIsGuest(id !== storageLink);
-      getStorage(storageLink, "0");
+      getStorage(storageLink, "0", id !== storageLink, user_id || undefined);
     }
   }, [storageLink]);
 
@@ -41,6 +37,10 @@ const StorageViewPage = () => {
       navigation("/NotFound");
     }
   }, [isNotFound]);
+
+  useEffect(() => {
+    console.log(user_id);
+  }, [user_id]);
 
   return (
     <>
