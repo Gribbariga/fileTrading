@@ -13,10 +13,17 @@ import { headerDesktopHeight } from "src/shared/constant/headerSize";
 import { DownloadPassword } from "src/widgets/DownloadPassword/UI/DownloadPassword";
 import { useResize } from "src/shared/lib/hooks/useResize/useResize";
 import { userSlice } from "src/entities/user/model/userSlice";
+import { StoragePasswordView } from "src/widgets/StoragePasswordView/publicApi";
 
 const StorageViewPage = () => {
-  const { isLoading, isNotFound, yourFolderId, downloadPassword, getStorage } =
-    storageSlice((state) => state);
+  const {
+    isLoading,
+    isNotFound,
+    yourFolderId,
+    downloadPassword,
+    isPassword,
+    getStorage,
+  } = storageSlice((state) => state);
   const { storageLink } = useParams();
   const navigation = useNavigate();
 
@@ -40,13 +47,14 @@ const StorageViewPage = () => {
 
   useEffect(() => {
     console.log(user_id);
-  }, [user_id]);
-
+    console.log(isPassword);
+  }, [user_id, isPassword]);
+  console.log(isPassword);
   return (
     <>
       <Layout>
         <Container maxWidth={1357}>
-          {!isLoading && !downloadPassword && (
+          {!isLoading && !downloadPassword && !isPassword && (
             <>
               <StorageActionBar />
               <StorageHeader />
@@ -56,7 +64,14 @@ const StorageViewPage = () => {
               </ContentWrapperSC>
             </>
           )}
-          {downloadPassword && (
+          {!isLoading && isPassword && (
+            <>
+              <WrapperCS $height={height}>
+                <StoragePasswordView />
+              </WrapperCS>
+            </>
+          )}
+          {!isLoading && downloadPassword && (
             <>
               <WrapperCS $height={height}>
                 <DownloadPassword />

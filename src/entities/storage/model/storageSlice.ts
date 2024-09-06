@@ -79,8 +79,11 @@ export const storageSlice = create<IStorageSlice>((set) => ({
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
+        console.log(data);
+        console.log("view_password" in data);
         if ("view_password" in data) {
-          set((state) => ({ ...state, isPasswod: true }));
+          console.log("?");
+          set((state) => ({ ...state, isPassword: true, isLoading: false }));
         } else {
           set((state) => {
             console.log(state.isGuest, userId, data.owner_id);
@@ -101,6 +104,9 @@ export const storageSlice = create<IStorageSlice>((set) => ({
         if (isAxiosError(error)) {
           if (error.status === 404) {
             set((state) => ({ ...state, isNotFound: true, isLoading: false }));
+          }
+          if (error.status === 403) {
+            set((state) => ({ ...state, isPassword: true, isLoading: false }));
           }
         }
       });

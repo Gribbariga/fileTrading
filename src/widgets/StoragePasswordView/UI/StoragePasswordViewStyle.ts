@@ -15,9 +15,18 @@ const WrapperSC = styled("div")`
   box-shadow: 0px 4px 16px -8px var(--black-a2),
     0px 3px 12px -4px var(--black-a2), 0px 2px 3px -2px var(--gray-a3);
 `;
+const ButtonWrapperSC = styled("div")`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+`;
 
 const TextFieldSC = styled(TextField.Root)`
   width: 100%;
 `;
 
-export const StoragePasswordViewStyle = () => ({ WrapperSC, TextFieldSC });
+export const StoragePasswordViewStyle = () => ({
+  ButtonWrapperSC,
+  WrapperSC,
+  TextFieldSC,
+});

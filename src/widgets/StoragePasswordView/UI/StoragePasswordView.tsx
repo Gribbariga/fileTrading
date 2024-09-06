@@ -12,7 +12,7 @@ export const StoragePasswordView = () => {
   const { getStorage, yourFolderId } = storageSlice((state) => state);
   const { storageLink } = useParams();
   const handleNext = () => {
-    if (storageLink) {
+    if (storageLink && value) {
       const id = yourFolderId;
       getStorage(storageLink, value, id !== storageLink, user_id || undefined);
     }
@@ -32,10 +32,12 @@ export const StoragePasswordView = () => {
           value={value}
           placeholder="Пароль"
         />
-        <ButtonUI onClick={handleNext}>Продолжить</ButtonUI>
+        <ButtonWrapperSC>
+          <ButtonUI onClick={handleNext}>Продолжить</ButtonUI>
+        </ButtonWrapperSC>
       </WrapperSC>
     </>
   );
 };
 
-const { WrapperSC, TextFieldSC } = StoragePasswordViewStyle();
+const { ButtonWrapperSC, WrapperSC, TextFieldSC } = StoragePasswordViewStyle();
