@@ -29,6 +29,10 @@ export interface IGetFilesResponse {
   files: IFiles[];
 }
 
+export interface IGetFilesResponsePassword {
+  view_password: boolean;
+}
+
 export interface IGetOneTimesViewArg {
   onetime_link: string;
   view_password: string;

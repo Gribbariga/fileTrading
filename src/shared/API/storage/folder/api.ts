@@ -8,6 +8,7 @@ import {
   IDownloadFolderArg,
   IGetFilesArg,
   IGetFilesResponse,
+  IGetFilesResponsePassword,
   IGetOneTimesViewArg,
   IGetOneTimesViewResponse,
   IPreviewImageArg,
@@ -15,7 +16,7 @@ import {
 } from "./model";
 
 export const getFiles = async (arg: IGetFilesArg) => {
-  return await axiosBase.get<IGetFilesResponse>(
+  return await axiosBase.get<IGetFilesResponse | IGetFilesResponsePassword>(
     `api/storage/folder/view/${arg.folder_id}/${arg.view_password}`
   );
 };
