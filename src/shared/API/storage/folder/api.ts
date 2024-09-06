@@ -17,7 +17,7 @@ import {
 
 export const getFiles = async (arg: IGetFilesArg) => {
   return await axiosBase.get<IGetFilesResponse | IGetFilesResponsePassword>(
-    `api/storage/folder/view/${arg.folder_id}/${arg.view_password}`
+    `/api/storage/folder/view/${arg.folder_id}/${arg.view_password}`
   );
 };
 
@@ -29,7 +29,7 @@ export const oneTimeView = async (arg: IGetOneTimesViewArg) => {
 
 export const createFolder = async (arg: ICreateFolderArg, token?: string) => {
   return await axiosBase.post<ICreateFolderResponse>(
-    "api/storage/folder/create",
+    "/api/storage/folder/create",
     arg,
     {
       headers: {

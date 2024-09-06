@@ -40,13 +40,11 @@ export const Login = () => {
     setIsLoading(true);
     login(data)
       .then(({ data }) => {
-        console.log(data);
         setInfo(data);
         subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
           setIsLoading(false);
           await setSubscribeStatus(data);
-          console.log("?");
-          navigation("/storage/RATHFvTY");
+          navigation("/storage");
         });
       })
       .catch((error: Error | AxiosError) => {

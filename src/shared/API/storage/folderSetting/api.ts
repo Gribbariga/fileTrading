@@ -17,7 +17,7 @@ export const toggleDownloadPassword = (
 };
 
 export const editViewPassword = (arg: IEditViewPasswordArg, token: string) => {
-  return axiosBase.patch("api/storage/folder/setting/view_password", arg, {
+  return axiosBase.patch("/api/storage/folder/setting/view_password", arg, {
     headers: {
       token: token,
     },
@@ -25,7 +25,7 @@ export const editViewPassword = (arg: IEditViewPasswordArg, token: string) => {
 };
 
 export const updateLifeTime = (arg: IUpdateLifeTimeArg, token: string) => {
-  return axiosBase.patch("api/storage/folder/setting/lifetime", arg, {
+  return axiosBase.patch("/api/storage/folder/setting/lifetime", arg, {
     headers: {
       token: token,
     },

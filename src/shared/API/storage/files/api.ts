@@ -34,7 +34,7 @@ export const downloadFile = async (arg: IDownloadFileArg) => {
 
 export const previewImage = async (arg: IPreviewImageArg) => {
   return await axiosBase.get(
-    `api/storage/folder/view/image/${arg.folder_id}/${arg.file_id}`
+    `/api/storage/folder/view/image/${arg.folder_id}/${arg.file_id}`
   );
 };
 

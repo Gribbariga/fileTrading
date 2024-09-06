@@ -11,6 +11,6 @@ export const createKey2FA = () => {
 
 export const verifyKey2FA = (arg: IVerifyKey2FAArg) => {
   return axiosBase.get<IVerifyKey2FAResponse>(
-    `api/user/2fa/google/verify/${arg.code_2fa}`
+    `/api/user/2fa/google/verify/${arg.code_2fa}`
   );
 };

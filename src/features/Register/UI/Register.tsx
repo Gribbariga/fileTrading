@@ -9,6 +9,8 @@ import { AxiosError, isAxiosError } from "axios";
 import { backendCodeError } from "src/shared/constant/backendCodeError.ts";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
+import { subscriptionStatus } from "src/shared/API/subscription/subscription.ts";
+import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 
 interface IData {
   login: string;
@@ -28,7 +30,7 @@ export const Register = () => {
     },
   });
   const { setInfo } = userSlice((state) => state);
-
+  const { setSubscribeStatus } = subscriptionSlice((state) => state);
   const [, setIsLoading] = useState(false);
   const navigation = useNavigate();
 
@@ -36,9 +38,12 @@ export const Register = () => {
     setIsLoading(true);
     register(data)
       .then(({ data }) => {
-        setIsLoading(false);
         setInfo(data);
-        navigation("/");
+        subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
+          setIsLoading(false);
+          await setSubscribeStatus(data);
+          navigation("/storage");
+        });
       })
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);
