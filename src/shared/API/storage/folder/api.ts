@@ -6,6 +6,7 @@ import {
   ICreateOneTimeLinkResponse,
   IDeleteFolderArg,
   IDownloadFolderArg,
+  IGetAllFolderResponse,
   IGetFilesArg,
   IGetFilesResponse,
   IGetFilesResponsePassword,
@@ -87,5 +88,5 @@ export const createOneTimeLink = async (
 };
 
 export const getAllFolder = async () => {
-  return await axiosBase.get("/api/storage/folder/all");
+  return await axiosBase.get<IGetAllFolderResponse>("/api/storage/folder/all");
 };

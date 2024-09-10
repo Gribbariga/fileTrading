@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const CardSC = styled("div")`
+const CardSC = styled(Link)`
+  display: block;
+  text-decoration: none;
+  color: #000;
   width: 100%;
   display: flex;
   padding: var(--space-3);

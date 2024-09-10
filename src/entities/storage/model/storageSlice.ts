@@ -13,6 +13,17 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   yourFolderId: "",
   description: undefined,
   downloadPassword: undefined,
+  allFolder: [],
+
+  setAllFolder: (folders) => {
+    set((state) => {
+      console.log(folders);
+      return {
+        ...state,
+        allFolder: folders,
+      };
+    });
+  },
   setName: (name) => {
     set((state) => {
       if (state.storage) {

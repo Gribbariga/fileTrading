@@ -84,3 +84,24 @@ export interface ICreateOneTimeLinkArg {
 export interface ICreateOneTimeLinkResponse {
   onetime_link: string;
 }
+
+export interface IFolder {
+  folder_id: string;
+  user_id: number;
+  owner_name: string;
+  description_id: null | number;
+  name: string;
+  size: string;
+  file_count: number;
+  download_count: number;
+  view_count: number;
+  lifetime: number;
+  view_password: null;
+  download_password: boolean;
+  edit_permissions: boolean;
+  created_at: string;
+  updated_at: string;
+}
+export interface IGetAllFolderResponse {
+  folders: IFolder[];
+}

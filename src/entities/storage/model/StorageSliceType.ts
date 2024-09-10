@@ -1,4 +1,7 @@
-import { IGetFilesResponse as IStorage } from "src/shared/API/storage/folder/model";
+import {
+  IFolder,
+  IGetFilesResponse as IStorage,
+} from "src/shared/API/storage/folder/model";
 
 export interface IStorageSlice {
   isLoading: boolean;
@@ -9,6 +12,8 @@ export interface IStorageSlice {
   yourFolderId: string;
   description?: string;
   downloadPassword?: string;
+  allFolder: IFolder[];
+  setAllFolder: (folders: IFolder[]) => void;
   setName: (name: string) => void;
   addFiles: (files: FileList) => void;
   setDownloadPassword: (value: string | undefined) => void;
