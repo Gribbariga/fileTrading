@@ -7,8 +7,4 @@ const HeaderSC = styled("div")`
   margin-bottom: var(--space-4);
 `;
 
-const CurrentPageSC = styled("div")`
-  width: 100%;
-`;
-
 export const MyStorageListStyle = () => ({ HeaderSC });
