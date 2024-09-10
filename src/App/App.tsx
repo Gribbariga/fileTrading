@@ -3,15 +3,11 @@ import AppRouter from "./providers/router/UI/AppRouter";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 
 function App() {
-  const { fetchTarrifs, tariffs } = subscriptionSlice((state) => state);
+  const { fetchTarrifs } = subscriptionSlice((state) => state);
 
   useEffect(() => {
     fetchTarrifs();
   }, []);
-
-  useEffect(() => {
-    console.log(tariffs);
-  }, [tariffs]);
 
   return (
     <>

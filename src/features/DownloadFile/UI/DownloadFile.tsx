@@ -36,7 +36,7 @@ export const DownloadFile: FC<IDownloadFileProps> = ({
             link.parentNode.removeChild(link);
           }
         } catch {
-          console.log("error download");
+          ("error download");
         }
       });
     }

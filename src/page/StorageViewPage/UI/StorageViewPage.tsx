@@ -32,7 +32,6 @@ const StorageViewPage = () => {
   const { user_id } = userSlice((state) => state);
 
   useEffect(() => {
-    console.log(user_id);
     if (storageLink) {
       const id = yourFolderId;
       getStorage(storageLink, "0", id !== storageLink, user_id || undefined);
@@ -45,11 +44,6 @@ const StorageViewPage = () => {
     }
   }, [isNotFound]);
 
-  useEffect(() => {
-    console.log(user_id);
-    console.log(isPassword);
-  }, [user_id, isPassword]);
-  console.log(isPassword);
   return (
     <>
       <Layout>

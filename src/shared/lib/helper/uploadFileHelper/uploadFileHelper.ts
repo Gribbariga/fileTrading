@@ -9,7 +9,6 @@ export const uploadFileHelper = (
 ) => {
   for (let i = 0; i < files.length; i++) {
     const fileSizeInMB = files[i].size;
-    console.log(currentTariff);
     if (
       i < currentTariff.max_file_at_time &&
       fileSizeInMB <= +currentTariff.max_file_size

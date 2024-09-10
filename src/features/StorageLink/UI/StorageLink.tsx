@@ -26,7 +26,7 @@ export const StorageLink = () => {
     }
   }, [storage]);
 
-  console.log(location);
+  location;
 
   return (
     <>

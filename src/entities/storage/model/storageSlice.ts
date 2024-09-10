@@ -17,7 +17,6 @@ export const storageSlice = create<IStorageSlice>((set) => ({
 
   setAllFolder: (folders) => {
     set((state) => {
-      console.log(folders);
       return {
         ...state,
         allFolder: folders,
@@ -77,7 +76,6 @@ export const storageSlice = create<IStorageSlice>((set) => ({
     });
   },
   setDownloadPassword: (value) => {
-    console.log(value);
     set((state) => ({ ...state, downloadPassword: value }));
   },
   setYourFolderId: (value) => {
@@ -90,15 +88,10 @@ export const storageSlice = create<IStorageSlice>((set) => ({
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
-        console.log(data);
-        console.log("view_password" in data);
         if ("view_password" in data) {
-          console.log("?");
           set((state) => ({ ...state, isPassword: true, isLoading: false }));
         } else {
           set((state) => {
-            console.log(state.isGuest, userId, data.owner_id);
-            console.log(state.isGuest || userId === data.owner_id);
             //true
             //
             return {

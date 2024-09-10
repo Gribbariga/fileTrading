@@ -47,7 +47,6 @@ export const Register = () => {
       })
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);
-        console.log(error);
         if (isAxiosError(error)) {
           const errorMessage = backendCodeError[error.status || 500];
           if (typeof errorMessage !== "string") {

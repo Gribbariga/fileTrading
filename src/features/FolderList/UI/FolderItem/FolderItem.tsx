@@ -35,7 +35,6 @@ export const FolderItem: FC<FolderItemProps> = ({
     intervalId.current = setInterval(() => {
       const now = new Date();
       const remainingTime = expirationDate.getTime() - now.getTime();
-      console.log(remainingTime);
       // Если время истекло, остановите таймер
       if (remainingTime <= 0 && intervalId.current) {
         setTime("Время истекло");

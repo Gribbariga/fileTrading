@@ -15,8 +15,8 @@ export const StorageName = () => {
 
   useEffect(() => {
     if (storage) {
-      console.log(t);
-      console.log(token);
+      t;
+      token;
       setValue(storage?.folder_name);
     }
   }, []);
@@ -26,7 +26,7 @@ export const StorageName = () => {
   };
 
   const handleSave = () => {
-    console.log(token);
+    token;
     if (storage && token) {
       renameFolder({ folder_id: storage?.folder_id, new_name: value }, token)
         .then(() => {

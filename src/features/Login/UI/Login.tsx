@@ -67,10 +67,7 @@ export const Login = () => {
   const error =
     errors.root?.message || errors.login?.message || errors.password?.message;
 
-  useEffect(() => {
-    console.log(token);
-    console.log(user_id);
-  }, [token, user_id]);
+  useEffect(() => {}, [token, user_id]);
 
   return (
     <>

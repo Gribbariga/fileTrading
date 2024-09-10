@@ -70,10 +70,10 @@ export const StorageDescription = () => {
             setValue("");
           }
 
-          console.log(data);
+          data;
         })
         .catch(() => {
-          console.log("err");
+          ("err");
         });
     }
   }, [storage]);

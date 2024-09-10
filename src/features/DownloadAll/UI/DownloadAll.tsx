@@ -25,7 +25,7 @@ export const DownloadAll = () => {
           }
           setDownloadPassword(req.headers.download_password);
         } catch {
-          console.log("error download");
+          ("error download");
         }
       });
     }

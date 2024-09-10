@@ -26,7 +26,7 @@ export const StorageLifeTimeChange = () => {
       });
     }
   };
-  console.log(value);
+  value;
   return (
     <>
       <RadioGroup.Root defaultValue="7" value={value}>
