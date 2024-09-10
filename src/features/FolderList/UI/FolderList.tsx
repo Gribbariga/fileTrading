@@ -1,8 +1,14 @@
 import { ScrollArea, Text } from "@radix-ui/themes";
 import { FolderListStyle } from "./FolderListStyle.ts";
+import { useEffect } from "react";
+import { getAllFolder } from "src/shared/API/storage/folder/api.ts";
 
 export const FolderList = () => {
   const headerText = ["Имя", "Размер", "Создано", "Срок хранения"];
+
+  useEffect(() => {
+    getAllFolder();
+  }, []);
 
   return (
     <>
