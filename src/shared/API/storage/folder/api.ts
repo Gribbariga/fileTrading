@@ -85,3 +85,7 @@ export const createOneTimeLink = async (
     }
   );
 };
+
+export const getAllFolder = async () => {
+  return await axiosBase.get("/api/storage/folder/all");
+};
