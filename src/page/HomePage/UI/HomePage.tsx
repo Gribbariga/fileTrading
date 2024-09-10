@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        <Container>
+        <Container maxWidth={1357}>
           <MyStorageList />
         </Container>
       </Layout>

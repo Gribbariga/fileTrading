@@ -9,6 +9,6 @@ export const ButtonUI: FC<ButtonUIProps> = (props) => {
   return <ButtonSC {...props}>{children}</ButtonSC>;
 };
 
-const ButtonSC = styled(Button)`
-  cursor: pointer;
+const ButtonSC = styled(Button)<{ disabled?: boolean }>`
+  cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
 `;

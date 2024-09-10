@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { LoginStyle } from "./LoginStyle";
 import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
+import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
 
 interface IData {
   login: string;
@@ -41,6 +42,7 @@ export const Login = () => {
     login(data)
       .then(({ data }) => {
         setInfo(data);
+        setCookie("token", data.token);
         subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
           setIsLoading(false);
           await setSubscribeStatus(data);

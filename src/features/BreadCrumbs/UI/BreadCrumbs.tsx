@@ -12,7 +12,12 @@ export const BreadCrumbs: FC<IBreadCrumbsProps> = ({ storageName }) => {
   return (
     <>
       <BreadCrumbsWrapperSC>
-        <ButtonUI variant="ghost" highContrast={false} size={"2"}>
+        <ButtonUI
+          disabled={!storageName}
+          variant="ghost"
+          highContrast={false}
+          size={"2"}
+        >
           <HomeIcon />
           Мои хранилища
         </ButtonUI>
