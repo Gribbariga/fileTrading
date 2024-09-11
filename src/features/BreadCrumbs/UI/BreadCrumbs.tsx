@@ -26,7 +26,12 @@ export const BreadCrumbs: FC<IBreadCrumbsProps> = ({ storageName }) => {
             <Text size={"2"} weight={"regular"}>
               {">"}
             </Text>
-            <ButtonUI variant="ghost" highContrast={false} size={"2"}>
+            <ButtonUI
+              disabled={true}
+              variant="ghost"
+              highContrast={false}
+              size={"2"}
+            >
               <ArchiveIcon /> {storageName}
             </ButtonUI>
           </>

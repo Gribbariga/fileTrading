@@ -14,9 +14,11 @@ import { DownloadPassword } from "src/widgets/DownloadPassword/UI/DownloadPasswo
 import { useResize } from "src/shared/lib/hooks/useResize/useResize";
 import { userSlice } from "src/entities/user/model/userSlice";
 import { StoragePasswordView } from "src/widgets/StoragePasswordView/publicApi";
+import { BreadCrumbs } from "src/features/BreadCrumbs/UI/BreadCrumbs";
 
 const StorageViewPage = () => {
   const {
+    storage,
     isLoading,
     isNotFound,
     yourFolderId,
@@ -50,6 +52,7 @@ const StorageViewPage = () => {
         <Container maxWidth={1357}>
           {!isLoading && !downloadPassword && !isPassword && (
             <>
+              <BreadCrumbs storageName={storage?.folder_name} />
               <StorageActionBar />
               <StorageHeader />
               <ContentWrapperSC>
