@@ -1,15 +1,28 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { Header } from "./Header/Header";
 import { Container } from "shared/lib/Container/Container";
 import { LayoutStyle } from "./LayoutStyle";
-import { useResize } from "shared/lib/hooks/useResize/useResize";
 
 interface ILayoutProps {
   children: ReactNode;
 }
 
 export const Layout: FC<ILayoutProps> = ({ children }) => {
-  const { height } = useResize();
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      const pageHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.body.clientHeight,
+        document.documentElement.clientHeight
+      );
+      setHeight(pageHeight);
+    });
+  }, []);
 
   return (
     <>
