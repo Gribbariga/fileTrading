@@ -46,7 +46,7 @@ export const Login = () => {
         subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
           setIsLoading(false);
           await setSubscribeStatus(data);
-          navigation("/storage");
+          navigation("/");
         });
       })
       .catch((error: Error | AxiosError) => {

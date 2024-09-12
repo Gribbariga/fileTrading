@@ -11,6 +11,7 @@ import { uploadFileHelper } from "shared/lib/helper/uploadFileHelper/uploadFileH
 import { useNavigate } from "react-router-dom";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { userSlice } from "src/entities/user/model/userSlice.ts";
+import { v4 as uuidv4 } from "uuid";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
@@ -31,6 +32,7 @@ export const UploadWindow = () => {
     if (currentTariff) {
       createFolder(
         {
+          login: uuidv4(),
           lifetime: currentTariff.max_lifetime,
           download_password: false,
         },
