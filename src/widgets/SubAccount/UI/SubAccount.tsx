@@ -7,8 +7,9 @@ import { SubAccountList } from "src/features/SubAccountList/publickApi.ts";
 export const SubAccount = () => {
   return (
     <>
+      <BreadCrumbs />
+
       <TitleWrapperSC>
-        <BreadCrumbs />
         <Heading size={"6"} weight={"medium"}>
           Корпоративные аккаунты
         </Heading>

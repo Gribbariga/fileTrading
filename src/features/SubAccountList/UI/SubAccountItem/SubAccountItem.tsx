@@ -52,10 +52,14 @@ export const SubAccountItem: FC<ISubAccountItemProps> = ({ number }) => {
     <>
       <WrapperSC>
         <FormSC onSubmit={handleSubmit(handleFormSubmit)}>
-          <Text>Аккаунт #{number}</Text>
+          <Text mb={"4"} style={{ display: "block" }}>
+            Аккаунт #{number}
+          </Text>
           <InputsWrapperSC>
             <InputWrapperSC>
               <Text
+                mb={"2"}
+                style={{ display: "block" }}
                 align={"left"}
                 highContrast={true}
                 size={"3"}
@@ -75,6 +79,8 @@ export const SubAccountItem: FC<ISubAccountItemProps> = ({ number }) => {
             </InputWrapperSC>
             <InputWrapperSC>
               <Text
+                mb={"2"}
+                style={{ display: "block" }}
                 align={"left"}
                 highContrast={true}
                 size={"3"}

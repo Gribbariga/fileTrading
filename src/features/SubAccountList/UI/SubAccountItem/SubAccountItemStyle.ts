@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const WrapperSC = styled(Card)`
   max-width: 444px;
-  width: 32.72%;
+  width: 32%;
 `;
 
 const InputsWrapperSC = styled("div")`
