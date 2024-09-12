@@ -25,15 +25,6 @@ export const Header = () => {
         >
           <GlobeIcon />
         </IcomButtonSC>
-        <IcomButtonSC
-          size={"3"}
-          variant="outline"
-          color="orange"
-          highContrast={false}
-          loading={false}
-        >
-          <PersonIcon />
-        </IcomButtonSC>
       </MenuWrapperSC>
     </HeaderSC>
   );
