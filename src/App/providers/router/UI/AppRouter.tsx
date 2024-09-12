@@ -8,6 +8,7 @@ import { PageFallBack } from "shared/PageFallBack/PageFallBack";
 import { HomePage } from "src/page/HomePage/publicApi";
 import { LoginPage } from "src/page/LoginPage/publicApi";
 import { RegisterPage } from "src/page/RegisterPage/publicApi";
+import { SubAccountPageAsync } from "src/page/SubAccountPage/publickApi";
 import { TwoFAPage } from "src/page/TwoFAPage/publicApi";
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
@@ -39,6 +40,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.HOME]: {
     path: AppRoutes.HOME,
     element: <HomePage />,
+  },
+  [AppRoutes.CORPORATE]: {
+    path: AppRoutes.CORPORATE,
+    element: <SubAccountPageAsync />,
   },
 };
 
