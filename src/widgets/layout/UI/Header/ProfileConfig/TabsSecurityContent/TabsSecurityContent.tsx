@@ -1,6 +1,7 @@
 import { Dialog, Text } from "@radix-ui/themes";
 import { ChangeAccountPassword } from "src/features/ChangeAccountPassword/publicApi.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
+import { ConnectGoogleTwoFA } from "./ConnectGoogleTwoFA/ConnectGoogleTwoFA";
 
 export const TabsSecurityContent = () => {
   return (
@@ -19,7 +20,7 @@ export const TabsSecurityContent = () => {
           </ButtonUI>
         </Dialog.Trigger>
         <Dialog.Content>
-          <div style={{ width: "100px", height: "100px" }}>TEST</div>
+          <ConnectGoogleTwoFA />
         </Dialog.Content>
       </Dialog.Root>
       <Dialog.Root>

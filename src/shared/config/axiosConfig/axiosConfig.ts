@@ -3,7 +3,8 @@ import { getCookie } from "src/shared/lib/helper/getCookie/getCookie";
 // baseURL: "http://" + import.meta.env.VITE_DOMAIN,
 
 export const axiosBase = axios.create({
-  baseURL: import.meta.env.VITE_DOMAIN,
+  baseURL: "http://" + import.meta.env.VITE_DOMAIN,
+  // withCredentials: true,
 });
 
 axiosBase.interceptors.request.use((config) => {
