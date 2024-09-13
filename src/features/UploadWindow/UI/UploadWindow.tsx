@@ -1,6 +1,5 @@
 import { UploadWindowStyle } from "./UploadWindowStyle.ts";
 import { Heading, Text } from "@radix-ui/themes";
-import { UploadIcon } from "@radix-ui/react-icons";
 import { ChangeEvent, MouseEvent, useRef } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
 // import { useNavigate } from "react-router-dom";
@@ -11,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { userSlice } from "src/entities/user/model/userSlice.ts";
 import { v4 as uuidv4 } from "uuid";
+
+import UploadIcon from "../assets/uploadIcon.svg?react";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();

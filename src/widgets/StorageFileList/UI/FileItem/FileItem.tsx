@@ -47,7 +47,13 @@ export const FileItem: FC<IFileItemProps> = ({
 
   return (
     <ItemWrapperSC>
-      <SegmentWrapperSC>
+      <SegmentWrapperSC
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
         <Avatar
           size={"4"}
           variant="soft"
@@ -56,7 +62,15 @@ export const FileItem: FC<IFileItemProps> = ({
           fallback={<FileIcon />}
         />
 
-        <Text size={"2"} weight={"medium"} align={"left"} highContrast={true}>
+        <Text
+          style={{
+            whiteSpace: "nowrap",
+          }}
+          size={"2"}
+          weight={"medium"}
+          align={"left"}
+          highContrast={true}
+        >
           {name}
         </Text>
       </SegmentWrapperSC>

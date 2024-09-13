@@ -80,13 +80,13 @@ export const Login = () => {
               size={"3"}
               weight={"medium"}
             >
-              Придумайте логин
+              Ваш логин
             </Text>
             <TextFieldSC
               size={"3"}
               variant="surface"
               {...registerInput("login", {
-                required: "Заполните все обязательные поля",
+                required: "Заполните обязательное поле",
                 maxLength: { value: 250, message: "Логин слишком длинный" },
               })}
               placeholder="Введите логин"
@@ -116,7 +116,7 @@ export const Login = () => {
               size={"3"}
               variant="surface"
               {...registerInput("password", {
-                required: "Заполните все обязательные поля",
+                required: "Заполните обязательное поле",
                 maxLength: { value: 250, message: "Пароль слишком длинный" },
               })}
               placeholder="Пароль"

@@ -58,7 +58,7 @@ export const TwoFA = () => {
               size={"3"}
               variant="surface"
               {...registerInput("key", {
-                required: "Заполните все обязательные поля",
+                required: "Заполните обязательное поле",
               })}
               placeholder="Защитный код"
             />

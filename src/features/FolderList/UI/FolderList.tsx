@@ -45,7 +45,7 @@ export const FolderList = () => {
         })}
       </ListHeaderSC>
       <ScrollArea>
-        {true &&
+        {isLoading &&
           skeletonNumber.map((item) => {
             return (
               <SkeletonWrapperSC key={item}>
@@ -54,7 +54,7 @@ export const FolderList = () => {
             );
           })}
 
-        {false &&
+        {isLoading &&
           allFolder.map((item) => {
             return (
               <FolderItem

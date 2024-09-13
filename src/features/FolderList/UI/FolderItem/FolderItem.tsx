@@ -63,7 +63,13 @@ export const FolderItem: FC<FolderItemProps> = ({
   return (
     <CardSC to={`/storage/${folderId}`}>
       <SegmentWrapperSC>
-        <NameAndImgWrapperSC>
+        <NameAndImgWrapperSC
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
           <Avatar
             color="gray"
             size={"4"}
