@@ -1,4 +1,4 @@
-import { Tabs } from "@radix-ui/themes";
+import { Dialog } from "@radix-ui/themes";
 import styled from "styled-components";
 
 const ContentWrapperSC = styled("div")`
@@ -13,7 +13,12 @@ const TitleWrapperSC = styled("div")`
   margin-bottom: var(--space-5);
 `;
 
+const DialogRootSC = styled(Dialog.Root)`
+  z-index: ${1000000};
+`;
+
 export const ProfileConfigStyle = () => ({
+  DialogRootSC,
   TitleWrapperSC,
   ContentWrapperSC,
 });

@@ -1,6 +1,7 @@
 import { Logo } from "shared/Logo/Logo";
 import { HeaderStyle } from "./HeadersStyle";
-import { GlobeIcon, PersonIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
+import { GlobeIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
+import { ProfileConfig } from "./ProfileConfig/ProfileConfig";
 
 export const Header = () => {
   return (
@@ -25,6 +26,7 @@ export const Header = () => {
         >
           <GlobeIcon />
         </IcomButtonSC>
+        <ProfileConfig />
       </MenuWrapperSC>
     </HeaderSC>
   );

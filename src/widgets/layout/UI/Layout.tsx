@@ -11,17 +11,12 @@ export const Layout: FC<ILayoutProps> = ({ children }) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
+    console.log(document.documentElement.scrollHeight);
     window.addEventListener("resize", () => {
-      const pageHeight = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight,
-        document.body.clientHeight,
-        document.documentElement.clientHeight
-      );
-      setHeight(pageHeight);
+      setHeight(document.documentElement.scrollHeight);
     });
+
+    setHeight(document.documentElement.scrollHeight);
   }, []);
 
   return (

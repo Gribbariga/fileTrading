@@ -1,6 +1,5 @@
-import { createPortal } from "react-dom";
 import { UploadWindowStyle } from "./UploadWindowStyle.ts";
-import { Heading, Text, Theme } from "@radix-ui/themes";
+import { Heading, Text } from "@radix-ui/themes";
 import { UploadIcon } from "@radix-ui/react-icons";
 import { ChangeEvent, MouseEvent, useRef } from "react";
 import { createFolder } from "shared/API/storage/folder/api.ts";
@@ -72,69 +71,54 @@ export const UploadWindow = () => {
     <UploadWrapperSC $screenHeight={height}>
       {currentTariff && (
         <>
-          {createPortal(
-            <DropZoneSC
-              $screenWidth={width}
-              $screenHeight={height}
-              // onDrop={handleDropUploadFile}
-            >
-              <InputSC
-                $screenWidth={width}
-                $screenHeight={height}
-                ref={inputUploadRef}
-                multiple={true}
-                type="file"
-                onClick={handleClick}
-                onChange={handleFileChange}
-              />
-            </DropZoneSC>,
-            document.body
-          )}
-          {createPortal(
-            <Theme>
-              <WindowWrapperSC>
-                <Heading
-                  size={"4"}
-                  weight={"bold"}
-                  align={"center"}
-                  highContrast={true}
-                >
-                  Передавайте файлы одним касанием!
-                </Heading>
-                <FileUploadBaseSC
-                  onClick={() => inputUploadRef.current?.click()}
-                >
-                  <FileUploadInputSC
-                    multiple={true}
-                    type="file"
-                    onChange={handleFileChange}
-                  />
-                  <DownloadSC>
-                    <UploadIcon />
-                  </DownloadSC>
-                  <Text
-                    size={"3"}
-                    color="gray"
-                    weight={"regular"}
-                    align={"center"}
-                  >
-                    <Text color="orange">Нажмите «Загрузить»</Text> или
-                    перетащите файлы в эту область
-                  </Text>
-                </FileUploadBaseSC>
+          <DropZoneSC
+            $screenWidth={width}
+            $screenHeight={height}
+            // onDrop={handleDropUploadFile}
+          >
+            <WindowWrapperSC>
+              <Heading
+                size={"4"}
+                weight={"bold"}
+                align={"center"}
+                highContrast={true}
+              >
+                Передавайте файлы одним касанием!
+              </Heading>
+              <FileUploadBaseSC onClick={() => inputUploadRef.current?.click()}>
+                <FileUploadInputSC
+                  multiple={true}
+                  type="file"
+                  onChange={handleFileChange}
+                />
+                <DownloadSC>
+                  <UploadIcon />
+                </DownloadSC>
                 <Text
                   size={"3"}
+                  color="gray"
                   weight={"regular"}
                   align={"center"}
-                  color="gray"
                 >
-                  Вы можете загрузить {currentTariff.max_file_at_time} файл до{" "}
-                  {(+currentTariff.max_file_size / (1024 * 1024)).toFixed(0)} МБ
+                  <Text color="orange">Нажмите «Загрузить»</Text> или перетащите
+                  файлы в эту область
                 </Text>
-              </WindowWrapperSC>
-            </Theme>,
-            document.body
-          )}
+              </FileUploadBaseSC>
+              <Text size={"3"} weight={"regular"} align={"center"} color="gray">
+                Вы можете загрузить {currentTariff.max_file_at_time} файл до{" "}
+                {(+currentTariff.max_file_size / (1024 * 1024)).toFixed(0)} МБ
+              </Text>
+            </WindowWrapperSC>
+            <InputSC
+              $screenWidth={width}
+              $screenHeight={height}
+              ref={inputUploadRef}
+              multiple={true}
+              type="file"
+              onClick={handleClick}
+              onChange={handleFileChange}
+            />
+          </DropZoneSC>
         </>
       )}
     </UploadWrapperSC>

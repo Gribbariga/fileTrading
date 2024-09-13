@@ -15,9 +15,9 @@ const DropZoneSC = styled("div")<{
   $screenHeight: number;
   $screenWidth: number;
 }>`
-  position: absolute;
-  top: ${`${headerDesktopHeight}px`};
-  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: ${({ $screenWidth }) => `${$screenWidth}px`};
   height: ${({ $screenHeight }) => `${$screenHeight - headerDesktopHeight}px`};
   z-index: ${ZIndexEight};

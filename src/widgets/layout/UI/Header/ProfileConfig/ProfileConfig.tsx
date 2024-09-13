@@ -2,12 +2,13 @@ import { Dialog, Heading, Tabs } from "@radix-ui/themes";
 import { ProfileConfigStyle } from "./ProfileConfigStyle.ts";
 import { IconButtonUI } from "src/shared/IconButtonUI/IconButtonUI.tsx";
 import { Cross1Icon, PersonIcon } from "@radix-ui/react-icons";
+import { TabsSecurityContent } from "./TabsSecurityContent/TabsSecurityContent.tsx";
 
 export const ProfileConfig = () => {
   return (
     <>
-      <Dialog.Root>
-        <Dialog.Close>
+      <DialogRootSC>
+        <Dialog.Trigger>
           <IconButtonUI
             size={"3"}
             variant="outline"
@@ -17,22 +18,22 @@ export const ProfileConfig = () => {
           >
             <PersonIcon />
           </IconButtonUI>
-        </Dialog.Close>
+        </Dialog.Trigger>
 
-        <Dialog.Content size={"3"} maxWidth="400px">
+        <Dialog.Content style={{ zIndex: 100000 }} size={"3"} maxWidth="400px">
           <ContentWrapperSC>
             <TitleWrapperSC>
               <Heading weight={"medium"} size={"5"} align={"left"}>
                 Настройки аккаунта
               </Heading>
-              <Dialog.Trigger>
+              <Dialog.Close>
                 <IconButtonUI size={"2"} variant="ghost">
                   <Cross1Icon height={"16"} width={"16"} />
                 </IconButtonUI>
-              </Dialog.Trigger>
+              </Dialog.Close>
             </TitleWrapperSC>
 
-            <Tabs.Root mb={"5"} defaultValue="account">
+            <Tabs.Root mb={"5"} defaultValue="sec   ">
               <Tabs.List>
                 <Tabs.Trigger value="sec">Безопасность</Tabs.Trigger>
                 <Tabs.Trigger value="sub">Подписка</Tabs.Trigger>
@@ -41,7 +42,9 @@ export const ProfileConfig = () => {
                 </Tabs.Trigger>
               </Tabs.List>
 
-              <Tabs.Content value="sec"></Tabs.Content>
+              <Tabs.Content value="sec">
+                <TabsSecurityContent />
+              </Tabs.Content>
 
               <Tabs.Content value="sub"></Tabs.Content>
 
@@ -49,9 +52,9 @@ export const ProfileConfig = () => {
             </Tabs.Root>
           </ContentWrapperSC>
         </Dialog.Content>
-      </Dialog.Root>
+      </DialogRootSC>
     </>
   );
 };
 
-const { TitleWrapperSC, ContentWrapperSC } = ProfileConfigStyle();
+const { DialogRootSC, TitleWrapperSC, ContentWrapperSC } = ProfileConfigStyle();
