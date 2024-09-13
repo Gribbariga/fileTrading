@@ -21,40 +21,38 @@ export const ProfileConfig = () => {
         </Dialog.Trigger>
 
         <Dialog.Content style={{ zIndex: 100000 }} size={"3"} maxWidth="400px">
-          <ContentWrapperSC>
-            <TitleWrapperSC>
-              <Heading weight={"medium"} size={"5"} align={"left"}>
-                Настройки аккаунта
-              </Heading>
-              <Dialog.Close>
-                <IconButtonUI size={"2"} variant="ghost">
-                  <Cross1Icon height={"16"} width={"16"} />
-                </IconButtonUI>
-              </Dialog.Close>
-            </TitleWrapperSC>
+          <TitleWrapperSC>
+            <Heading weight={"medium"} size={"5"} align={"left"}>
+              Настройки аккаунта
+            </Heading>
+            <Dialog.Close>
+              <IconButtonUI size={"2"} variant="ghost">
+                <Cross1Icon height={"16"} width={"16"} />
+              </IconButtonUI>
+            </Dialog.Close>
+          </TitleWrapperSC>
 
-            <Tabs.Root mb={"5"} defaultValue="sec   ">
-              <Tabs.List>
-                <Tabs.Trigger value="sec">Безопасность</Tabs.Trigger>
-                <Tabs.Trigger value="sub">Подписка</Tabs.Trigger>
-                <Tabs.Trigger value="paymentsHistory">
-                  История платежей
-                </Tabs.Trigger>
-              </Tabs.List>
+          <Tabs.Root defaultValue="sec">
+            <Tabs.List mb={"5"}>
+              <Tabs.Trigger value="sec">Безопасность</Tabs.Trigger>
+              <Tabs.Trigger value="sub">Подписка</Tabs.Trigger>
+              <Tabs.Trigger value="paymentsHistory">
+                История платежей
+              </Tabs.Trigger>
+            </Tabs.List>
 
-              <Tabs.Content value="sec">
-                <TabsSecurityContent />
-              </Tabs.Content>
+            <Tabs.Content value="sec">
+              <TabsSecurityContent />
+            </Tabs.Content>
 
-              <Tabs.Content value="sub"></Tabs.Content>
+            <Tabs.Content value="sub"></Tabs.Content>
 
-              <Tabs.Content value="paymentsHistory"></Tabs.Content>
-            </Tabs.Root>
-          </ContentWrapperSC>
+            <Tabs.Content value="paymentsHistory"></Tabs.Content>
+          </Tabs.Root>
         </Dialog.Content>
       </DialogRootSC>
     </>
   );
 };
 
-const { DialogRootSC, TitleWrapperSC, ContentWrapperSC } = ProfileConfigStyle();
+const { DialogRootSC, TitleWrapperSC } = ProfileConfigStyle();

@@ -1,4 +1,3 @@
-import { TextField } from "@radix-ui/themes";
 import { ChangeAccountPasswordStyle } from "./ChangeAccountPasswordStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { useState } from "react";
@@ -13,7 +12,7 @@ export const ChangeAccountPassword = () => {
   return (
     <>
       <FormSC>
-        <TextField.Root
+        <TextFieldRoot
           value={value}
           size={"3"}
           variant="surface"
@@ -28,4 +27,4 @@ export const ChangeAccountPassword = () => {
   );
 };
 
-const { FormSC } = ChangeAccountPasswordStyle();
+const { FormSC, TextFieldRoot } = ChangeAccountPasswordStyle();

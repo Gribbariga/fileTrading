@@ -1,5 +1,4 @@
 import { Dialog, Text } from "@radix-ui/themes";
-import { TabsSecurityContentStyle } from "./TabsSecurityContentStyle.ts";
 import { ChangeAccountPassword } from "src/features/ChangeAccountPassword/publicApi.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 
@@ -11,7 +10,7 @@ export const TabsSecurityContent = () => {
       </Text>
       <ChangeAccountPassword />
       <Text size={"3"} weight={"medium"} align={"left"} mb={"2"}>
-        Пароль
+        Двухфакторная аутентификация
       </Text>
       <Dialog.Root>
         <Dialog.Trigger>
@@ -23,8 +22,16 @@ export const TabsSecurityContent = () => {
           <div style={{ width: "100px", height: "100px" }}>TEST</div>
         </Dialog.Content>
       </Dialog.Root>
+      <Dialog.Root>
+        <Dialog.Trigger>
+          <ButtonUI size={"3"} variant="surface" mb={"3"}>
+            Подключить почту
+          </ButtonUI>
+        </Dialog.Trigger>
+        <Dialog.Content>
+          <div style={{ width: "100px", height: "100px" }}>TEST2</div>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   );
 };
-
-const {} = TabsSecurityContentStyle();
