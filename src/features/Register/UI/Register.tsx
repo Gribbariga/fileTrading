@@ -6,11 +6,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userSlice } from "src/entities/user/model/userSlice.ts";
 import { AxiosError, isAxiosError } from "axios";
-import { backendCodeError } from "src/shared/constant/backendCodeError.ts";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { subscriptionStatus } from "src/shared/API/subscription/subscription.ts";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
+import { userCodeError } from "src/shared/constant/backendCodeError/User.ts";
 
 interface IData {
   login: string;
@@ -48,13 +48,14 @@ export const Register = () => {
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);
         if (isAxiosError(error)) {
-          const errorMessage = backendCodeError[error.status || 500];
-          if (typeof errorMessage !== "string") {
-            setError("root", {
-              message: errorMessage[error.response?.data.error],
-            });
-          } else {
-            setError("root", { message: errorMessage });
+          const errorMessage = error.response?.data.status;
+          console.log(errorMessage, userCodeError.USER_NOT_FOUND);
+          switch (errorMessage) {
+            case userCodeError.USER_EXISTS:
+              setError("root", {
+                message: "Пользователь с таким логином уже существует",
+              });
+              break;
           }
         }
       });
