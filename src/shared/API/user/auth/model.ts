@@ -5,7 +5,6 @@ export interface IRegisterArg {
 }
 
 export interface IRegisterResponse {
-  token: string;
   login: string;
   email: string;
   user_id: number;
@@ -18,7 +17,6 @@ export interface ILoginArg {
 }
 
 export interface ILoginResponse {
-  token: string;
   login: string;
   email: string;
   user_id: number;

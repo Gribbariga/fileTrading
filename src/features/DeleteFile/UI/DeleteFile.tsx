@@ -3,7 +3,6 @@ import { FC } from "react";
 import { deleteFile as deleteFileFetch } from "shared/API/storage/files/api";
 import { IconButtonUI } from "shared/IconButtonUI/IconButtonUI";
 import { storageSlice } from "src/entities/storage/model/storageSlice";
-import { userSlice } from "src/entities/user/model/userSlice";
 
 interface IDeleteFileProps {
   fileDbId: number;
@@ -12,17 +11,12 @@ interface IDeleteFileProps {
 export const DeleteFile: FC<IDeleteFileProps> = ({ fileDbId }) => {
   const { storage, deleteFile } = storageSlice((state) => state);
 
-  const { token } = userSlice((state) => state);
-
   const handleDeleteFile = () => {
-    if (storage && token) {
-      deleteFileFetch(
-        {
-          file_db_id: fileDbId,
-          folder_id: storage.folder_id,
-        },
-        token
-      ).then(() => {
+    if (storage) {
+      deleteFileFetch({
+        file_db_id: fileDbId,
+        folder_id: storage.folder_id,
+      }).then(() => {
         deleteFile(fileDbId);
       });
     }

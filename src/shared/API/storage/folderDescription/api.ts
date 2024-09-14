@@ -5,27 +5,13 @@ import {
   IEditDescriptionArg,
 } from "./mode";
 
-export const createDescription = (
-  arg: ICreateDescriptionArg,
-  token?: string
-) => {
+export const createDescription = (arg: ICreateDescriptionArg) => {
   return axiosBase.post<ICreateDescriptionResponse>(
     "/api/storage/folder/description/create",
-    arg,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        token: token,
-      },
-    }
+    arg
   );
 };
 
-export const editDescription = (arg: IEditDescriptionArg, token?: string) => {
-  return axiosBase.patch("/api/storage/folder/description/edit", arg, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      token: token,
-    },
-  });
+export const editDescription = (arg: IEditDescriptionArg) => {
+  return axiosBase.patch("/api/storage/folder/description/edit", arg);
 };

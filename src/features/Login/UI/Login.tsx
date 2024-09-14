@@ -2,7 +2,7 @@ import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { Callout, Link, Text } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { userSlice } from "src/entities/user/model/userSlice";
 import { login } from "src/shared/API/user/auth/auth.ts";
 import { AxiosError, isAxiosError } from "axios";
@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { LoginStyle } from "./LoginStyle";
 import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
-import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
 
 interface IData {
   login: string;
@@ -30,7 +29,7 @@ export const Login = () => {
       password: "",
     },
   });
-  const { setInfo, token, user_id } = userSlice((state) => state);
+  const { setInfo } = userSlice((state) => state);
 
   const { setSubscribeStatus } = subscriptionSlice((state) => state);
 
@@ -42,11 +41,10 @@ export const Login = () => {
     login(data)
       .then(({ data }) => {
         setInfo(data);
-        setCookie("token", data.token);
         subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
           setIsLoading(false);
           await setSubscribeStatus(data);
-          navigation("/");
+          navigation("/home");
         });
       })
       .catch((error: Error | AxiosError) => {
@@ -66,8 +64,6 @@ export const Login = () => {
 
   const error =
     errors.root?.message || errors.login?.message || errors.password?.message;
-
-  useEffect(() => {}, [token, user_id]);
 
   return (
     <>

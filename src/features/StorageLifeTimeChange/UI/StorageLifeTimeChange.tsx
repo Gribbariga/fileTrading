@@ -1,7 +1,6 @@
 import { RadioGroup } from "@radix-ui/themes";
 import { useState } from "react";
 import { storageSlice } from "src/entities/storage/model/storageSlice";
-import { userSlice } from "src/entities/user/model/userSlice";
 import { updateLifeTime } from "src/shared/API/storage/folderSetting/api";
 
 export const StorageLifeTimeChange = () => {
@@ -9,24 +8,18 @@ export const StorageLifeTimeChange = () => {
 
   const { storage } = storageSlice((state) => state);
 
-  const { token } = userSlice((state) => state);
-
   const handleChangeLife = (newValue: string) => {
-    if (storage && token) {
+    if (storage) {
       const currentValue = value;
       setValue(newValue);
-      updateLifeTime(
-        {
-          folder_id: storage.folder_id,
-          new_lifetime: +newValue,
-        },
-        token
-      ).catch(() => {
+      updateLifeTime({
+        folder_id: storage.folder_id,
+        new_lifetime: +newValue,
+      }).catch(() => {
         setValue(currentValue);
       });
     }
   };
-  value;
   return (
     <>
       <RadioGroup.Root defaultValue="7" value={value}>

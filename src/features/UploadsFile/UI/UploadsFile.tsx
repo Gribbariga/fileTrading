@@ -4,14 +4,12 @@ import { storageSlice } from "src/entities/storage/model/storageSlice";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { UploadsFileStyle } from "./UploadsFileStyle";
 import { ButtonUI } from "shared/ButtonUI/ButtonUI";
-import { userSlice } from "src/entities/user/model/userSlice";
 
 export const UploadsFile = () => {
   const { storage, addFiles } = storageSlice((state) => state);
   const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { token } = userSlice((state) => state);
 
   const handleFetchFile = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -20,8 +18,7 @@ export const UploadsFile = () => {
       await uploadFileHelper(
         files,
         tariffs[subscribeStatus?.subscription_id || 0],
-        storage.folder_id,
-        token
+        storage.folder_id
       );
       addFiles(files);
     }

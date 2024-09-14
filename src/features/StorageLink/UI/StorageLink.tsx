@@ -6,11 +6,9 @@ import { useLocation } from "react-router-dom";
 import { createOneTimeLink } from "shared/API/storage/folder/api.ts";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { copyToClipboard } from "shared/lib/helper/copyToClipboard/copyToClipboard.ts";
-import { userSlice } from "src/entities/user/model/userSlice.ts";
 
 export const StorageLink = () => {
   const { storage } = storageSlice((state) => state);
-  const { token } = userSlice((state) => state);
   const [oneTimeLink, setOneTimeLink] = useState("");
   const location = useLocation();
 
@@ -18,15 +16,11 @@ export const StorageLink = () => {
 
   useEffect(() => {
     if (storage?.folder_id) {
-      createOneTimeLink({ folder_id: storage.folder_id }, token).then(
-        ({ data }) => {
-          setOneTimeLink(data.onetime_link);
-        }
-      );
+      createOneTimeLink({ folder_id: storage.folder_id }).then(({ data }) => {
+        setOneTimeLink(data.onetime_link);
+      });
     }
   }, [storage]);
-
-  location;
 
   return (
     <>

@@ -1,7 +1,6 @@
 import { TextArea } from "@radix-ui/themes";
 import { ChangeEvent, useEffect, useState } from "react";
 import { storageSlice } from "src/entities/storage/model/storageSlice";
-import { userSlice } from "src/entities/user/model/userSlice";
 import { downloadFile } from "src/shared/API/storage/files/api";
 import {
   createDescription,
@@ -11,8 +10,6 @@ import {
 export const StorageDescription = () => {
   const { storage, isGuest } = storageSlice((state) => state);
 
-  const { token } = userSlice((state) => state);
-
   const [value, setValue] = useState("");
 
   const [oldValie, setOldValue] = useState("");
@@ -20,24 +17,18 @@ export const StorageDescription = () => {
   const handleSave = () => {
     if (oldValie !== value && storage) {
       if (!storage.description_id) {
-        createDescription(
-          {
-            description: value,
-            folder_id: storage.folder_id,
-          },
-          token
-        ).then(() => {
+        createDescription({
+          description: value,
+          folder_id: storage.folder_id,
+        }).then(() => {
           setOldValue(value);
         });
       } else if (storage) {
-        editDescription(
-          {
-            folder_id: storage?.folder_id,
-            new_description: value,
-            new_name: "",
-          },
-          token
-        ).then(() => {
+        editDescription({
+          folder_id: storage?.folder_id,
+          new_description: value,
+          new_name: "",
+        }).then(() => {
           setOldValue(value);
         });
       }
@@ -69,8 +60,6 @@ export const StorageDescription = () => {
           } catch {
             setValue("");
           }
-
-          data;
         })
         .catch(() => {
           ("err");

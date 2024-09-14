@@ -1,14 +1,13 @@
 import axios from "axios";
-import { getCookie } from "src/shared/lib/helper/getCookie/getCookie";
 // baseURL: "http://" + import.meta.env.VITE_DOMAIN,
 
 export const axiosBase = axios.create({
-  baseURL: "http://" + import.meta.env.VITE_DOMAIN,
-  // withCredentials: true,
+  baseURL: "/api",
+  withCredentials: true,
 });
 
-axiosBase.interceptors.request.use((config) => {
-  const accessToken = getCookie("token");
-  config.headers.token = accessToken || undefined;
-  return config;
-});
+// axiosBase.interceptors.request.use((config) => {
+//   const accessToken = getCookie("token");
+//   config.headers.token = accessToken || undefined;
+//   return config;
+// });

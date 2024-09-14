@@ -7,7 +7,7 @@ import {
   IUploadFileResponse,
 } from "./model";
 
-export const uploadFile = async (arg: IUploadFileArg, token?: string) => {
+export const uploadFile = async (arg: IUploadFileArg) => {
   const newFormData = new FormData();
   newFormData.append("file", arg.file);
   newFormData.append("folder_id", arg.folder_id);
@@ -17,7 +17,6 @@ export const uploadFile = async (arg: IUploadFileArg, token?: string) => {
     {
       headers: {
         "Content-Type": "multipart/form-data",
-        token: token,
       },
     }
   );
@@ -38,13 +37,12 @@ export const previewImage = async (arg: IPreviewImageArg) => {
   );
 };
 
-export const deleteFile = async (arg: IDeleteFileArg, token: string) => {
+export const deleteFile = async (arg: IDeleteFileArg) => {
   return await axiosBase.delete<null>(
     `/api/storage/file/delete/${arg.folder_id}/${arg.file_db_id}`,
     {
       headers: {
         "Content-Type": "multipart/form-data",
-        token: token,
       },
     }
   );

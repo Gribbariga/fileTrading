@@ -3,7 +3,6 @@ import { StoragePasswordStyle } from "./StoragePasswordStyle.ts";
 import { ChangeEvent, useEffect, useState } from "react";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { editViewPassword } from "src/shared/API/storage/folderSetting/api.ts";
-import { userSlice } from "src/entities/user/model/userSlice.ts";
 
 export const StoragePassword = () => {
   const { isPassword } = storageSlice((state) => state);
@@ -12,8 +11,6 @@ export const StoragePassword = () => {
 
   const { storage } = storageSlice((state) => state);
 
-  const { token } = userSlice((state) => state);
-
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
@@ -21,11 +18,11 @@ export const StoragePassword = () => {
   }, [isPassword]);
 
   const handleUnFocus = () => {
-    if (storage && token) {
-      editViewPassword(
-        { folder_id: storage?.folder_id, view_password: password },
-        token
-      );
+    if (storage) {
+      editViewPassword({
+        folder_id: storage?.folder_id,
+        view_password: password,
+      });
     }
   };
 
@@ -34,22 +31,19 @@ export const StoragePassword = () => {
   };
 
   const handleSwitch = () => {
-    if (isChecked && storage && token && !!password) {
-      editViewPassword(
-        { folder_id: storage.folder_id, view_password: null },
-        token
-      )
+    if (isChecked && storage && !!password) {
+      editViewPassword({ folder_id: storage.folder_id, view_password: null })
         .then(() => {
           setIsChecked(false);
         })
         .catch(() => {
           setIsChecked(true);
         });
-    } else if (storage && token && !!password) {
-      editViewPassword(
-        { folder_id: storage.folder_id, view_password: password },
-        token
-      )
+    } else if (storage && !!password) {
+      editViewPassword({
+        folder_id: storage.folder_id,
+        view_password: password,
+      })
         .then(() => {
           setIsChecked(true);
         })
