@@ -6,11 +6,11 @@ import { useState } from "react";
 import { userSlice } from "src/entities/user/model/userSlice";
 import { login } from "src/shared/API/user/auth/auth.ts";
 import { AxiosError, isAxiosError } from "axios";
-import { backendCodeError } from "src/shared/constant/backendCodeError.ts";
 import { useForm } from "react-hook-form";
 import { LoginStyle } from "./LoginStyle";
 import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
+import { userCodeError } from "src/shared/constant/backendCodeError/User";
 
 interface IData {
   login: string;
@@ -50,13 +50,14 @@ export const Login = () => {
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);
         if (isAxiosError(error)) {
-          const errorMessage = backendCodeError[error.status || 500];
-          if (typeof errorMessage !== "string") {
-            setError("root", {
-              message: errorMessage[error.response?.data.error],
-            });
-          } else {
-            setError("root", { message: errorMessage });
+          const errorMessage = error.response?.data.status;
+          console.log(errorMessage, userCodeError.USER_NOT_FOUND);
+          switch (errorMessage) {
+            case userCodeError.USER_NOT_FOUND:
+              setError("root", { message: "Пользователь не найден" });
+              break;
+            case userCodeError.WRONG_PASSWORD:
+              setError("root", { message: "Неверные данные" });
           }
         }
       });

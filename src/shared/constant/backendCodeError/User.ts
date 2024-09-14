@@ -1,0 +1,8 @@
+export enum userCodeError {
+  JWT_EXPIRED = 4031,
+  JWT_INVALID = 4032,
+  WRONG_PASSWORD = 4033,
+  NOT_VERIFY_2FA = 4034,
+  USER_NOT_FOUND = 4041,
+  USER_EXISTS = 4091,
+}
