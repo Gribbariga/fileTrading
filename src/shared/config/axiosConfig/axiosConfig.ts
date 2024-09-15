@@ -21,7 +21,7 @@ axiosBase.interceptors.response.use(
         error.response?.data.status === userCodeError.JWT_EXPIRED &&
         originalRequest
       ) {
-        updateAccessToken()
+        return updateAccessToken()
           .then(() => {
             return axiosBase.request(originalRequest);
           })
