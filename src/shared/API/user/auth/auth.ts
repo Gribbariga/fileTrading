@@ -13,3 +13,7 @@ export const register = (arg: IRegisterArg) => {
 export const login = (arg: ILoginArg) => {
   return axiosBase.post<ILoginResponse>("/api/user/login", arg);
 };
+
+export const updateAccessToken = async () => {
+  return axiosBase.post("/api/user/token/refresh");
+};
