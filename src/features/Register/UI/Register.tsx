@@ -11,6 +11,8 @@ import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { subscriptionStatus } from "src/shared/API/subscription/subscription.ts";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { userCodeError } from "src/shared/constant/backendCodeError/User.ts";
+import { setCookie } from "src/shared/lib/helper/setCookie/setCookie.ts";
+import { getUserInfo } from "src/shared/API/user/user/user.ts";
 
 interface IData {
   login: string;
@@ -38,11 +40,20 @@ export const Register = () => {
     setIsLoading(true);
     register(data)
       .then(({ data }) => {
-        setInfo(data);
+        setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
         subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
-          setIsLoading(false);
-          await setSubscribeStatus(data);
-          navigation("/storage");
+          getUserInfo().then(async (response) => {
+            const userInfo = response.data;
+            setIsLoading(false);
+            await setSubscribeStatus(data);
+            setInfo(userInfo);
+
+            if (userInfo.two_fa) {
+              navigation("/twoFA");
+            } else {
+              navigation("/home");
+            }
+          });
         });
       })
       .catch((error: Error | AxiosError) => {

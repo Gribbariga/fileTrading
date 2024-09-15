@@ -1,8 +1,8 @@
-interface ILoginInfo {
-  user_id: number;
-}
+import { IGetUserInfoResponse } from "src/shared/API/user/user/model";
+
+type IUserInfo = IGetUserInfoResponse;
 
 export interface IUser {
-  user_id: number | null;
-  setInfo: (info: ILoginInfo) => void;
+  userInfo: IUserInfo | null;
+  setInfo: (info: IUserInfo) => void;
 }

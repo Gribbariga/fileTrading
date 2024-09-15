@@ -2,9 +2,9 @@ import { create } from "zustand";
 import { IUser } from "./model";
 
 export const userSlice = create<IUser>((set) => ({
-  user_id: null,
+  userInfo: null,
   setInfo: (info) => {
     console.log(info);
-    set((state) => ({ ...state, ...info }));
+    set((state) => ({ ...state, userInfo: info }));
   },
 }));

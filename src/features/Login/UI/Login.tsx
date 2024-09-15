@@ -12,6 +12,7 @@ import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
+import { getUserInfo } from "src/shared/API/user/user/user";
 
 interface IData {
   login: string;
@@ -41,12 +42,20 @@ export const Login = () => {
     setIsLoading(true);
     login(data)
       .then(({ data }) => {
-        setInfo(data);
         setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
         subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
-          setIsLoading(false);
-          await setSubscribeStatus(data);
-          navigation("/home");
+          getUserInfo().then(async (response) => {
+            const userInfo = response.data;
+            setIsLoading(false);
+            await setSubscribeStatus(data);
+            setInfo(userInfo);
+
+            if (userInfo.two_fa) {
+              navigation("/twoFA");
+            } else {
+              navigation("/home");
+            }
+          });
         });
       })
       .catch((error: Error | AxiosError) => {
