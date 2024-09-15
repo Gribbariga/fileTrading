@@ -11,6 +11,7 @@ import { LoginStyle } from "./LoginStyle";
 import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
+import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
 
 interface IData {
   login: string;
@@ -41,6 +42,7 @@ export const Login = () => {
     login(data)
       .then(({ data }) => {
         setInfo(data);
+        setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
         subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
           setIsLoading(false);
           await setSubscribeStatus(data);
@@ -51,7 +53,6 @@ export const Login = () => {
         setIsLoading(false);
         if (isAxiosError(error)) {
           const errorMessage = error.response?.data.status;
-          console.log(errorMessage, userCodeError.USER_NOT_FOUND);
           switch (errorMessage) {
             case userCodeError.USER_NOT_FOUND:
               setError("root", { message: "Пользователь не найден" });

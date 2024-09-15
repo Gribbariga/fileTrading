@@ -3,6 +3,7 @@ import { IStorageSlice } from "./StorageSliceType";
 import { getFiles } from "shared/API/storage/folder/api";
 import { AxiosError, isAxiosError } from "axios";
 import { IFiles } from "src/shared/API/storage/folder/model";
+import { getCookie } from "src/shared/lib/helper/getCookie/getCookie";
 
 export const storageSlice = create<IStorageSlice>((set) => ({
   storage: undefined,
@@ -84,7 +85,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   setIsGuest: (value) => {
     set((state) => ({ ...state, isGuest: value }));
   },
-  getStorage: (folder_id, view_password, isGuest, userId) => {
+  getStorage: (folder_id, view_password, isGuest) => {
     set((state) => ({ ...state, isLoading: true }));
     getFiles({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
@@ -93,13 +94,14 @@ export const storageSlice = create<IStorageSlice>((set) => ({
         } else {
           set((state) => {
             //true
-            //
+            const userId = getCookie("userId") || -1;
+
             return {
               ...state,
               storage: data,
               isLoading: false,
               isPassword: false,
-              isGuest: userId !== data.owner_id && isGuest,
+              isGuest: +userId !== data.owner_id && isGuest,
             };
           });
         }

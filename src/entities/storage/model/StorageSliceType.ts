@@ -24,7 +24,6 @@ export interface IStorageSlice {
   getStorage: (
     folder_id: string,
     view_password: string,
-    isGuest: boolean,
-    user_id?: number
+    isGuest: boolean
   ) => void;
 }

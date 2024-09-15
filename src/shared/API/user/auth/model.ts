@@ -17,7 +17,5 @@ export interface ILoginArg {
 }
 
 export interface ILoginResponse {
-  login: string;
-  email: string;
   user_id: number;
 }

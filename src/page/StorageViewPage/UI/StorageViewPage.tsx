@@ -12,7 +12,6 @@ import { StorageViewSkeleton } from "./StorageViewSkeleton/StorageViewSkeleton";
 import { headerDesktopHeight } from "src/shared/constant/headerSize";
 import { DownloadPassword } from "src/widgets/DownloadPassword/UI/DownloadPassword";
 import { useResize } from "src/shared/lib/hooks/useResize/useResize";
-import { userSlice } from "src/entities/user/model/userSlice";
 import { StoragePasswordView } from "src/widgets/StoragePasswordView/publicApi";
 import { BreadCrumbs } from "src/features/BreadCrumbs/UI/BreadCrumbs";
 
@@ -31,12 +30,10 @@ const StorageViewPage = () => {
 
   const { height } = useResize();
 
-  const { user_id } = userSlice((state) => state);
-
   useEffect(() => {
     if (storageLink) {
       const id = yourFolderId;
-      getStorage(storageLink, "0", id !== storageLink, user_id || undefined);
+      getStorage(storageLink, "0", id !== storageLink);
     }
   }, [storageLink]);
 

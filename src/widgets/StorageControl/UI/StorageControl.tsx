@@ -8,7 +8,7 @@ import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
 export const StorageControl = () => {
   const { isGuest } = storageSlice((state) => state);
-
+  console.log(isGuest);
   return (
     <WrapperSC>
       <Tabs.Root defaultValue={"info"}>
