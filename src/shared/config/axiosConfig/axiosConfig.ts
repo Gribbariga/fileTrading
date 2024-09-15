@@ -1,7 +1,8 @@
 import axios, { AxiosError, isAxiosError } from "axios";
+import { updateAccessToken } from "src/shared/API/user/auth/auth";
 // import { userCodeError } from "src/shared/constant/backendCodeError/User";
 // baseURL: "http://" + import.meta.env.VITE_DOMAIN,
-
+import { userCodeError } from "src/shared/constant/backendCodeError/User";
 export const axiosBase = axios.create({
   baseURL: "/api",
   withCredentials: true,
@@ -13,26 +14,23 @@ axiosBase.interceptors.response.use(
   },
   async (error: Error | AxiosError) => {
     if (isAxiosError(error)) {
-      // if (error.response?.data.status === userCodeError.JWT_INVALID) {
-      // }
-      // у;
+      const originalRequest = error.config;
+      if (error.response?.data.status === userCodeError.JWT_INVALID) {
+        window.location.href = "/login";
+      } else if (
+        error.response?.data.status === userCodeError.JWT_EXPIRED &&
+        originalRequest
+      ) {
+        updateAccessToken()
+          .then(() => {
+            return axiosBase.request(originalRequest);
+          })
+          .catch(() => {
+            window.location.href = "/login";
+          });
+      }
     }
-    // if (
-    //   error.response.status === 401 &&
-    //   error.config &&
-    //   !error.config._isRetry
-    // ) {
-    //   originalRequest._isRetry = true;
-    //   try {
-    //     const res = await updateToken();
-    //     if (res.data && res.data.access_token) {
-    //       setCookie("accessToken", res.data.access_token, { maxAge: 1800000 });
-    //     }
-    //     return AxiosToken.request(originalRequest);
-    //   } catch {
-    //     throw error;
-    //   }
-    // }
+
     throw error;
   }
 );
