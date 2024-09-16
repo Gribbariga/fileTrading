@@ -4,22 +4,38 @@ import { Callout, Text } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { verifyKey2FA } from "src/shared/API/user/2FA/2FA.ts";
+import { useNavigate } from "react-router-dom";
+
+interface ICheckData {
+  code_2fa: string;
+}
 
 export const TwoFA = () => {
   const {
     register: registerInput,
     formState: { errors },
+    setError,
     handleSubmit,
   } = useForm({
     defaultValues: {
-      key: "",
+      code_2fa: "",
     },
   });
 
+  const navigation = useNavigate();
+
   const [, setIsLoading] = useState(false);
 
-  const handleRegister = () => {
+  const handleCheck = (data: ICheckData) => {
     setIsLoading(true);
+    verifyKey2FA(data).then(({ data }) => {
+      if (data.verify) {
+        navigation("/");
+      } else {
+        setError("root", { message: "" });
+      }
+    });
     // login(data)
     //   .then(({ data }) => {
     //     setIsLoading(false);
@@ -39,11 +55,15 @@ export const TwoFA = () => {
     //   });
   };
 
-  const error = errors.root?.message || errors.key?.message;
+  const handleBack = () => {
+    navigation("/login");
+  };
+
+  const error = errors.root?.message || errors.code_2fa?.message;
 
   return (
     <>
-      <FormSC onSubmit={handleSubmit(handleRegister)}>
+      <FormSC onSubmit={handleSubmit(handleCheck)}>
         <InputsWrapperSC>
           <InputWrapperSC>
             <Text
@@ -57,7 +77,7 @@ export const TwoFA = () => {
             <TextFieldSC
               size={"3"}
               variant="surface"
-              {...registerInput("key", {
+              {...registerInput("code_2fa", {
                 required: "Заполните обязательное поле",
               })}
               placeholder="Защитный код"
@@ -77,7 +97,13 @@ export const TwoFA = () => {
         )}
 
         <ButtonsGroupSC>
-          <ButtonUI size={"2"} variant="solid" highContrast={false}>
+          <ButtonUI
+            type="button"
+            onClick={handleBack}
+            size={"2"}
+            variant="solid"
+            highContrast={false}
+          >
             Назад
           </ButtonUI>
           <ButtonUI

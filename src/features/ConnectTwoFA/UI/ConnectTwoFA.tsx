@@ -1,4 +1,4 @@
-import { Text } from "@radix-ui/themes";
+import { Dialog, Text } from "@radix-ui/themes";
 import { ConnectTwoFAStyle } from "./ConnectTwoFAStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -40,9 +40,12 @@ export const ConnectTwoFA = () => {
         variant="surface"
       />
       <ButtonWrapperSC>
-        <ButtonUI size={"3"} variant="soft">
-          Отменить
-        </ButtonUI>
+        <Dialog.Close>
+          <ButtonUI size={"3"} variant="soft">
+            Отменить
+          </ButtonUI>
+        </Dialog.Close>
+
         <ButtonUI type="button" onClick={handleSend} size={"3"} variant="solid">
           Сохранить
         </ButtonUI>
