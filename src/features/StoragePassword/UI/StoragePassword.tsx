@@ -5,7 +5,7 @@ import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { editViewPassword } from "src/shared/API/storage/folderSetting/api.ts";
 
 export const StoragePassword = () => {
-  const { isPassword } = storageSlice((state) => state);
+  const { isSetPassword } = storageSlice((state) => state);
 
   const [password, setPassword] = useState("");
 
@@ -14,15 +14,19 @@ export const StoragePassword = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    setIsChecked(isPassword);
-  }, [isPassword]);
+    setIsChecked(isSetPassword);
+  }, [isSetPassword]);
 
   const handleUnFocus = () => {
     if (storage) {
       editViewPassword({
         folder_id: storage?.folder_id,
         view_password: password,
-      });
+      })
+        .then(() => {
+          setIsChecked((prev) => !prev);
+        })
+        .catch(() => {});
     }
   };
 

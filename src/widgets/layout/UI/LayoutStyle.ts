@@ -1,13 +1,5 @@
-import { headerDesktopHeight } from "src/shared/constant/headerSize";
 import styled from "styled-components";
 
-const MainWindowsSC = styled("div")<{ $screenHeight: number }>`
-  height: ${() => `calc(100vh - ${headerDesktopHeight})`};
-  width: 100%;
-  background: url("/Background.webp");
-  background-size: cover; /* Для адаптации изображения по размеру элемента */
-  background-repeat: no-repeat; /* Чтобы избежать повторения изображения */
-  background-position: center;
-`;
+const MainWindowsSC = styled("div")<{ $screenHeight: number }>``;
 
 export const LayoutStyle = () => ({ MainWindowsSC });

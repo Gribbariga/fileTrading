@@ -38,7 +38,13 @@ a {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none;
 }
-#root {
+#root [data-is-root-theme] {
+  min-height:auto !important;
+  width: 100%;
+  background: url("/Background.webp");
+  background-size: cover; /* Для адаптации изображения по размеру элемента */
+  background-repeat: no-repeat; /* Чтобы избежать повторения изображения */
+  background-position: center;
 }
 
 

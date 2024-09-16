@@ -19,6 +19,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <GlobalStyle />
       <Theme
+        style={{ minHeight: "none" }}
         appearance="light"
         accentColor="orange"
         grayColor="gray"

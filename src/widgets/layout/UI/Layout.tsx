@@ -8,21 +8,28 @@ interface ILayoutProps {
 }
 
 export const Layout: FC<ILayoutProps> = ({ children }) => {
-  const [height, setHeight] = useState(0);
+  const [documentHeight, setDocumentHeight] = useState(
+    document.body.scrollHeight
+  );
 
   useEffect(() => {
-    console.log(document.documentElement.scrollHeight);
-    window.addEventListener("resize", () => {
-      setHeight(document.documentElement.scrollHeight);
-    });
+    const handleResize = () => {
+      setDocumentHeight(document.body.scrollHeight);
+    };
 
-    setHeight(document.documentElement.scrollHeight);
+    // Добавляем слушатель события изменения размера окна
+    window.addEventListener("resize", handleResize);
+
+    // Удаляем слушатель события при размонтировании компонента
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
     <>
       <Header />
-      <MainWindowsSC $screenHeight={height}>
+      <MainWindowsSC $screenHeight={documentHeight}>
         <Container>{children}</Container>
       </MainWindowsSC>
     </>

@@ -23,9 +23,9 @@ export const DownloadAll = () => {
           if (link.parentNode) {
             link.parentNode.removeChild(link);
           }
-          setDownloadPassword(req.headers.download_password);
+          setDownloadPassword(req.headers[`download-password`]);
         } catch {
-          ("error download");
+          console.log("error");
         }
       });
     }

@@ -8,6 +8,7 @@ export interface IStorageSlice {
   storage: IStorage | undefined;
   isNotFound: boolean;
   isPassword: boolean;
+  isSetPassword: boolean;
   isGuest: boolean;
   yourFolderId: string;
   description?: string;

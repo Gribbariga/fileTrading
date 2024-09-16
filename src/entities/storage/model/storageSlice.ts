@@ -10,6 +10,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
   isLoading: false,
   isNotFound: false,
   isPassword: false,
+  isSetPassword: false,
   isGuest: true,
   yourFolderId: "",
   description: undefined,
@@ -90,7 +91,12 @@ export const storageSlice = create<IStorageSlice>((set) => ({
     getFiles({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
         if ("view_password" in data) {
-          set((state) => ({ ...state, isPassword: true, isLoading: false }));
+          set((state) => ({
+            ...state,
+            isPassword: true,
+            isLoading: false,
+            isSetPassword: true,
+          }));
         } else {
           set((state) => {
             //true
@@ -101,6 +107,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
               storage: data,
               isLoading: false,
               isPassword: false,
+
               isGuest: +userId !== data.owner_id && isGuest,
             };
           });
