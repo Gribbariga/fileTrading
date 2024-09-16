@@ -67,6 +67,8 @@ export const Register = () => {
                 message: "Пользователь с таким логином уже существует",
               });
               break;
+            default:
+              setError("root", { message: "500. Внутренняя ошибка сервера" });
           }
         }
       });

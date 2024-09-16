@@ -68,6 +68,9 @@ export const Login = () => {
               break;
             case userCodeError.WRONG_PASSWORD:
               setError("root", { message: "Неверные данные" });
+              break;
+            default:
+              setError("root", { message: "500. Внутренняя ошибка сервера" });
           }
         }
       });

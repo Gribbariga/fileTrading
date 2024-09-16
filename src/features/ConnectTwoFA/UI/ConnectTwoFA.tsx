@@ -1,12 +1,18 @@
-import { Dialog, Text } from "@radix-ui/themes";
+import { Callout, Dialog, Text } from "@radix-ui/themes";
 import { ConnectTwoFAStyle } from "./ConnectTwoFAStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { createKey2FA, verifyKey2FA } from "src/shared/API/user/2FA/2FA.ts";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { AxiosError, isAxiosError } from "axios";
 
 export const ConnectTwoFA = () => {
+  const closeTrigget = useRef<HTMLButtonElement>(null);
+
   const [value, setValue] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+
+  const [error, setError] = useState("");
 
   useEffect(() => {
     createKey2FA().then((response) => {
@@ -19,7 +25,23 @@ export const ConnectTwoFA = () => {
     setValue(e.target.value);
   };
   const handleSend = () => {
-    verifyKey2FA({ code_2fa: value });
+    verifyKey2FA({ code_2fa: value })
+      .then(({ data }) => {
+        if (data.verify) {
+          closeTrigget.current?.click();
+        } else {
+          setError("Неверный код");
+        }
+      })
+      .catch((error: Error | AxiosError) => {
+        if (isAxiosError(error)) {
+          if (error.status === 500) {
+            setError("500. Внутренняя ошибка сервера");
+          } else {
+            setError("Неверный код");
+          }
+        }
+      });
   };
 
   return (
@@ -39,8 +61,20 @@ export const ConnectTwoFA = () => {
         size={"3"}
         variant="surface"
       />
+
+      {error && (
+        <>
+          <CalloutSC color="red" size={"1"} mb={"5"} variant="soft">
+            <Callout.Icon>
+              <InfoCircledIcon />
+            </Callout.Icon>
+            <Callout.Text>{error}</Callout.Text>
+          </CalloutSC>
+        </>
+      )}
+
       <ButtonWrapperSC>
-        <Dialog.Close>
+        <Dialog.Close ref={closeTrigget}>
           <ButtonUI size={"3"} variant="soft">
             Отменить
           </ButtonUI>
@@ -54,5 +88,11 @@ export const ConnectTwoFA = () => {
   );
 };
 
-const { FormSC, QrCodeImgSC, TextFieldSC, QrCodeWrapperSC, ButtonWrapperSC } =
-  ConnectTwoFAStyle();
+const {
+  FormSC,
+  CalloutSC,
+  QrCodeImgSC,
+  TextFieldSC,
+  QrCodeWrapperSC,
+  ButtonWrapperSC,
+} = ConnectTwoFAStyle();

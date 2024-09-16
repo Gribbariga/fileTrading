@@ -1,4 +1,4 @@
-import { TextField } from "@radix-ui/themes";
+import { Callout, TextField } from "@radix-ui/themes";
 import styled from "styled-components";
 
 const FormSC = styled("form")`
@@ -31,8 +31,13 @@ const TextFieldSC = styled(TextField.Root)`
   margin-bottom: var(--space-3);
 `;
 
+const CalloutSC = styled(Callout.Root)`
+  width: 100%;
+`;
+
 export const ConnectTwoFAStyle = () => ({
   FormSC,
+  CalloutSC,
   QrCodeImgSC,
   TextFieldSC,
   QrCodeWrapperSC,

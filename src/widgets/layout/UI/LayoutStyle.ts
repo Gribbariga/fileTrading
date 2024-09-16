@@ -2,7 +2,7 @@ import { headerDesktopHeight } from "src/shared/constant/headerSize";
 import styled from "styled-components";
 
 const MainWindowsSC = styled("div")<{ $screenHeight: number }>`
-  height: ${({ $screenHeight }) => `${$screenHeight - headerDesktopHeight}px`};
+  height: ${() => `calc(100vh - ${headerDesktopHeight})`};
   width: 100%;
   background: url("/Background.webp");
   background-size: cover; /* Для адаптации изображения по размеру элемента */

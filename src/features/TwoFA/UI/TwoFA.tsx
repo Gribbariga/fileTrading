@@ -29,13 +29,17 @@ export const TwoFA = () => {
 
   const handleCheck = (data: ICheckData) => {
     setIsLoading(true);
-    verifyKey2FA(data).then(({ data }) => {
-      if (data.verify) {
-        navigation("/");
-      } else {
-        setError("root", { message: "" });
-      }
-    });
+    verifyKey2FA(data)
+      .then(({ data }) => {
+        if (data.verify) {
+          navigation("/");
+        } else {
+          setError("root", { message: "Неверный код" });
+        }
+      })
+      .catch(() => {
+        setError("root", { message: "500. Внутренняя ошибка сервера" });
+      });
     // login(data)
     //   .then(({ data }) => {
     //     setIsLoading(false);
