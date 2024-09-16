@@ -4,7 +4,7 @@ import { updateAccessToken } from "src/shared/API/user/auth/auth";
 // baseURL: "http://" + import.meta.env.VITE_DOMAIN,
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 export const axiosBase = axios.create({
-  baseURL: "/api",
+  baseURL: "http://" + import.meta.env.VITE_DOMAIN,
   withCredentials: true,
 });
 

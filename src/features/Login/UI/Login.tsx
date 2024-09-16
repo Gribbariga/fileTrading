@@ -53,7 +53,7 @@ export const Login = () => {
             if (userInfo.two_fa) {
               navigation("/twoFA");
             } else {
-              navigation("/home");
+              navigation("/");
             }
           });
         });

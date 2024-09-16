@@ -51,7 +51,7 @@ export const Register = () => {
             if (userInfo.two_fa) {
               navigation("/twoFA");
             } else {
-              navigation("/home");
+              navigation("/");
             }
           });
         });
