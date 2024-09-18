@@ -40,21 +40,20 @@ export const Register = () => {
     setIsLoading(true);
     register(data)
       .then(({ data }) => {
-        setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
-        subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
-          getUserInfo().then(async (response) => {
-            const userInfo = response.data;
-            setIsLoading(false);
-            await setSubscribeStatus(data);
-            setInfo(userInfo);
-
-            if (userInfo.two_fa) {
-              navigation("/twoFA");
-            } else {
-              navigation("/");
+        setTimeout(() => {
+          setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
+          subscriptionStatus({ user_id: data.user_id }).then(
+            async ({ data }) => {
+              getUserInfo().then(async (response) => {
+                const userInfo = response.data;
+                setIsLoading(false);
+                await setSubscribeStatus(data);
+                setInfo(userInfo);
+              });
             }
-          });
-        });
+          );
+          navigation("/");
+        }, 3000);
       })
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);

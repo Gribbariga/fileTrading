@@ -4,6 +4,7 @@ import { ShareStorage } from "src/features/ShareStorage/publicApi.ts";
 import { DownloadAll } from "src/features/DownloadAll/publicApi.ts";
 import { UploadsFile } from "src/features/UploadsFile/publicApi.ts";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
+import { DeleteFolder } from "src/features/DeleteFolder/UI/DeleteFolder.tsx";
 
 export const StorageActionBar = () => {
   const { storage, isGuest } = storageSlice((state) => state);
@@ -14,6 +15,7 @@ export const StorageActionBar = () => {
         Хранилище {storage?.folder_name}
       </Heading>
       <ActionWrapperSC>
+        <DeleteFolder />
         <ShareStorage />
         <DownloadAll />
         {!isGuest && (
