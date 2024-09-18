@@ -19,3 +19,9 @@ export interface ILoginArg {
 export interface ILoginResponse {
   user_id: number;
 }
+
+export interface IRecoveryWith2FaArg {
+  new_password: string;
+}
+
+export interface IRecoveryWith2FaResponse {}

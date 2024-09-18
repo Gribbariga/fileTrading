@@ -1,10 +1,10 @@
 import axios, { AxiosError, isAxiosError } from "axios";
 import { updateAccessToken } from "src/shared/API/user/auth/auth";
 // import { userCodeError } from "src/shared/constant/backendCodeError/User";
-// baseURL: "http://" + import.meta.env.VITE_DOMAIN,
+// baseURL: "https://" + import.meta.env.VITE_DOMAIN,
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 export const axiosBase = axios.create({
-  baseURL: "http://" + import.meta.env.VITE_DOMAIN,
+  baseURL: "/api",
   withCredentials: true,
 });
 

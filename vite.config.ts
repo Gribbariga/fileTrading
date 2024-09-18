@@ -22,12 +22,12 @@ export default defineConfig({
     },
     host: true,
     port: 4517,
-    // proxy: {
-    //   "/api": {
-    //     target: "https://filesharing-st.ru/",
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/api/, ""),
-    //   },
-    // },
+    proxy: {
+      "/api": {
+        target: "https://filesharing-st.ru/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
 });
