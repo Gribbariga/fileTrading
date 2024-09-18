@@ -15,7 +15,11 @@ export const StorageActionBar = () => {
         Хранилище {storage?.folder_name}
       </Heading>
       <ActionWrapperSC>
-        <DeleteFolder />
+        {!isGuest && (
+          <>
+            <DeleteFolder />
+          </>
+        )}
         <ShareStorage />
         <DownloadAll />
         {!isGuest && (
