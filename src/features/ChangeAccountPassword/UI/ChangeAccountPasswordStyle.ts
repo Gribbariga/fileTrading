@@ -8,9 +8,13 @@ const FormSC = styled("form")`
   margin-bottom: var(--space-5);
 `;
 
-const TextFieldRoot = styled(TextField.Root)`
+const TextFieldRootSC = styled(TextField.Root)`
   max-width: 85.6%;
-  width: 60%;
+  width: 100%;
+`;
+
+const ErrorMessageWrapperSC = styled("div")`
+  width: 100%;
 `;
 
 export const ChangeAccountPasswordStyle = () => ({ FormSC, TextFieldRoot });

@@ -1,8 +1,8 @@
 import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
 import {
+  IChangePasswordArg,
   ILoginArg,
   ILoginResponse,
-  IRecoveryWith2FaArg,
   IRegisterArg,
   IRegisterResponse,
 } from "./model";
@@ -19,8 +19,8 @@ export const updateAccessToken = async () => {
   return axiosBase.post("/api/user/token/refresh");
 };
 
-export const recoveryWith2Fa = async (arg: IRecoveryWith2FaArg) => {
-  return axiosBase.get("/api/user/recovery/two-fa/2fa", {
+export const changePassword = async (arg: IChangePasswordArg) => {
+  return axiosBase.get<null>("/api/user/recovery/two-fa/2fa", {
     data: arg,
   });
 };

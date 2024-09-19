@@ -20,8 +20,7 @@ export interface ILoginResponse {
   user_id: number;
 }
 
-export interface IRecoveryWith2FaArg {
+export interface IChangePasswordArg {
   new_password: string;
+  old_password: string;
 }
-
-export interface IRecoveryWith2FaResponse {}
