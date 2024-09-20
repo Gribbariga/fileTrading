@@ -20,7 +20,7 @@ export const updateAccessToken = async () => {
 };
 
 export const changePassword = async (arg: IChangePasswordArg) => {
-  return axiosBase.get<null>("/api/user/recovery/two-fa/2fa", {
+  return axiosBase.patch<null>("/api/user/password/change", {
     data: arg,
   });
 };

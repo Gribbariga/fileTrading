@@ -9,15 +9,18 @@ export const ChangeAccountPassword = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPasswor] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleSave = () => {
     if (!!oldPassword && !!newPassword) {
-      setError('');
-      changePassword({ new_password: newPassword, old_password: oldPassword }).then(() => {
-
-      }).catch(() => {
-        if()
-      })
+      setError("");
+      changePassword({ new_password: newPassword, old_password: oldPassword })
+        .then(() => {
+          setSuccess("Пароль обновлен!");
+        })
+        .catch(() => {
+          // if()
+        });
     } else {
       setError("Заполните обязательные поля");
     }
@@ -33,28 +36,48 @@ export const ChangeAccountPassword = () => {
   return (
     <>
       <FormSC>
-        <TextFieldRoot
+        <TextFieldRootSC
           value={oldPassword}
           size={"3"}
+          mb={"5"}
           onChange={(e) => handleChange(e, setOldPassword)}
           variant="surface"
           placeholder="Старый пароль"
         />
-        <TextFieldRoot
+        <TextFieldRootSC
           value={newPassword}
           size={"3"}
+          mb={"5"}
           onChange={(e) => handleChange(e, setNewPasswor)}
           variant="surface"
           placeholder="Новый пароль"
         />
         {!!error && (
-          <Callout.Root highContrast={false} size={"1"} variant="soft">
+          <Callout.Root
+            color="red"
+            mb={"5"}
+            highContrast={false}
+            size={"1"}
+            variant="soft"
+          >
             <Callout.Icon>
               <InfoCircledIcon />
             </Callout.Icon>
-            <Callout.Text>
-              {error}
-            </Callout.Text>
+            <Callout.Text>{error}</Callout.Text>
+          </Callout.Root>
+        )}
+        {!!success && (
+          <Callout.Root
+            mb={"5"}
+            highContrast={false}
+            size={"1"}
+            color="green"
+            variant="soft"
+          >
+            <Callout.Icon>
+              <InfoCircledIcon />
+            </Callout.Icon>
+            <Callout.Text>{success}</Callout.Text>
           </Callout.Root>
         )}
 
@@ -71,4 +94,4 @@ export const ChangeAccountPassword = () => {
   );
 };
 
-const { FormSC, TextFieldRoot } = ChangeAccountPasswordStyle();
+const { FormSC, TextFieldRootSC } = ChangeAccountPasswordStyle();
