@@ -1,10 +1,14 @@
-import { axiosBase } from "shared/config/axiosConfig/axiosConfig";
+import { axiosBaseSubscription } from "shared/config/axiosConfig/axiosConfig";
 import { ISubscriptionStatusResponse, TGetTarrifs } from "./model";
 
 export const getTarrifs = async () => {
-  return await axiosBase.get<TGetTarrifs>("/api/subscription/tariffs");
+  return await axiosBaseSubscription.get<TGetTarrifs>(
+    "/api/subscription/tariffs"
+  );
 };
 
 export const subscriptionStatus = async () => {
-  return await axiosBase.get<ISubscriptionStatusResponse>(`/status`);
+  return await axiosBaseSubscription.get<ISubscriptionStatusResponse>(
+    `/status`
+  );
 };
