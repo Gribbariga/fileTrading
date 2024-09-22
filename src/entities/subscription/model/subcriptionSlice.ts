@@ -10,7 +10,7 @@ export const subscriptionSlice = create<ISubcriptionSlice>((set) => ({
   },
   fetchTarrifs: () => {
     getTarrifs().then(({ data }) => {
-      set((state) => ({ ...state, tariffs: data }));
+      set((state) => ({ ...state, tariffs: data.tariffs }));
     });
   },
 }));

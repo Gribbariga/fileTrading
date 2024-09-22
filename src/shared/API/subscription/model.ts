@@ -13,7 +13,7 @@ export interface ITariffs {
 }
 
 export type TGetTarrifs = {
-  [key: number]: ITariffs;
+  tariffs: ITariffs[];
 };
 
 export interface ISubscriptionStatusResponse {

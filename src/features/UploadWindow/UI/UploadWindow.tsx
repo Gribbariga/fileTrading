@@ -63,7 +63,7 @@ export const UploadWindow = () => {
     event.preventDefault();
     event.stopPropagation();
   };
-
+  console.log(currentTariff);
   return (
     <UploadWrapperSC $screenHeight={height}>
       {currentTariff && (

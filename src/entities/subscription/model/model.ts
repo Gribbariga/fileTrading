@@ -1,14 +1,14 @@
 import {
   ISubscriptionStatusResponse,
-  TGetTarrifs,
+  ITariffs,
 } from "src/shared/API/subscription/model";
 
-type TTariffs = TGetTarrifs;
+type TTariffs = ITariffs;
 
 type TSubscribeInfo = ISubscriptionStatusResponse;
 
 export interface ISubcriptionSlice {
-  tariffs: TTariffs | null;
+  tariffs: TTariffs[] | null;
   subscribeStatus: TSubscribeInfo | null;
   setSubscribeStatus: (info: TSubscribeInfo) => void;
   fetchTarrifs: () => void;

@@ -5,9 +5,9 @@ export const getInfo = () => {
   return axiosBase.get<IInfoResponse>("/info");
 };
 export const register = (arg: IRegisterArg) => {
-  return axiosBase.post("/register", arg);
+  return axiosBase.post("/api/account/register", arg);
 };
 
 export const loginFn = (arg: ILoginFnArg) => {
-  return axiosBase.post("/login", arg);
+  return axiosBase.post("/api/account/login", arg);
 };
