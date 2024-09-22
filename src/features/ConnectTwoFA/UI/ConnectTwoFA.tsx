@@ -2,7 +2,7 @@ import { Callout, Dialog, Text } from "@radix-ui/themes";
 import { ConnectTwoFAStyle } from "./ConnectTwoFAStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { createKey2FA, verifyKey2FA } from "src/shared/API/account/2FA/2FA.ts";
+import { createTwoFa, verifyTwoFa } from "src/shared/API/account/2FA/2FA.ts";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { AxiosError, isAxiosError } from "axios";
 
@@ -15,7 +15,7 @@ export const ConnectTwoFA = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    createKey2FA().then((response) => {
+    createTwoFa().then((response) => {
       const url = URL.createObjectURL(response.data);
       setImgUrl(url);
     });
@@ -25,7 +25,7 @@ export const ConnectTwoFA = () => {
     setValue(e.target.value);
   };
   const handleSend = () => {
-    verifyKey2FA({ code_2fa: value })
+    verifyTwoFa({ two_fa_code: value })
       .then(({ data }) => {
         if (data.verify) {
           closeTrigget.current?.click();
