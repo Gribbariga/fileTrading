@@ -11,7 +11,7 @@ export const DownloadProjection = () => {
 
   useEffect(() => {
     if (storage) {
-      setIsChecked(storage.download_password);
+      setIsChecked(storage.need_password);
     }
   }, [storage]);
 

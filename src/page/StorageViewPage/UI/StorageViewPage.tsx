@@ -49,7 +49,7 @@ const StorageViewPage = () => {
         <Container maxWidth={1357}>
           {!isLoading && !downloadPassword && !isPassword && (
             <>
-              <BreadCrumbs storageName={storage?.folder_name} />
+              <BreadCrumbs storageName={storage?.name} />
               <StorageActionBar />
               <StorageHeader />
               <ContentWrapperSC>
