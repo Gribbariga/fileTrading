@@ -1,4 +1,4 @@
-import { axiosBase } from "../../../config/axiosConfig/axiosConfig";
+import { axiosBaseStorage } from "../../../config/axiosConfig/axiosConfig";
 import {
   IDeleteFileArg,
   IDownloadFileArg,
@@ -11,7 +11,7 @@ export const uploadFile = async (arg: IUploadFileArg) => {
   const newFormData = new FormData();
   newFormData.append("file", arg.file);
   newFormData.append("folder_id", arg.folder_id);
-  return await axiosBase.post<IUploadFileResponse>(
+  return await axiosBaseStorage.post<IUploadFileResponse>(
     `/file/upload`,
     newFormData,
     {
@@ -23,7 +23,7 @@ export const uploadFile = async (arg: IUploadFileArg) => {
 };
 
 export const downloadFile = async (arg: IDownloadFileArg) => {
-  return await axiosBase.get(
+  return await axiosBaseStorage.get(
     `/file/download/${arg.folder_id}/${arg.file_db_id}`,
     {
       responseType: "blob",
@@ -32,13 +32,13 @@ export const downloadFile = async (arg: IDownloadFileArg) => {
 };
 
 export const previewImage = async (arg: IPreviewImageArg) => {
-  return await axiosBase.get(
+  return await axiosBaseStorage.get(
     `/file/image/preview/${arg.folder_id}/${arg.file_id}`
   );
 };
 
 export const deleteFile = async (arg: IDeleteFileArg) => {
-  return await axiosBase.delete<null>(
+  return await axiosBaseStorage.delete<null>(
     `/file/delete/${arg.folder_id}/${arg.file_db_id}`,
     {
       headers: {

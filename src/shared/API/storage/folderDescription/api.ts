@@ -1,4 +1,4 @@
-import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
+import { axiosBaseStorage } from "src/shared/config/axiosConfig/axiosConfig";
 import {
   IAddDescriptionArg,
   IAddDescriptionResponse,
@@ -10,7 +10,7 @@ export const addDescription = (arg: IAddDescriptionArg) => {
     name: arg.name,
     description: arg.description,
   };
-  return axiosBase.post<IAddDescriptionResponse>(
+  return axiosBaseStorage.post<IAddDescriptionResponse>(
     `/folder/description/add/${arg.folder_id}`,
     data
   );
@@ -21,5 +21,8 @@ export const editDescription = (arg: IEditDescriptionArg) => {
     new_description: arg.new_description,
   };
 
-  return axiosBase.patch(`/folder/description/edit/${arg.folder_id}`, data);
+  return axiosBaseStorage.patch(
+    `/folder/description/edit/${arg.folder_id}`,
+    data
+  );
 };

@@ -38,3 +38,15 @@ export const axiosBaseAccount = axios.create({
   ...axiosBase.defaults,
   baseURL: "/api/api/account",
 });
+export const axiosBaseStorage = axios.create({
+  ...axiosBase.defaults,
+  baseURL: "/api/api/storage",
+});
+export const axiosBaseSubscription = axios.create({
+  ...axiosBase.defaults,
+  baseURL: "/api/api/subscription",
+});
+export const axiosBasePayment = axios.create({
+  ...axiosBase.defaults,
+  baseURL: "/api/api/payment",
+});

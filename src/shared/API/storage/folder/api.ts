@@ -1,4 +1,4 @@
-import { axiosBase } from "../../../config/axiosConfig/axiosConfig";
+import { axiosBaseStorage } from "../../../config/axiosConfig/axiosConfig";
 import {
   ICreateFolderArg,
   ICreateFolderResponse,
@@ -17,48 +17,54 @@ import {
 } from "./model";
 
 export const viewFolder = async (arg: IViewFolderArg) => {
-  return await axiosBase.get<IViewFolderResponse | IGetFilesResponsePassword>(
-    `/folder/view/${arg.folder_id}/${arg.view_password}`
-  );
+  return await axiosBaseStorage.get<
+    IViewFolderResponse | IGetFilesResponsePassword
+  >(`/folder/view/${arg.folder_id}/${arg.view_password}`);
 };
 export const oneTimeView = async (arg: IGetOneTimesViewArg) => {
-  return await axiosBase.get<IGetOneTimesViewResponse>(
+  return await axiosBaseStorage.get<IGetOneTimesViewResponse>(
     `/view/one/${arg.onetime_link}/${arg.view_password}`
   );
 };
 
 export const createFolder = async (arg: ICreateFolderArg) => {
-  return await axiosBase.post<ICreateFolderResponse>("/folder/create", arg);
+  return await axiosBaseStorage.post<ICreateFolderResponse>(
+    "/folder/create",
+    arg
+  );
 };
 export const renameFolder = async (arg: IRenameFolderArg) => {
   const data = {
     new_name: arg.new_name,
   };
-  return await axiosBase.patch<null>(`/folder/rename/${arg.folder_id}`, data);
+  return await axiosBaseStorage.patch<null>(
+    `/folder/rename/${arg.folder_id}`,
+    data
+  );
 };
 export const downLoadFolder = async (arg: IDownloadFolderArg) => {
-  return await axiosBase.get(`/folder/download/${arg.folder_id}`, {
+  return await axiosBaseStorage.get(`/folder/download/${arg.folder_id}`, {
     // responseType: "blob",
     responseType: "arraybuffer",
   });
 };
 
 export const deleteFolder = async (arg: IDeleteFolderArg) => {
-  return await axiosBase.delete<null>(`/folder/delete/${arg.folder_id}`);
+  return await axiosBaseStorage.delete<null>(`/folder/delete/${arg.folder_id}`);
 };
 
 export const previewImage = async (arg: IPreviewImageArg) => {
-  return await axiosBase.get<null>(
+  return await axiosBaseStorage.get<null>(
     `/api/storage/folder/view/image/${arg.folder_id}/${arg.file_db_id}`
   );
 };
 
 export const createOneTimeLink = async (arg: ICreateOneTimeLinkArg) => {
-  return await axiosBase.post<ICreateOneTimeLinkResponse>(
+  return await axiosBaseStorage.post<ICreateOneTimeLinkResponse>(
     "/folder/onetime/create",
     arg
   );
 };
 export const getAllFolder = async () => {
-  return await axiosBase.get<IGetAllFolderResponse>("/folder/all");
+  return await axiosBaseStorage.get<IGetAllFolderResponse>("/folder/all");
 };
