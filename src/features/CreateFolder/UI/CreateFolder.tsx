@@ -9,13 +9,15 @@ export const CreateFolder = () => {
   const navigation = useNavigate();
 
   const currentTariff =
-    tariffs !== null ? tariffs[subscribeStatus?.subscription_id || 0] : null;
+    tariffs !== null ? tariffs[subscribeStatus?.tariff_id || 0] : null;
 
   const handleClick = () => {
     createFolder({
       login: uuidv4(),
       lifetime: currentTariff?.max_lifetime || 7,
       download_password: false,
+      owner_name: "",
+      need_password: true,
     }).then(({ data }) => {
       navigation(`/storage/${data.folder_id}`);
     });
