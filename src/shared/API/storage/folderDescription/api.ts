@@ -15,7 +15,6 @@ export const addDescription = (arg: IAddDescriptionArg) => {
     data
   );
 };
-//filesharing-st.ru/folder/description/add/{folder_id}
 
 export const editDescription = (arg: IEditDescriptionArg) => {
   const data = {
