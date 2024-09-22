@@ -34,3 +34,7 @@ axiosBase.interceptors.response.use(
     throw error;
   }
 );
+export const axiosBaseAccount = axios.create({
+  ...axiosBase.defaults,
+  baseURL: "/api/api/account",
+});

@@ -1,13 +1,13 @@
-import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
+import { axiosBaseAccount } from "src/shared/config/axiosConfig/axiosConfig";
 import { IInfoResponse, ILoginFnArg, IRegisterArg } from "./model";
 
 export const getInfo = () => {
-  return axiosBase.get<IInfoResponse>("/info");
+  return axiosBaseAccount.get<IInfoResponse>("/info");
 };
 export const register = (arg: IRegisterArg) => {
-  return axiosBase.post("/api/account/register", arg);
+  return axiosBaseAccount.post("/register", arg);
 };
 
 export const loginFn = (arg: ILoginFnArg) => {
-  return axiosBase.post("/api/account/login", arg);
+  return axiosBaseAccount.post("/login", arg);
 };
