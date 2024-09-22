@@ -4,7 +4,6 @@ import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { userSlice } from "src/entities/user/model/userSlice";
-import { login } from "src/shared/API/account/auth/auth";
 import { AxiosError, isAxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { LoginStyle } from "./LoginStyle";
@@ -12,7 +11,7 @@ import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
-import { getUserInfo } from "src/shared/API/account/account/account";
+import { getInfo, loginFn } from "src/shared/API/account/account/account";
 
 interface IData {
   login: string;
@@ -40,11 +39,11 @@ export const Login = () => {
 
   const handleRegister = (data: IData) => {
     setIsLoading(true);
-    login(data)
+    loginFn(data)
       .then(({ data }) => {
         setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
-        subscriptionStatus({ user_id: data.user_id }).then(async ({ data }) => {
-          getUserInfo().then(async (response) => {
+        subscriptionStatus().then(async ({ data }) => {
+          getInfo().then(async (response) => {
             const userInfo = response.data;
             setIsLoading(false);
             await setSubscribeStatus(data);
