@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { storageSlice } from "src/entities/storage/model/storageSlice";
 import { downloadFile } from "src/shared/API/storage/files/api";
 import {
-  createDescription,
+  addDescription,
   editDescription,
 } from "src/shared/API/storage/folderDescription/api";
 
@@ -17,7 +17,7 @@ export const StorageDescription = () => {
   const handleSave = () => {
     if (oldValie !== value && storage) {
       if (!storage.description_id) {
-        createDescription({
+        addDescription({
           description: value,
           folder_id: storage.folder_id,
         }).then(() => {
@@ -27,7 +27,6 @@ export const StorageDescription = () => {
         editDescription({
           folder_id: storage?.folder_id,
           new_description: value,
-          new_name: "",
         }).then(() => {
           setOldValue(value);
         });
