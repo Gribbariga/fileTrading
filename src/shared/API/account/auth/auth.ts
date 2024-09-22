@@ -1,19 +1,5 @@
 import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
-import {
-  IChangePasswordArg,
-  ILoginArg,
-  ILoginResponse,
-  IRegisterArg,
-  IRegisterResponse,
-} from "./model";
-
-export const register = (arg: IRegisterArg) => {
-  return axiosBase.post<IRegisterResponse>("/api/user/register", arg);
-};
-
-export const login = (arg: ILoginArg) => {
-  return axiosBase.post<ILoginResponse>("/api/user/login", arg);
-};
+import { IChangePasswordArg } from "./model";
 
 export const updateAccessToken = async () => {
   return axiosBase.post("/api/user/token/refresh");

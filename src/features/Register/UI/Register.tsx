@@ -12,7 +12,7 @@ import { subscriptionStatus } from "src/shared/API/subscription/subscription.ts"
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { userCodeError } from "src/shared/constant/backendCodeError/User.ts";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie.ts";
-import { getUserInfo } from "src/shared/API/account/user/user.ts";
+import { getUserInfo } from "src/shared/API/account/account/account.ts";
 
 interface IData {
   login: string;

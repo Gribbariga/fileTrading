@@ -12,7 +12,7 @@ import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
-import { getUserInfo } from "src/shared/API/account/user/user";
+import { getUserInfo } from "src/shared/API/account/account/account";
 
 interface IData {
   login: string;
