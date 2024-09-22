@@ -1,5 +1,5 @@
 import axios, { AxiosError, isAxiosError } from "axios";
-import { updateAccessToken } from "src/shared/API/account/auth/auth";
+import { refreshTokens } from "src/shared/API/account/token/token";
 // import { userCodeError } from "src/shared/constant/backendCodeError/User";
 // baseURL: "https://" + import.meta.env.VITE_DOMAIN,
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
@@ -21,7 +21,7 @@ axiosBase.interceptors.response.use(
         error.response?.data.status === userCodeError.JWT_EXPIRED &&
         originalRequest
       ) {
-        return updateAccessToken()
+        return refreshTokens()
           .then(() => {
             return axiosBase.request(originalRequest);
           })
