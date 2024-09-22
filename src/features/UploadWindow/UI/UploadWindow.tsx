@@ -23,7 +23,7 @@ export const UploadWindow = () => {
   const inputUploadRef = useRef<HTMLInputElement>(null);
 
   const currentTariff =
-    tariffs !== null ? tariffs[subscribeStatus?.subscription_id || 0] : null;
+    tariffs !== null ? tariffs[subscribeStatus?.tariff_id || 0] : null;
 
   const fetchFiles = (files: FileList) => {
     if (currentTariff) {
@@ -31,6 +31,8 @@ export const UploadWindow = () => {
         login: uuidv4(),
         lifetime: currentTariff.max_lifetime,
         download_password: false,
+        owner_name: "",
+        need_password: false,
       }).then(async ({ data }) => {
         setYourFolderId(data.folder_id);
         await uploadFileHelper(files, currentTariff, data.folder_id);

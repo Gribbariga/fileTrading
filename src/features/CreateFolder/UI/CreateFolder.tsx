@@ -17,7 +17,7 @@ export const CreateFolder = () => {
       lifetime: currentTariff?.max_lifetime || 7,
       download_password: false,
       owner_name: "",
-      need_password: true,
+      need_password: false,
     }).then(({ data }) => {
       navigation(`/storage/${data.folder_id}`);
     });

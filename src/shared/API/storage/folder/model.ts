@@ -52,7 +52,7 @@ export interface ICreateFolderArg {
   owner_name: string;
   name?: string;
   login: string;
-  need_password: true;
+  need_password: boolean;
   view_password?: string;
   download_password: boolean;
 }
