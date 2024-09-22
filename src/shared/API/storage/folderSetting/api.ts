@@ -1,18 +1,20 @@
 import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
 import {
   IEditViewPasswordArg,
-  IToggleDownloadPasswordArg,
+  IToggleNeedPasswordArg,
   IUpdateLifeTimeArg,
 } from "./model";
 
-export const toggleDownloadPassword = (arg: IToggleDownloadPasswordArg) => {
-  return axiosBase.patch("/api/storage/folder/setting/download_password", arg);
+export const toggleNeedPassword = (arg: IToggleNeedPasswordArg) => {
+  return axiosBase.patch(`/folder/setting/need_password/${arg.folder_id}`);
 };
 
 export const editViewPassword = (arg: IEditViewPasswordArg) => {
-  return axiosBase.patch("/api/storage/folder/setting/view_password", arg);
+  return axiosBase.patch(`/folder/setting/view_password/${arg.folder_id}`, arg);
 };
 
 export const updateLifeTime = (arg: IUpdateLifeTimeArg) => {
-  return axiosBase.patch("/api/storage/folder/setting/lifetime", arg);
+  return axiosBase.patch(
+    `/folder/setting/lifetime/${arg.folder_id}/${arg.new_lifetime}`
+  );
 };

@@ -1,4 +1,4 @@
-export interface IToggleDownloadPasswordArg {
+export interface IToggleNeedPasswordArg {
   folder_id: string;
 }
 
