@@ -11,7 +11,7 @@ export const StorageName = () => {
 
   useEffect(() => {
     if (storage) {
-      setValue(storage?.folder_name);
+      setValue(storage?.name);
     }
   }, []);
 
@@ -26,7 +26,7 @@ export const StorageName = () => {
           setName(value);
         })
         .catch(() => {
-          setName(storage.folder_name);
+          setName(storage.name);
         });
     }
   };
