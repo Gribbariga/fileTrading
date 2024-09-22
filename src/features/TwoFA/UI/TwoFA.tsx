@@ -4,11 +4,11 @@ import { Callout, Text } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { verifyKey2FA } from "src/shared/API/account/2FA/2FA.ts";
+import { verifyTwoFa } from "src/shared/API/account/2FA/2FA.ts";
 import { useNavigate } from "react-router-dom";
 
 interface ICheckData {
-  code_2fa: string;
+  two_fa_code: string;
 }
 
 export const TwoFA = () => {
@@ -19,7 +19,7 @@ export const TwoFA = () => {
     handleSubmit,
   } = useForm({
     defaultValues: {
-      code_2fa: "",
+      two_fa_code: "",
     },
   });
 
@@ -29,7 +29,7 @@ export const TwoFA = () => {
 
   const handleCheck = (data: ICheckData) => {
     setIsLoading(true);
-    verifyKey2FA(data)
+    verifyTwoFa(data)
       .then(({ data }) => {
         if (data.verify) {
           navigation("/");
@@ -63,7 +63,7 @@ export const TwoFA = () => {
     navigation("/login");
   };
 
-  const error = errors.root?.message || errors.code_2fa?.message;
+  const error = errors.root?.message || errors.two_fa_code?.message;
 
   return (
     <>
@@ -81,7 +81,7 @@ export const TwoFA = () => {
             <TextFieldSC
               size={"3"}
               variant="surface"
-              {...registerInput("code_2fa", {
+              {...registerInput("two_fa_code", {
                 required: "Заполните обязательное поле",
               })}
               placeholder="Защитный код"

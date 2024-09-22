@@ -1,7 +1,6 @@
 import { Callout, Text } from "@radix-ui/themes";
 import { RegisterStyle } from "./RegisterStyle.ts";
 import { useForm } from "react-hook-form";
-import { register } from "src/shared/API/account/auth/auth.ts";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userSlice } from "src/entities/user/model/userSlice.ts";
@@ -12,7 +11,7 @@ import { subscriptionStatus } from "src/shared/API/subscription/subscription.ts"
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { userCodeError } from "src/shared/constant/backendCodeError/User.ts";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie.ts";
-import { getUserInfo } from "src/shared/API/account/account/account.ts";
+import { getInfo, register } from "src/shared/API/account/account/account.ts";
 
 interface IData {
   login: string;
@@ -42,16 +41,14 @@ export const Register = () => {
       .then(({ data }) => {
         setTimeout(() => {
           setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
-          subscriptionStatus({ user_id: data.user_id }).then(
-            async ({ data }) => {
-              getUserInfo().then(async (response) => {
-                const userInfo = response.data;
-                setIsLoading(false);
-                await setSubscribeStatus(data);
-                setInfo(userInfo);
-              });
-            }
-          );
+          subscriptionStatus().then(async ({ data }) => {
+            getInfo().then(async (response) => {
+              const userInfo = response.data;
+              setIsLoading(false);
+              await setSubscribeStatus(data);
+              setInfo(userInfo);
+            });
+          });
           navigation("/");
         }, 3000);
       })
