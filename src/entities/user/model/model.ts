@@ -1,6 +1,6 @@
-import { IGetUserInfoResponse } from "src/shared/API/account/account/model";
+import { IInfoResponse } from "src/shared/API/account/account/model";
 
-type IUserInfo = IGetUserInfoResponse;
+type IUserInfo = IInfoResponse;
 
 export interface IUser {
   userInfo: IUserInfo | null;

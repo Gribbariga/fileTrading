@@ -1,6 +1,6 @@
 import {
   IFolder,
-  IGetFilesResponse as IStorage,
+  IViewFolderResponse as IStorage,
 } from "src/shared/API/storage/folder/model";
 
 export interface IStorageSlice {
