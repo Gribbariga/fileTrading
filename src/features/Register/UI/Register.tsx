@@ -1,7 +1,7 @@
 import { Callout, Text } from "@radix-ui/themes";
 import { RegisterStyle } from "./RegisterStyle.ts";
 import { useForm } from "react-hook-form";
-import { register } from "src/shared/API/user/auth/auth.ts";
+import { register } from "src/shared/API/account/auth/auth.ts";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { userSlice } from "src/entities/user/model/userSlice.ts";
@@ -12,7 +12,7 @@ import { subscriptionStatus } from "src/shared/API/subscription/subscription.ts"
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { userCodeError } from "src/shared/constant/backendCodeError/User.ts";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie.ts";
-import { getUserInfo } from "src/shared/API/user/user/user.ts";
+import { getUserInfo } from "src/shared/API/account/user/user.ts";
 
 interface IData {
   login: string;

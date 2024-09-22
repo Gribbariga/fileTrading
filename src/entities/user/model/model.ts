@@ -1,4 +1,4 @@
-import { IGetUserInfoResponse } from "src/shared/API/user/user/model";
+import { IGetUserInfoResponse } from "src/shared/API/account/user/model";
 
 type IUserInfo = IGetUserInfoResponse;
 

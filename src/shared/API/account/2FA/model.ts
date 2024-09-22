@@ -3,7 +3,7 @@ export interface ICreateKey2FAResponse {
 }
 
 export interface IVerifyKey2FAArg {
-  code_2fa: string;
+  two_fa_code: string;
 }
 
 export interface IVerifyKey2FAResponse {

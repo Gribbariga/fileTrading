@@ -4,7 +4,7 @@ import { Callout, Text } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { verifyKey2FA } from "src/shared/API/user/2FA/2FA.ts";
+import { verifyKey2FA } from "src/shared/API/account/2FA/2FA.ts";
 import { useNavigate } from "react-router-dom";
 
 interface ICheckData {

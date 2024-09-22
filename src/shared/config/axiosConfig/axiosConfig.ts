@@ -1,5 +1,5 @@
 import axios, { AxiosError, isAxiosError } from "axios";
-import { updateAccessToken } from "src/shared/API/user/auth/auth";
+import { updateAccessToken } from "src/shared/API/account/auth/auth";
 // import { userCodeError } from "src/shared/constant/backendCodeError/User";
 // baseURL: "https://" + import.meta.env.VITE_DOMAIN,
 import { userCodeError } from "src/shared/constant/backendCodeError/User";

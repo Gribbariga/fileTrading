@@ -2,7 +2,7 @@ import { Callout, Dialog, Text } from "@radix-ui/themes";
 import { ConnectTwoFAStyle } from "./ConnectTwoFAStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { createKey2FA, verifyKey2FA } from "src/shared/API/user/2FA/2FA.ts";
+import { createKey2FA, verifyKey2FA } from "src/shared/API/account/2FA/2FA.ts";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { AxiosError, isAxiosError } from "axios";
 
