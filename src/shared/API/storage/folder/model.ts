@@ -1,4 +1,4 @@
-export interface IGetFilesArg {
+export interface IViewFolderArg {
   folder_id: string;
   view_password: string;
 }
@@ -12,18 +12,18 @@ export interface IFiles {
   updated_at: string;
 }
 
-export interface IGetFilesResponse {
+export interface IViewFolderResponse {
   file_count: number;
-  folder_name: string;
+  name: string;
   lifetime: number;
-  folder_size: number;
-  owner_name: string;
+  size: number;
   description_id: number;
   folder_id: string;
-  owner_id: number;
   download_count: number;
   view_count: number;
-  download_password: boolean;
+  view_password: boolean;
+  need_password: boolean;
+  edit_permission: boolean;
   created_at: string;
   updated_at: string;
   files: IFiles[];
@@ -49,8 +49,10 @@ export interface IGetOneTimesViewResponse {
 
 export interface ICreateFolderArg {
   lifetime: number; //days
+  owner_name: string;
   name?: string;
   login: string;
+  need_password: true;
   view_password?: string;
   download_password: boolean;
 }
@@ -88,7 +90,6 @@ export interface ICreateOneTimeLinkResponse {
 
 export interface IFolder {
   folder_id: string;
-  user_id: number;
   owner_name: string;
   description_id: null | number;
   name: string;
@@ -97,7 +98,8 @@ export interface IFolder {
   download_count: number;
   view_count: number;
   lifetime: number;
-  view_password: null;
+  view_password: boolean;
+  need_password: boolean;
   download_password: boolean;
   edit_permissions: boolean;
   created_at: string;
