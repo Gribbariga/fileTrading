@@ -12,7 +12,7 @@ export const StorageActionBar = () => {
   return (
     <StorageActionBarWrapperSC>
       <Heading size={"6"} weight={"medium"} align={"left"}>
-        Хранилище {storage?.folder_name}
+        Хранилище {storage?.name}
       </Heading>
       <ActionWrapperSC>
         {!isGuest && (
