@@ -1,9 +1,9 @@
 import { ChangeAccountPasswordStyle } from "./ChangeAccountPasswordStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { ChangeEvent, useState } from "react";
-import { changePassword } from "src/shared/API/account/auth/auth.ts";
 import { Callout } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { changePassword } from "src/shared/API/account/setting/setting.ts";
 
 export const ChangeAccountPassword = () => {
   const [oldPassword, setOldPassword] = useState("");
