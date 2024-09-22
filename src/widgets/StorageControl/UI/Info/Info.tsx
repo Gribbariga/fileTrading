@@ -27,7 +27,7 @@ export const Info = () => {
       },
       {
         name: "Размер",
-        value: ((storage?.folder_size || 0) / 1024 / 1024 / 1024).toFixed(2),
+        value: ((storage?.size || 0) / 1024 / 1024 / 1024).toFixed(2),
       },
       {
         name: "Скачано раз",
