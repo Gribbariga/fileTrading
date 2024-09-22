@@ -17,7 +17,7 @@ export const UploadsFile = () => {
       e.preventDefault();
       await uploadFileHelper(
         files,
-        tariffs[subscribeStatus?.subscription_id || 0],
+        tariffs[subscribeStatus?.tariff_id || 0],
         storage.folder_id
       );
       addFiles(files);
