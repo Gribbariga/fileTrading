@@ -2,7 +2,7 @@ import { Badge, Switch, Text } from "@radix-ui/themes";
 import { DownloadProjectionStyle } from "./DownloadProjectionStyle.ts";
 import { useEffect, useState } from "react";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
-import { toggleDownloadPassword } from "src/shared/API/storage/folderSetting/api.ts";
+import { toggleNeedPassword } from "src/shared/API/storage/folderSetting/api.ts";
 
 export const DownloadProjection = () => {
   const { storage } = storageSlice((state) => state);
@@ -19,7 +19,7 @@ export const DownloadProjection = () => {
     if (storage) {
       const currentValue = isChecked;
       setIsChecked((prev) => !prev);
-      toggleDownloadPassword({ folder_id: storage?.folder_id }).catch(() => {
+      toggleNeedPassword({ folder_id: storage?.folder_id }).catch(() => {
         setIsChecked(currentValue);
       });
     }
