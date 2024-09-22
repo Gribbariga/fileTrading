@@ -1,17 +1,26 @@
 import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
 import {
-  ICreateDescriptionArg,
-  ICreateDescriptionResponse,
+  IAddDescriptionArg,
+  IAddDescriptionResponse,
   IEditDescriptionArg,
-} from "./mode";
+} from "./model";
 
-export const createDescription = (arg: ICreateDescriptionArg) => {
-  return axiosBase.post<ICreateDescriptionResponse>(
-    "/api/storage/folder/description/create",
-    arg
+export const addDescription = (arg: IAddDescriptionArg) => {
+  const data = {
+    name: arg.name,
+    description: arg.description,
+  };
+  return axiosBase.post<IAddDescriptionResponse>(
+    `/folder/description/add/${arg.folder_id}`,
+    data
   );
 };
+//filesharing-st.ru/folder/description/add/{folder_id}
 
 export const editDescription = (arg: IEditDescriptionArg) => {
-  return axiosBase.patch("/api/storage/folder/description/edit", arg);
+  const data = {
+    new_description: arg.new_description,
+  };
+
+  return axiosBase.patch(`/folder/description/edit/${arg.folder_id}`, data);
 };
