@@ -1,5 +1,5 @@
-import { axiosBase } from "src/shared/config/axiosConfig/axiosConfig";
+import { axiosBaseAccount } from "src/shared/config/axiosConfig/axiosConfig";
 
 export const refreshTokens = async () => {
-  return axiosBase.post("/token/refresh");
+  return axiosBaseAccount.post("/token/refresh");
 };
