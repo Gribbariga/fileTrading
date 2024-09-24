@@ -23,7 +23,7 @@ export const Info = () => {
       },
       {
         name: "Автор",
-        value: "user2390857",
+        value: storage.name,
       },
       {
         name: "Размер",
@@ -35,7 +35,7 @@ export const Info = () => {
       },
       {
         name: "Просмотры",
-        value: "363",
+        value: `${storage.view_count}`,
       },
       {
         name: "Заполнено",
