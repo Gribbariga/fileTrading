@@ -9,7 +9,6 @@ import {
   IGetAllFolderResponse,
   IViewFolderArg,
   IViewFolderResponse,
-  IGetFilesResponsePassword,
   IGetOneTimesViewArg,
   IGetOneTimesViewResponse,
   IPreviewImageArg,
@@ -17,9 +16,9 @@ import {
 } from "./model";
 
 export const viewFolder = async (arg: IViewFolderArg) => {
-  return await axiosBaseStorage.get<
-    IViewFolderResponse | IGetFilesResponsePassword
-  >(`/folder/view/${arg.folder_id}/${arg.view_password}`);
+  return await axiosBaseStorage.get<IViewFolderResponse>(
+    `/folder/view/${arg.folder_id}/${arg.view_password}`
+  );
 };
 export const oneTimeView = async (arg: IGetOneTimesViewArg) => {
   return await axiosBaseStorage.get<IGetOneTimesViewResponse>(

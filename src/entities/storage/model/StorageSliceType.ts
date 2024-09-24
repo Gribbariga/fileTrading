@@ -22,9 +22,5 @@ export interface IStorageSlice {
   setIsGuest: (value: boolean) => void;
   deleteFile: (id: number) => void;
   setFolderId: (folderId: string) => void;
-  getStorage: (
-    folder_id: string,
-    view_password: string,
-    isGuest: boolean
-  ) => void;
+  getStorage: (folder_id: string, view_password: string) => void;
 }
