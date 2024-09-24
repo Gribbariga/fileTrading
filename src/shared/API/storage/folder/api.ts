@@ -60,8 +60,7 @@ export const previewImage = async (arg: IPreviewImageArg) => {
 
 export const createOneTimeLink = async (arg: ICreateOneTimeLinkArg) => {
   return await axiosBaseStorage.post<ICreateOneTimeLinkResponse>(
-    "/folder/onetime/create",
-    arg
+    `/folder/onetime/create/${arg.folder_id}`
   );
 };
 export const getAllFolder = async () => {
