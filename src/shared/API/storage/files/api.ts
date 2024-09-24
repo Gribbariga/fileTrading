@@ -30,7 +30,6 @@ export const downloadFile = async (arg: IDownloadFileArg) => {
     }
   );
 };
-
 export const previewImage = async (arg: IPreviewImageArg) => {
   return await axiosBaseStorage.get(
     `/file/image/preview/${arg.folder_id}/${arg.file_id}`

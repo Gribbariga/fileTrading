@@ -2,7 +2,7 @@ import { axiosBaseAccount } from "src/shared/config/axiosConfig/axiosConfig";
 import { IVerifyKey2FAArg, IVerifyKey2FAResponse } from "./model";
 
 export const createTwoFa = () => {
-  return axiosBaseAccount.get("/two_fa/create", {
+  return axiosBaseAccount.post("/two_fa/create", {
     responseType: "blob",
   });
 };
