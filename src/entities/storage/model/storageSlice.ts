@@ -31,7 +31,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
           ...state,
           storage: {
             ...state.storage,
-            folder_name: name,
+            name: name,
           },
         };
       } else {
