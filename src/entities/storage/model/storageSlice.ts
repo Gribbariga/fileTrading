@@ -90,7 +90,7 @@ export const storageSlice = create<IStorageSlice>((set) => ({
     set((state) => ({ ...state, isLoading: true }));
     viewFolder({ folder_id: folder_id, view_password: view_password })
       .then(({ data }) => {
-        if ("view_password" in data) {
+        if (data.view_password) {
           set((state) => ({
             ...state,
             isPassword: true,

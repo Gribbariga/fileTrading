@@ -20,6 +20,8 @@ export interface IViewFolderResponse {
   description_id: number;
   folder_id: string;
   download_count: number;
+  owner_name: string;
+  owner_view: true;
   view_count: number;
   view_password: boolean;
   need_password: boolean;
