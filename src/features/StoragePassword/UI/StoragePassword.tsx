@@ -35,7 +35,7 @@ export const StoragePassword = () => {
   };
 
   const handleSwitch = () => {
-    if (isChecked && storage && !!password) {
+    if (isChecked && storage) {
       editViewPassword({ folder_id: storage.folder_id, view_password: null })
         .then(() => {
           setIsChecked(false);
