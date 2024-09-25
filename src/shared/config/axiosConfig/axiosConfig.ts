@@ -1,5 +1,5 @@
 import axios, { AxiosError, isAxiosError } from "axios";
-import { refreshTokens } from "src/shared/API/account/token/token";
+import { refreshTokens } from "src/shared/API/auth/token/token";
 // import { userCodeError } from "src/shared/constant/backendCodeError/User";
 // baseURL: "https://" + import.meta.env.VITE_DOMAIN,
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
@@ -49,4 +49,9 @@ export const axiosBaseSubscription = axios.create({
 export const axiosBasePayment = axios.create({
   ...axiosBase.defaults,
   baseURL: "/api/api/payment",
+});
+
+export const axiosBaseAuth = axios.create({
+  ...axiosBase.defaults,
+  baseURL: "/api/api/auth",
 });
