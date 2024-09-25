@@ -40,7 +40,7 @@ const StorageViewPage = () => {
       navigation("/NotFound");
     }
   }, [isNotFound]);
-
+  console.log(isPassword);
   return (
     <>
       <Layout>

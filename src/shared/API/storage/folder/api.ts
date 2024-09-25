@@ -13,10 +13,11 @@ import {
   IGetOneTimesViewResponse,
   IPreviewImageArg,
   IRenameFolderArg,
+  IViewFolderPassword,
 } from "./model";
 
 export const viewFolder = async (arg: IViewFolderArg) => {
-  return await axiosBaseStorage.get<IViewFolderResponse>(
+  return await axiosBaseStorage.get<IViewFolderResponse | IViewFolderPassword>(
     `/folder/view/${arg.folder_id}/${arg.view_password}`
   );
 };

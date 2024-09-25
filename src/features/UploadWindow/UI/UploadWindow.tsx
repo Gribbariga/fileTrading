@@ -22,8 +22,12 @@ export const UploadWindow = () => {
 
   const inputUploadRef = useRef<HTMLInputElement>(null);
 
+  console.log(subscribeStatus?.tariff_id);
+  console.log(tariffs);
   const currentTariff =
     tariffs !== null ? tariffs[subscribeStatus?.tariff_id || 0] : null;
+
+  console.log(currentTariff);
 
   const fetchFiles = (files: FileList) => {
     if (currentTariff) {

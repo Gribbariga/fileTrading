@@ -23,12 +23,16 @@ export interface IViewFolderResponse {
   owner_name: string;
   owner_view: true;
   view_count: number;
-  view_password: boolean;
+  // view_password: boolean;
   need_password: boolean;
   edit_permission: boolean;
   created_at: string;
   updated_at: string;
   files: IFiles[];
+}
+
+export interface IViewFolderPassword {
+  view_password: boolean;
 }
 
 export interface IGetOneTimesViewArg {

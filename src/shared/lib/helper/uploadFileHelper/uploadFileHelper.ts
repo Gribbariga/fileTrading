@@ -8,11 +8,21 @@ export const uploadFileHelper = (
 ) => {
   for (let i = 0; i < files.length; i++) {
     const fileSizeInMB = files[i].size;
-    if (
-      i < currentTariff.max_file_at_time &&
-      fileSizeInMB <= +currentTariff.max_file_size
-    ) {
-      uploadFile({ file: files[i], folder_id: folder_id });
+    console.log(i);
+    console.log(currentTariff.max_file_in_folder);
+    console.log(fileSizeInMB);
+    console.log(+currentTariff.max_file_size);
+    if (currentTariff.max_file_in_folder === -1) {
+      if (fileSizeInMB <= +currentTariff.max_file_size) {
+        uploadFile({ file: files[i], folder_id: folder_id });
+      }
+    } else {
+      if (
+        i < currentTariff.max_file_in_folder &&
+        fileSizeInMB <= +currentTariff.max_file_size
+      ) {
+        uploadFile({ file: files[i], folder_id: folder_id });
+      }
     }
   }
 };
