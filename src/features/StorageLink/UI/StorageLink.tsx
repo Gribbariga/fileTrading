@@ -16,7 +16,9 @@ export const StorageLink = () => {
 
   useEffect(() => {
     if (storage?.folder_id) {
-      createOneTimeLink({ folder_id: storage.folder_id }).then(({ data }) => {
+      createOneTimeLink({
+        folder_id: storage.folder_id,
+      }).then(({ data }) => {
         setOneTimeLink(data.onetime_link);
       });
     }

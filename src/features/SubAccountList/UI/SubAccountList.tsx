@@ -1,16 +1,25 @@
+import { useEffect, useState } from "react";
 import { SubAccountItem } from "./SubAccountItem/SubAccountItem.tsx";
 import { SubAccountListStyle } from "./SubAccountListStyle.ts";
+import { getAllSubaccount } from "src/shared/API/account/subaccount/subaccount.tsx";
+import { ISubaccount } from "src/shared/API/account/subaccount/model.ts";
 
 export const SubAccountList = () => {
-  const placeholder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  const [subAccount, setSubAccount] = useState<ISubaccount[]>([]);
+
+  useEffect(() => {
+    getAllSubaccount().then(({ data }) => {
+      setSubAccount(data.subaccounts);
+    });
+  }, []);
 
   return (
     <>
       <WrapperSC>
-        {placeholder.map((item) => {
+        {subAccount.map((item, i) => {
           return (
             <>
-              <SubAccountItem key={item} number={item} />
+              <SubAccountItem key={item.login} login={item.login} number={i} />
             </>
           );
         })}

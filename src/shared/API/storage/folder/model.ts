@@ -107,7 +107,3 @@ export interface IFolder {
 export interface IGetAllFolderResponse {
   folders: IFolder[];
 }
-
-export interface ICreateOneTimeLinkArg {
-  foldre_id: string;
-}

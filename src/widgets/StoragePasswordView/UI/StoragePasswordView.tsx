@@ -7,12 +7,11 @@ import { useParams } from "react-router-dom";
 
 export const StoragePasswordView = () => {
   const [value, setValue] = useState("");
-  const { getStorage, yourFolderId } = storageSlice((state) => state);
+  const { getStorage } = storageSlice((state) => state);
   const { storageLink } = useParams();
   const handleNext = () => {
     if (storageLink && value) {
-      const id = yourFolderId;
-      getStorage(storageLink, value, id !== storageLink);
+      getStorage(storageLink, value);
     }
   };
 

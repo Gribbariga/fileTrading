@@ -20,7 +20,6 @@ const StorageViewPage = () => {
     storage,
     isLoading,
     isNotFound,
-    yourFolderId,
     downloadPassword,
     isPassword,
     getStorage,
@@ -32,8 +31,7 @@ const StorageViewPage = () => {
 
   useEffect(() => {
     if (storageLink) {
-      const id = yourFolderId;
-      getStorage(storageLink, "0", id !== storageLink);
+      getStorage(storageLink, "0");
     }
   }, [storageLink]);
 

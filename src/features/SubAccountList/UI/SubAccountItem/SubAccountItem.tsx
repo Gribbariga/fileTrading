@@ -10,13 +10,14 @@ interface ISubmitData {
 }
 
 export interface ISubAccountItemProps {
+  login: string;
   number: number;
 }
 
-export const SubAccountItem: FC<ISubAccountItemProps> = ({ number }) => {
+export const SubAccountItem: FC<ISubAccountItemProps> = ({ number, login }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      login: "",
+      login: login,
       password: "",
     },
   });

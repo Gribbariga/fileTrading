@@ -14,5 +14,5 @@ export interface ISubaccount {
 }
 
 export interface IAllSubaccountRequest {
-  subaccounts: ISubaccount;
+  subaccounts: ISubaccount[];
 }
