@@ -30,16 +30,6 @@ export const TabsSecurityContent = () => {
               <ConnectGoogleTwoFA />
             </DialogContentSC>
           </Dialog.Root>
-          <Dialog.Root>
-            <Dialog.Trigger>
-              <ButtonUI size={"3"} variant="surface" mb={"3"}>
-                Подключить почту
-              </ButtonUI>
-            </Dialog.Trigger>
-            <Dialog.Content>
-              <div style={{ width: "100px", height: "100px" }}>TEST2</div>
-            </Dialog.Content>
-          </Dialog.Root>
         </>
       )}
     </>

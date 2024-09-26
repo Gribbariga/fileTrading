@@ -40,7 +40,7 @@ export const Register = () => {
     register(data)
       .then(({ data }) => {
         setTimeout(() => {
-          setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
+          setCookie("account_id", `${data.user_id}`, { "max-age": 86400000 });
           subscriptionStatus().then(async ({ data }) => {
             getInfo().then(async (response) => {
               const userInfo = response.data;

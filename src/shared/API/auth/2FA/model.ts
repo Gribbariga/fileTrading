@@ -15,3 +15,7 @@ export interface ISetTwoFaArg {
   two_fa_key: string;
   two_fa_code: string;
 }
+
+export interface ISetTwoFaResponse {
+  message: string;
+}

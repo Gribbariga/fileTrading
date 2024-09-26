@@ -1,8 +1,13 @@
 import { axiosBaseAuth } from "src/shared/config/axiosConfig/axiosConfig";
-import { ISetTwoFaArg, IVerifyKey2FAArg, IVerifyKey2FAResponse } from "./model";
+import {
+  ISetTwoFaArg,
+  ISetTwoFaResponse,
+  IVerifyKey2FAArg,
+  IVerifyKey2FAResponse,
+} from "./model";
 
-export const createTwoFa = () => {
-  return axiosBaseAuth.post("/two_fa/create", {
+export const createTwoFa = async () => {
+  return await axiosBaseAuth.post("/two_fa/create", {
     responseType: "blob",
   });
 };
@@ -14,7 +19,7 @@ export const verifyTwoFa = (arg: IVerifyKey2FAArg) => {
 };
 
 export const setTwoFA = async (arg: ISetTwoFaArg) => {
-  return axiosBaseAuth.post("/two_fa/set", arg);
+  return axiosBaseAuth.post<ISetTwoFaResponse>("/two_fa/set", arg);
 };
 
 export const deleteKeyTwoFa = async () => {

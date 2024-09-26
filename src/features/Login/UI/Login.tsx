@@ -41,7 +41,10 @@ export const Login = () => {
     setIsLoading(true);
     loginFn(data)
       .then(({ data }) => {
-        setCookie("userId", `${data.user_id}`, { "max-age": 86400000 });
+        setCookie("account_id", `${data.account_id}`, {
+          "max-age": import.meta.env.VITE_LOGIN_COOKIE_TIME,
+        });
+        setCookie("2FA", `${data.two_fa}`);
         subscriptionStatus().then(async ({ data }) => {
           getInfo().then(async (response) => {
             const userInfo = response.data;

@@ -16,3 +16,8 @@ export interface ILoginFnArg {
   email?: string;
   password: string;
 }
+
+export interface ILoginFnResponse {
+  two_fa: boolean;
+  account_id:number
+}
