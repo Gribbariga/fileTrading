@@ -14,7 +14,7 @@ export const DeleteFile: FC<IDeleteFileProps> = ({ fileDbId }) => {
   const handleDeleteFile = () => {
     if (storage) {
       deleteFileFetch({
-        file_db_id: fileDbId,
+        file_id: fileDbId,
         folder_id: storage.folder_id,
       }).then(() => {
         deleteFile(fileDbId);

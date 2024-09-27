@@ -6,7 +6,6 @@ import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { checkImg } from "src/shared/lib/helper/checkImg/checkImg.ts";
-import { previewImage } from "src/shared/API/storage/files/api.ts";
 
 interface IFileItemProps {
   fileDbId: number;
@@ -23,7 +22,7 @@ export const FileItem: FC<IFileItemProps> = ({
 }) => {
   const { isGuest, storage } = storageSlice((state) => state);
 
-  const [previewImg, setPreviewImg] = useState("");
+  const [previewImg] = useState("");
 
   // const [setIsImg] = useState(false);
 
@@ -38,36 +37,34 @@ export const FileItem: FC<IFileItemProps> = ({
   const formattedDate = `${day}.${month}.${year}`;
 
   const test = async () => {
-    const response = await fetch(
-      `/api/api/storage/file/image/preview/${storage.folder_id}/${fileDbId}`,
-      {
-        method: "GET",
-      }
-    );
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder("utf-8");
-    let done = false;
-
-    while (!done) {
-      // Чтение данных из потока
-      const { done: isDone, value } = await reader.read();
-      done = isDone;
-
-      // Декодирование и обработка полученных данных
-      if (value) {
-        const chunk = decoder.decode(value, { stream: true });
-        const t = URL.createObjectURL(chunk);
-        setPreviewImg(chunk);
-        let buffer = new TextEncoder().encode(chunk);
-        // Преобразуем байты в строку (используя UTF-8)
-        let binaryString = "";
-        for (let i = 0; i < buffer.length; i++) {
-          binaryString += String.fromCharCode(buffer[i]);
-        }
-        // Теперь используем btoa для кодирования
-        // setPreviewImg(btoa(binaryString)); // Здесь вы можете обрабатывать данные по своему усмотрению
-      }
-    }
+    // const response = await fetch(
+    //   `/api/api/storage/file/image/preview/${storage.folder_id}/${fileDbId}`,
+    //   {
+    //     method: "GET",
+    //   }
+    // );
+    // const reader = response.body.getReader();
+    // const decoder = new TextDecoder("utf-8");
+    // let done = false;
+    // while (!done) {
+    //   // Чтение данных из потока
+    //   const { done: isDone, value } = await reader.read();
+    //   done = isDone;
+    //   // Декодирование и обработка полученных данных
+    //   if (value) {
+    //     // const chunk = decoder.decode(value, { stream: true });
+    //     // const t = URL.createObjectURL(chunk);
+    //     // setPreviewImg(chunk);
+    //     // let buffer = new TextEncoder().encode(chunk);
+    //     // // Преобразуем байты в строку (используя UTF-8)
+    //     // let binaryString = "";
+    //     // for (let i = 0; i < buffer.length; i++) {
+    //     //   binaryString += String.fromCharCode(buffer[i]);
+    //     // }
+    //     // Теперь используем btoa для кодирования
+    //     // setPreviewImg(btoa(binaryString)); // Здесь вы можете обрабатывать данные по своему усмотрению
+    //   }
+    // }
   };
 
   useEffect(() => {

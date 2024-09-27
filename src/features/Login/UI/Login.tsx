@@ -63,11 +63,7 @@ export const Login = () => {
               await setSubscribeStatus(data);
               setInfo(userInfo);
 
-              if (userInfo.two_fa) {
-                navigation("/twoFA");
-              } else {
-                navigation("/");
-              }
+              navigation("/");
             });
           });
         }

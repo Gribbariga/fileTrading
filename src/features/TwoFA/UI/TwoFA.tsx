@@ -4,7 +4,6 @@ import { Callout, Text } from "@radix-ui/themes";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { verifyTwoFa } from "src/shared/API/auth/2FA/2FA.ts";
 import { useNavigate } from "react-router-dom";
 
 interface ICheckData {
@@ -15,7 +14,6 @@ export const TwoFA = () => {
   const {
     register: registerInput,
     formState: { errors },
-    setError,
     handleSubmit,
   } = useForm({
     defaultValues: {
@@ -29,17 +27,18 @@ export const TwoFA = () => {
 
   const handleCheck = (data: ICheckData) => {
     setIsLoading(true);
-    verifyTwoFa(data)
-      .then(({ data }) => {
-        if (data.verify) {
-          navigation("/");
-        } else {
-          setError("root", { message: "Неверный код" });
-        }
-      })
-      .catch(() => {
-        setError("root", { message: "500. Внутренняя ошибка сервера" });
-      });
+    console.log(data);
+    // verifyTwoFa(data)
+    //   .then(({ data }) => {
+    //     if (data.verify) {
+    //       navigation("/");
+    //     } else {
+    //       setError("root", { message: "Неверный код" });
+    //     }
+    //   })
+    //   .catch(() => {
+    //     setError("root", { message: "500. Внутренняя ошибка сервера" });
+    //   });
     // login(data)
     //   .then(({ data }) => {
     //     setIsLoading(false);
