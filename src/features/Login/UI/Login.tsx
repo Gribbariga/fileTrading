@@ -1,43 +1,50 @@
-import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
-import { Callout, Link, Text } from "@radix-ui/themes";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { userSlice } from "src/entities/user/model/userSlice";
 import { AxiosError, isAxiosError } from "axios";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { LoginStyle } from "./LoginStyle";
 import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
 import { getInfo, loginFn } from "src/shared/API/account/account/account";
+import { verifyTwoFa } from "src/shared/API/auth/2FA/2FA";
+import { LoginStep } from "src/features/Login/UI/LoginStep/LoginStep";
+import { TwoFAStep } from "src/features/Login/UI/TwoFaStep/TwoFaStep";
+import { getCookie } from "src/shared/lib/helper/getCookie/getCookie";
 
 interface IData {
   login: string;
   password: string;
+  TwoFA: string;
 }
 
 export const Login = () => {
-  const {
-    register: registerInput,
-    setError,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({
+  const provider = useForm({
     defaultValues: {
       login: "",
       password: "",
+      TwoFA: "",
     },
   });
+  const {
+    setError,
+    formState: { errors },
+    handleSubmit,
+  } = provider;
+
   const { setInfo } = userSlice((state) => state);
+
+  const [step, setStep] = useState<"login" | "twoFa">("login");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const { setSubscribeStatus } = subscriptionSlice((state) => state);
 
-  const [, setIsLoading] = useState(false);
   const navigation = useNavigate();
 
-  const handleRegister = (data: IData) => {
+  const handleLogin = (data: IData) => {
     setIsLoading(true);
     loginFn(data)
       .then(({ data }) => {
@@ -45,20 +52,25 @@ export const Login = () => {
           "max-age": import.meta.env.VITE_LOGIN_COOKIE_TIME,
         });
         setCookie("2FA", `${data.two_fa}`);
-        subscriptionStatus().then(async ({ data }) => {
-          getInfo().then(async (response) => {
-            const userInfo = response.data;
-            setIsLoading(false);
-            await setSubscribeStatus(data);
-            setInfo(userInfo);
+        if (data.two_fa) {
+          setIsLoading(false);
+          setStep("twoFa");
+        } else {
+          subscriptionStatus().then(async ({ data }) => {
+            getInfo().then(async (response) => {
+              const userInfo = response.data;
+              setIsLoading(false);
+              await setSubscribeStatus(data);
+              setInfo(userInfo);
 
-            if (userInfo.two_fa) {
-              navigation("/twoFA");
-            } else {
-              navigation("/");
-            }
+              if (userInfo.two_fa) {
+                navigation("/twoFA");
+              } else {
+                navigation("/");
+              }
+            });
           });
-        });
+        }
       })
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);
@@ -78,105 +90,56 @@ export const Login = () => {
       });
   };
 
+  const handleBack = () => {
+    setStep("login");
+  };
+
+  const handleCheckTwoFA = (data: IData) => {
+    setIsLoading(true);
+    const accountId = getCookie("account_id");
+    if (accountId) {
+      const newData = {
+        account_id: accountId,
+        two_fa_code: data.TwoFA,
+      };
+      verifyTwoFa(newData)
+        .then(({ data }) => {
+          if (data.verify) {
+            // navigation("/");
+          } else {
+            setError("root", { message: "Неверный код" });
+          }
+        })
+        .catch(() => {
+          setError("root", { message: "500. Внутренняя ошибка сервера" });
+        });
+    }
+  };
+
   const error =
     errors.root?.message || errors.login?.message || errors.password?.message;
 
   return (
     <>
-      <FormSC onSubmit={handleSubmit(handleRegister)}>
-        <InputsWrapperSC>
-          <InputWrapperSC>
-            <Text
-              align={"left"}
-              highContrast={true}
-              size={"3"}
-              weight={"medium"}
-            >
-              Ваш логин
-            </Text>
-            <TextFieldSC
-              size={"3"}
-              variant="surface"
-              {...registerInput("login", {
-                required: "Заполните обязательное поле",
-                maxLength: { value: 250, message: "Логин слишком длинный" },
-              })}
-              placeholder="Введите логин"
+      <FormProvider {...provider}>
+        <FormSC
+          onSubmit={handleSubmit(
+            step === "login" ? handleLogin : handleCheckTwoFA
+          )}
+        >
+          {step === "login" ? (
+            <LoginStep isLoading={isLoading} error={error} />
+          ) : (
+            <TwoFAStep
+              handleBack={handleBack}
+              isLoading={isLoading}
+              error={error}
             />
-          </InputWrapperSC>
-          <InputWrapperSC>
-            <PasswordTitleWrapperSC>
-              <Text
-                align={"left"}
-                highContrast={true}
-                size={"3"}
-                weight={"medium"}
-              >
-                Введите пароль
-              </Text>
-              <Link
-                size={"2"}
-                weight={"regular"}
-                highContrast={false}
-                href="/storage"
-              >
-                Забыли пароль?
-              </Link>
-            </PasswordTitleWrapperSC>
-
-            <TextFieldSC
-              size={"3"}
-              variant="surface"
-              {...registerInput("password", {
-                required: "Заполните обязательное поле",
-                maxLength: { value: 250, message: "Пароль слишком длинный" },
-              })}
-              placeholder="Пароль"
-            />
-          </InputWrapperSC>
-        </InputsWrapperSC>
-
-        {error && (
-          <>
-            <CalloutSC color="red" size={"1"} mb={"5"} variant="soft">
-              <Callout.Icon>
-                <InfoCircledIcon />
-              </Callout.Icon>
-              <Callout.Text>{error}</Callout.Text>
-            </CalloutSC>
-          </>
-        )}
-
-        <ButtonsGroupSC>
-          <ButtonUI
-            type="button"
-            onClick={() => navigation("/register")}
-            size={"2"}
-            variant="soft"
-            highContrast={false}
-          >
-            Создать аккаунт
-          </ButtonUI>
-          <ButtonUI
-            size={"2"}
-            variant="solid"
-            highContrast={false}
-            type="submit"
-          >
-            Войти
-          </ButtonUI>
-        </ButtonsGroupSC>
-      </FormSC>
+          )}
+        </FormSC>
+      </FormProvider>
     </>
   );
 };
 
-const {
-  FormSC,
-  CalloutSC,
-  TextFieldSC,
-  InputWrapperSC,
-  ButtonsGroupSC,
-  InputsWrapperSC,
-  PasswordTitleWrapperSC,
-} = LoginStyle();
+const { FormSC } = LoginStyle();
