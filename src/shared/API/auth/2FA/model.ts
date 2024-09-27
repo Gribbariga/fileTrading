@@ -8,7 +8,7 @@ export interface IVerifyKey2FAArg {
 }
 
 export interface IVerifyKey2FAResponse {
-  verify: boolean;
+  verified: boolean;
 }
 
 export interface ISetTwoFaArg {

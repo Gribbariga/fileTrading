@@ -17,7 +17,7 @@ import { getCookie } from "src/shared/lib/helper/getCookie/getCookie";
 interface IData {
   login: string;
   password: string;
-  TwoFA: string;
+  two_fa_code: string;
 }
 
 export const Login = () => {
@@ -25,7 +25,7 @@ export const Login = () => {
     defaultValues: {
       login: "",
       password: "",
-      TwoFA: "",
+      two_fa_code: "",
     },
   });
   const {
@@ -96,17 +96,19 @@ export const Login = () => {
     if (accountId) {
       const newData = {
         account_id: accountId,
-        two_fa_code: data.TwoFA,
+        two_fa_code: data.two_fa_code,
       };
       verifyTwoFa(newData)
         .then(({ data }) => {
-          if (data.verify) {
-            // navigation("/");
+          setIsLoading(false);
+          if (data.verified) {
+            navigation("/");
           } else {
             setError("root", { message: "Неверный код" });
           }
         })
         .catch(() => {
+          setIsLoading(false);
           setError("root", { message: "500. Внутренняя ошибка сервера" });
         });
     }
