@@ -32,13 +32,16 @@ export const downloadFile = async (arg: IDownloadFileArg) => {
 };
 export const previewImage = async (arg: IPreviewImageArg) => {
   return await axiosBaseStorage.get(
-    `/file/image/preview/${arg.folder_id}/${arg.file_id}`
+    `/file/image/preview/${arg.folder_id}/${arg.file_id}`,
+    {
+      responseType: "stream",
+    }
   );
 };
-
+// https://filesharing-st.ru/file/image/preview/{folder_id}/{file_id}
 export const deleteFile = async (arg: IDeleteFileArg) => {
   return await axiosBaseStorage.delete<null>(
-    `/file/delete/${arg.folder_id}/${arg.file_db_id}`,
+    `/file/delete/${arg.folder_id}/${arg.file_id}`,
     {
       headers: {
         "Content-Type": "multipart/form-data",

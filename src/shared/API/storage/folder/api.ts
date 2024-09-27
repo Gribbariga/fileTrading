@@ -11,7 +11,6 @@ import {
   IViewFolderResponse,
   IGetOneTimesViewArg,
   IGetOneTimesViewResponse,
-  IPreviewImageArg,
   IRenameFolderArg,
   IViewFolderPassword,
 } from "./model";
@@ -51,12 +50,6 @@ export const downLoadFolder = async (arg: IDownloadFolderArg) => {
 
 export const deleteFolder = async (arg: IDeleteFolderArg) => {
   return await axiosBaseStorage.delete<null>(`/folder/delete/${arg.folder_id}`);
-};
-
-export const previewImage = async (arg: IPreviewImageArg) => {
-  return await axiosBaseStorage.get<null>(
-    `/api/storage/folder/view/image/${arg.folder_id}/${arg.file_db_id}`
-  );
 };
 
 export const createOneTimeLink = async (arg: ICreateOneTimeLinkArg) => {

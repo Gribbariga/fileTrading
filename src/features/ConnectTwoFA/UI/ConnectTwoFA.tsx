@@ -18,28 +18,28 @@ export const ConnectTwoFA = () => {
   useEffect(() => {
     createTwoFa().then(async (response) => {
       setTwoFaKey(response.headers["two-fa-key"]);
+      setImgUrl(response.data);
       // console.log(response);
       // const binaryLen = response.data.length;
       // const bytes = new Uint8Array(binaryLen);
       // for (let i = 0; i < binaryLen; i++) {
       //   bytes[i] = response.data.charCodeAt(i);
       // }
-
-      // // Создаем Blob из массива
+      // // // Создаем Blob из массива
       // const blob = new Blob([bytes], { type: "image/png" }); // Указываем правильный MIME тип
-      // console.log(blob);
+      // // console.log(blob);
       // const url = URL.createObjectURL(blob);
+      // setImgUrl(url);
+      // let buffer = new TextEncoder().encode(response.data);
+      // // Преобразуем байты в строку (используя UTF-8)
+      // let binaryString = "";
+      // for (let i = 0; i < buffer.length; i++) {
+      //   binaryString += String.fromCharCode(buffer[i]);
+      // }
 
-      let buffer = new TextEncoder().encode(response.data);
-      // Преобразуем байты в строку (используя UTF-8)
-      let binaryString = "";
-      for (let i = 0; i < buffer.length; i++) {
-        binaryString += String.fromCharCode(buffer[i]);
-      }
+      // const res = btoa(binaryString);
 
-      const res = btoa(binaryString);
-
-      setImgUrl(res);
+      // setImgUrl(res);
       // const binaryLen = response.data.length;
       // const bytes64 = new Uint8Array(binaryLen);
       // for (let i = 0; i < binaryLen; i++) {

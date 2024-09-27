@@ -14,10 +14,10 @@ export interface IDownloadFileArg {
 
 export interface IDeleteFileArg {
   folder_id: string;
-  file_db_id: number;
+  file_id: number;
 }
 
 export interface IPreviewImageArg {
   folder_id: string;
-  file_id: string;
+  file_id: number;
 }
