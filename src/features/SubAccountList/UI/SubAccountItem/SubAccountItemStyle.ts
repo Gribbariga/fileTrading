@@ -2,8 +2,8 @@ import { Card, TextField } from "@radix-ui/themes";
 import styled from "styled-components";
 
 const WrapperSC = styled(Card)`
-  max-width: 444px;
-  width: 32%;
+  max-width: 404px;
+  width: 34%;
 `;
 
 const InputsWrapperSC = styled("div")`
@@ -25,6 +25,7 @@ const FormSC = styled("form")`
 const ButtonWrapperSC = styled("div")`
   width: 100%;
   display: flex;
+  height: 40px;
   justify-content: end;
   gap: var(--space-2);
 `;
