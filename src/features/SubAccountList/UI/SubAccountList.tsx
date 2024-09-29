@@ -15,6 +15,10 @@ export const SubAccountList: FC<ISubAccountListProps> = ({
 }) => {
   const [subAccount, setSubAccount] = useState<ISubaccount[]>([]);
 
+  const subAccountAdd = (login: string) => {
+    setSubAccount((prev) => [...prev, { login: login }]);
+  };
+
   useEffect(() => {
     getAllSubaccount().then(({ data }) => {
       setSubAccount(data.subaccounts);
@@ -26,6 +30,7 @@ export const SubAccountList: FC<ISubAccountListProps> = ({
       <WrapperSC>
         {isCreate && (
           <SubAccountItem
+            subAccountAdd={subAccountAdd}
             handleCanselCreate={handleCanselCreate}
             key={"create"}
             login={""}
