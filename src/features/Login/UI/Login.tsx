@@ -51,7 +51,9 @@ export const Login = () => {
         setCookie("account_id", `${data.account_id}`, {
           "max-age": import.meta.env.VITE_LOGIN_COOKIE_TIME,
         });
-        setCookie("2FA", `${data.two_fa}`);
+        setCookie("2FA", data.two_fa, {
+          "max-age": import.meta.env.VITE_LOGIN_COOKIE_TIME,
+        });
         if (data.two_fa) {
           setIsLoading(false);
           setStep("twoFa");

@@ -5,6 +5,8 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { createTwoFa, setTwoFA } from "src/shared/API/auth/2FA/2FA.ts";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { AxiosError, isAxiosError } from "axios";
+import { userSlice } from "src/entities/user/model/userSlice.ts";
+import { setCookie } from "src/shared/lib/helper/setCookie/setCookie.ts";
 
 export const ConnectTwoFA = () => {
   const closeTrigget = useRef<HTMLDivElement>(null);
@@ -12,13 +14,19 @@ export const ConnectTwoFA = () => {
   const [value, setValue] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [twoFaKey, setTwoFaKey] = useState("");
-
+  const { setTwoFa: setTwoFaStorage } = userSlice((state) => state);
   const [error, setError] = useState("");
 
   useEffect(() => {
     createTwoFa().then(async (response) => {
       setTwoFaKey(response.headers["two-fa-key"]);
-      setImgUrl(response.data);
+      const imageUrl = URL.createObjectURL(
+        new Blob([response.data], { type: "image/png" })
+      );
+      const img = document.createElement("img");
+      img.src = imageUrl;
+      document.body.appendChild(img);
+      setImgUrl(imageUrl);
       // console.log(response);
       // const binaryLen = response.data.length;
       // const bytes = new Uint8Array(binaryLen);
@@ -73,6 +81,10 @@ export const ConnectTwoFA = () => {
     setTwoFA({ two_fa_code: value, two_fa_key: twoFaKey })
       .then(({ data }) => {
         if (data.message === "Set Two FA success") {
+          setTwoFaStorage(true);
+          setCookie("2FA", true, {
+            "max-age": import.meta.env.VITE_LOGIN_COOKIE_TIME,
+          });
           const button = closeTrigget.current?.children[0] as HTMLButtonElement;
           if (button) {
             button.click();
@@ -98,7 +110,7 @@ export const ConnectTwoFA = () => {
         1. Отсканируйте QR-код в Google Authenticator
       </Text>
       <QrCodeWrapperSC>
-        <QrCodeImgSC src={`data:image/png;base64,${imgUrl}`} />
+        <QrCodeImgSC src={imgUrl} />
       </QrCodeWrapperSC>
       <Text size={"3"} weight={"medium"} align={"left"} mb={"2"}>
         2. Введите код безопасности

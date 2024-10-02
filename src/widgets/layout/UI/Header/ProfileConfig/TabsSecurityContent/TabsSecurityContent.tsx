@@ -4,10 +4,11 @@ import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { ConnectGoogleTwoFA } from "./ConnectGoogleTwoFA/ConnectGoogleTwoFA";
 import { TabsSecurityContentStyle } from "./TabsSecurityContentStyle";
 import { userSlice } from "src/entities/user/model/userSlice";
+import { DeleteTwoFA } from "src/features/DeleteTwoFA/UI/DeleteTwoFA";
 
 export const TabsSecurityContent = () => {
-  const { userInfo } = userSlice();
-
+  const { two_fa } = userSlice();
+  console.log(two_fa);
   return (
     <>
       <Text size={"3"} weight={"medium"} align={"left"} mb={"2"}>
@@ -15,11 +16,11 @@ export const TabsSecurityContent = () => {
       </Text>
       <ChangeAccountPassword />
 
-      {!userInfo?.two_fa && (
-        <>
-          <Text size={"3"} weight={"medium"} align={"left"} mb={"2"}>
-            Двухфакторная аутентификация
-          </Text>
+      <>
+        <Text size={"3"} weight={"medium"} align={"left"} mb={"2"}>
+          Двухфакторная аутентификация
+        </Text>
+        {!two_fa && (
           <Dialog.Root>
             <Dialog.Trigger>
               <ButtonUI size={"3"} variant="surface" mb={"3"}>
@@ -30,8 +31,9 @@ export const TabsSecurityContent = () => {
               <ConnectGoogleTwoFA />
             </DialogContentSC>
           </Dialog.Root>
-        </>
-      )}
+        )}
+        {two_fa && <DeleteTwoFA />}
+      </>
     </>
   );
 };

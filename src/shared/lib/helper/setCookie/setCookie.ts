@@ -13,7 +13,7 @@ interface IOptionCookie {
 
 export const setCookie = (
   name: string,
-  value: string,
+  value: string | boolean,
   options: IOptionCookie = {}
 ) => {
   options = {

@@ -9,6 +9,7 @@ import {
 export const createTwoFa = async () => {
   return await axiosBaseAuth.post("/two_fa/create", {
     responseType: "blob",
+    contentType: "image/png",
   });
 };
 
