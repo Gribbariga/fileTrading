@@ -3,6 +3,7 @@ import { ProfileConfigStyle } from "./ProfileConfigStyle.ts";
 import { IconButtonUI } from "src/shared/IconButtonUI/IconButtonUI.tsx";
 import { Cross1Icon, PersonIcon } from "@radix-ui/react-icons";
 import { TabsSecurityContent } from "./TabsSecurityContent/TabsSecurityContent.tsx";
+import { TabsSubscribeContent } from "src/widgets/layout/UI/Header/ProfileConfig/Subscrib/TabsSubscribeContent.tsx";
 
 export const ProfileConfig = () => {
   return (
@@ -34,20 +35,25 @@ export const ProfileConfig = () => {
 
           <Tabs.Root defaultValue="sec">
             <Tabs.List mb={"5"}>
-              <Tabs.Trigger value="sec">Безопасность</Tabs.Trigger>
-              <Tabs.Trigger value="sub">Подписка</Tabs.Trigger>
-              <Tabs.Trigger value="paymentsHistory">
-                История платежей
+              <Tabs.Trigger style={{ width: "50%" }} value="sec">
+                Безопасность
+              </Tabs.Trigger>
+              <Tabs.Trigger style={{ width: "50%" }} value="sub">
+                Подписка
               </Tabs.Trigger>
             </Tabs.List>
 
             <Tabs.Content value="sec">
-              <TabsSecurityContent />
+              <TabContentSC id="test">
+                <TabsSecurityContent />
+              </TabContentSC>
             </Tabs.Content>
 
-            <Tabs.Content value="sub"></Tabs.Content>
-
-            <Tabs.Content value="paymentsHistory"></Tabs.Content>
+            <Tabs.Content value="sub">
+              <TabContentSC>
+                <TabsSubscribeContent />
+              </TabContentSC>
+            </Tabs.Content>
           </Tabs.Root>
         </Dialog.Content>
       </DialogRootSC>
@@ -55,4 +61,4 @@ export const ProfileConfig = () => {
   );
 };
 
-const { DialogRootSC, TitleWrapperSC } = ProfileConfigStyle();
+const { DialogRootSC, TabContentSC, TitleWrapperSC } = ProfileConfigStyle();

@@ -12,7 +12,12 @@ const DialogRootSC = styled(Dialog.Root)`
   z-index: ${1000000};
 `;
 
+const TabContentSC = styled("div")`
+  height: 400px;
+`;
+
 export const ProfileConfigStyle = () => ({
   DialogRootSC,
+  TabContentSC,
   TitleWrapperSC,
 });
