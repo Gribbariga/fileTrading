@@ -20,13 +20,19 @@ export const ConnectTwoFA = () => {
   useEffect(() => {
     createTwoFa().then(async (response) => {
       setTwoFaKey(response.headers["two-fa-key"]);
-      const imageUrl = URL.createObjectURL(
-        new Blob([response.data], { type: "image/png" })
-      );
-      const img = document.createElement("img");
-      img.src = imageUrl;
-      document.body.appendChild(img);
-      setImgUrl(imageUrl);
+      console.log(response);
+      const toBase64 = (binary) => {
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+          bytes[i] = binary.charCodeAt(i);
+        }
+        const base64String = btoa(String.fromCharCode(...bytes));
+        return base64String;
+      };
+
+      const base64 = toBase64(response.data);
+      console.log(base64);
+      setImgUrl(`data:image/png;base64,${base64}`);
       // console.log(response);
       // const binaryLen = response.data.length;
       // const bytes = new Uint8Array(binaryLen);

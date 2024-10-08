@@ -3,14 +3,22 @@ import { InfoStyle } from "./InfoStyle.ts";
 import { formattedData } from "shared/lib/helper/formattedData/formattedData.ts";
 import { Text } from "@radix-ui/themes";
 import { StorageDescription } from "src/features/StorageDescription/UI/StorageDescription.tsx";
+import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 
 export const Info = () => {
   const { storage } = storageSlice((state) => state);
+  const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
   let result: {
     name: string;
     value: string | number;
+    isHidden?: boolean;
   }[] = [];
+  const currentTariff =
+    tariffs !== null ? tariffs[subscribeStatus?.tariff_id || 0] : null;
 
+  const maxFolderSize = +(currentTariff?.max_folder_size || 0);
+
+  console.log(currentTariff);
   if (storage) {
     result = [
       {
@@ -37,39 +45,44 @@ export const Info = () => {
         name: "Просмотры",
         value: `${storage.view_count}`,
       },
+
       {
         name: "Заполнено",
-        value: "56%",
+        value: `${((storage.size / maxFolderSize) * 100).toFixed(3)}%`,
+        isHidden: !storage.owner_view,
       },
     ];
   }
-
+  //249565
+  //"314572800"
   return (
     <>
       {storage && (
         <>
           <InfoWrapperSC>
             {result.map((item) => {
-              return (
-                <InfoItemSC key={item.name}>
-                  <Text
-                    size={"3"}
-                    weight={"medium"}
-                    align={"left"}
-                    highContrast={false}
-                  >
-                    {item.name}
-                  </Text>
-                  <Text
-                    size={"3"}
-                    weight={"medium"}
-                    align={"right"}
-                    highContrast={true}
-                  >
-                    {item.value}
-                  </Text>
-                </InfoItemSC>
-              );
+              if (!item.isHidden) {
+                return (
+                  <InfoItemSC key={item.name}>
+                    <Text
+                      size={"3"}
+                      weight={"medium"}
+                      align={"left"}
+                      highContrast={false}
+                    >
+                      {item.name}
+                    </Text>
+                    <Text
+                      size={"3"}
+                      weight={"medium"}
+                      align={"right"}
+                      highContrast={true}
+                    >
+                      {item.value}
+                    </Text>
+                  </InfoItemSC>
+                );
+              }
             })}
           </InfoWrapperSC>
           <Text

@@ -56,3 +56,31 @@ export const axiosBaseAuth = axios.create({
   ...axiosBase.defaults,
   baseURL: "/api/api/auth",
 });
+
+axiosBaseAuth.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error: Error | AxiosError) => {
+    if (isAxiosError(error)) {
+      const originalRequest = error.config;
+      console.log(error.response?.data.status);
+      if (error.response?.data.status === userCodeError.JWT_INVALID) {
+        window.location.href = "/login";
+      } else if (
+        error.response?.data.status === userCodeError.JWT_EXPIRED &&
+        originalRequest
+      ) {
+        return refreshTokens()
+          .then(() => {
+            return axiosBase.request(originalRequest);
+          })
+          .catch(() => {
+            window.location.href = "/login";
+          });
+      }
+    }
+
+    throw error;
+  }
+);
