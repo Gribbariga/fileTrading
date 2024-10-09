@@ -16,51 +16,65 @@ export const TariffCard: FC<ITariffCard> = ({
 }) => {
   return (
     <>
-      <TariffCardWrapperSC>
+      <TariffCardWrapperSC isProfitable={isProfitable}>
         {saleValue && (
           <>
             <BadgeWrapperSC>
               <Badge>
                 <LightningBoltIcon />
-                {saleValue}
+                {saleValue}%
               </Badge>
             </BadgeWrapperSC>
           </>
         )}
 
         <TariffCardHeaderSC>
-          <Text>{tariffName}</Text>
+          <Text size={"2"} weight={"light"}>
+            {tariffName}
+          </Text>
           {isProfitable && (
             <>
-              <Text></Text>
+              <Text size={"2"} weight={"light"} highContrast={true}></Text>
             </>
           )}
         </TariffCardHeaderSC>
-        <Text>{storageSize}</Text>
-        <Text style={{ height: 20 }} mb={"3"}>
-          {businessAccount
-            ? businessAccount
-            : `+${businessAccount} бизнес-аккаунтов`}
+        <Text style={{ display: "block" }} size={"9"} weight={"bold"}>
+          {storageSize}
         </Text>
+        <div style={{ height: 20, marginBottom: 12 }}>
+          <Text size={"2"} weight={"light"} mb={"3"}>
+            {!businessAccount
+              ? businessAccount
+              : `+${businessAccount} бизнес-аккаунтов`}
+          </Text>
+        </div>
+
         <FeatureListSC>
           {tariffFeatures.map(({ Icon, text }) => {
             return (
               <>
                 <FeatureListItemSC>
-                  {Icon}
-                  <Text>{text}</Text>
+                  <IconWrapperSC>{Icon}</IconWrapperSC>
+                  <Text size={"2"} weight={"regular"}>
+                    {text}
+                  </Text>
                 </FeatureListItemSC>
               </>
             );
           })}
         </FeatureListSC>
-        <ButtonUI>{`Подключить за $${price}`}</ButtonUI>
+        <ButtonUI
+          style={{ width: "100%" }}
+          size={"4"}
+          variant={isProfitable ? "solid" : "outline"}
+        >{`Подключить за $${price}`}</ButtonUI>
       </TariffCardWrapperSC>
     </>
   );
 };
 
 const {
+  IconWrapperSC,
   FeatureListSC,
   BadgeWrapperSC,
   FeatureListItemSC,

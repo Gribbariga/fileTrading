@@ -13,7 +13,7 @@ const SelectTariffWrapperSC = styled("div")`
   box-shadow: 0px 16px 36px -20px var(--gray-a7, rgba(0, 0, 0, 0.19)),
     0px 16px 64px 0px var(--gray-a2, rgba(0, 0, 0, 0.02)),
     0px 12px 60px 0px var(--black-a3, rgba(0, 0, 0, 0.15));
-  margin: 0 auto;
+  margin: auto;
 `;
 
 const IconButtonSC = styled(IconButtonUI)`

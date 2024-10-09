@@ -4,7 +4,7 @@ import { SelectTariff } from "src/widgets/SelectTariff/publicApi";
 
 const SelectTariffPage = () => {
   return (
-    <Layout>
+    <Layout isContentCenter={true} isHiddenHeaders={true}>
       <Container maxWidth={1357}>
         <SelectTariff />
       </Container>

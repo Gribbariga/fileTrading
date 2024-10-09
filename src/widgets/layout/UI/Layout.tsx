@@ -5,9 +5,15 @@ import { LayoutStyle } from "./LayoutStyle";
 
 interface ILayoutProps {
   children: ReactNode;
+  isContentCenter?: boolean;
+  isHiddenHeaders?: boolean;
 }
 
-export const Layout: FC<ILayoutProps> = ({ children }) => {
+export const Layout: FC<ILayoutProps> = ({
+  children,
+  isContentCenter = false,
+  isHiddenHeaders = false,
+}) => {
   const [documentHeight, setDocumentHeight] = useState(
     document.body.scrollHeight
   );
@@ -28,8 +34,16 @@ export const Layout: FC<ILayoutProps> = ({ children }) => {
 
   return (
     <>
-      <Header />
-      <MainWindowsSC $screenHeight={documentHeight}>
+      {!isHiddenHeaders && (
+        <>
+          <Header />
+        </>
+      )}
+      <MainWindowsSC
+        $isContentCenter={isContentCenter}
+        $isHiddenHeaders={isHiddenHeaders}
+        $screenHeight={documentHeight}
+      >
         <Container>{children}</Container>
       </MainWindowsSC>
     </>
