@@ -5,4 +5,4 @@ const TariffListSC = styled("div")`
   justify-content: space-between;
 `;
 
-export const SubscriptionManagementStyle = () => ({});
+export const SubscriptionManagementStyle = () => ({ TariffListSC });

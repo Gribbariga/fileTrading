@@ -3,17 +3,7 @@ import { TariffCardStyle } from "./TariffCardStyle.ts";
 import { LightningBoltIcon } from "@radix-ui/react-icons";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { FC } from "react";
-import { ITariffFeature } from "../../types/types.ts";
-
-interface ITariffCard {
-  tariffName: string;
-  isProfitable: boolean;
-  saleValue?: string;
-  storageSize: number;
-  price: number;
-  businessAccount?: number;
-  tariffFeatures: ITariffFeature[];
-}
+import { ITariffCard } from "../../types/types.ts";
 
 export const TariffCard: FC<ITariffCard> = ({
   price,
@@ -57,7 +47,7 @@ export const TariffCard: FC<ITariffCard> = ({
             return (
               <>
                 <FeatureListItemSC>
-                  <Icon />
+                  {Icon}
                   <Text>{text}</Text>
                 </FeatureListItemSC>
               </>

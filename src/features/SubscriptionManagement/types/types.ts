@@ -1,6 +1,15 @@
-import { ComponentType } from "react";
+import { ReactNode } from "react";
 
 export interface ITariffFeature {
-  Icon: ComponentType;
+  Icon: ReactNode;
   text: string;
+}
+export interface ITariffCard {
+  tariffName: string;
+  isProfitable: boolean;
+  saleValue?: number;
+  storageSize: string;
+  price: number;
+  businessAccount?: number;
+  tariffFeatures: ITariffFeature[];
 }
