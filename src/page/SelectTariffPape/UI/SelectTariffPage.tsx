@@ -1,9 +1,11 @@
 import { SelectTariff } from "src/widgets/SelectTariff/publicApi";
 
-export const SelectTariffPage = () => {
+const SelectTariffPage = () => {
   return (
     <>
       <SelectTariff />
     </>
   );
 };
+
+export default SelectTariffPage;

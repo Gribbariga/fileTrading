@@ -1,3 +1,5 @@
 import { lazy } from "react";
 
-export const RegisterPageAsync = lazy(() => import("./RegisterPage.tsx"));
+export const SelectTariffPageAsync = lazy(
+  () => import("./SelectTariffPage.tsx")
+);

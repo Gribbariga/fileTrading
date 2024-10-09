@@ -7,6 +7,7 @@ export enum AppRoutes {
   TWOFA = "/twofa",
   HOME = "/home",
   CORPORATE = "/corporate",
+  SELECT_TARIFF = "/tariff",
   // NOT_FOUND = 'not_found',
 }
 
@@ -19,4 +20,5 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.TWOFA]: AppRoutes.TWOFA,
   [AppRoutes.HOME]: AppRoutes.HOME,
   [AppRoutes.CORPORATE]: AppRoutes.CORPORATE,
+  [AppRoutes.SELECT_TARIFF]: AppRoutes.SELECT_TARIFF,
 };
