@@ -6,7 +6,7 @@ import { SubscriptionManagement } from "src/features/SubscriptionManagement/publ
 export const SelectTariff = () => {
   return (
     <SelectTariffWrapperSC>
-      <IconButtonSC>
+      <IconButtonSC size={"4"} variant="ghost">
         <Cross1Icon />
       </IconButtonSC>
       <Heading size={"7"} weight={"bold"} highContrast={true}>

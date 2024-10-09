@@ -1,4 +1,4 @@
-import { IconButton } from "@radix-ui/themes";
+import { IconButtonUI } from "src/shared/IconButtonUI/IconButtonUI";
 import styled from "styled-components";
 
 const SelectTariffWrapperSC = styled("div")`
@@ -16,10 +16,10 @@ const SelectTariffWrapperSC = styled("div")`
   margin: 0 auto;
 `;
 
-const IconButtonSC = styled(IconButton)`
+const IconButtonSC = styled(IconButtonUI)`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: var(--space-6);
+  right: var(--space-6);
 `;
 
 export const SelectTariffStyle = () => ({
