@@ -1,4 +1,3 @@
-import { SegmentedControl } from "@radix-ui/themes";
 import { SubscriptionManagementStyle } from "./SubscriptionManagementStyle.ts";
 import { useState } from "react";
 import { TariffCard } from "./TariffCard/TariffCard.tsx";
@@ -114,19 +113,19 @@ export const SubscriptionManagement = () => {
 
   return (
     <>
-      <SegmentedControl.Root mb={"6"} value={`${monthCount}`} defaultValue="3">
+      <SegmentControlRootSC mb={"6"} value={`${monthCount}`} defaultValue="3">
         {mounthSet.map((item) => {
           return (
-            <SegmentedControl.Item
+            <SegmentControlItemSC
               onClick={handleChangeMonth(item)}
               key={item}
               value={`${item}`}
             >
-              {item}
-            </SegmentedControl.Item>
+              {item} мес
+            </SegmentControlItemSC>
           );
         })}
-      </SegmentedControl.Root>
+      </SegmentControlRootSC>
       <TariffListSC>
         {tariffData.map((item) => {
           return (
@@ -140,4 +139,5 @@ export const SubscriptionManagement = () => {
   );
 };
 
-const { TariffListSC } = SubscriptionManagementStyle();
+const { TariffListSC, SegmentControlRootSC, SegmentControlItemSC } =
+  SubscriptionManagementStyle();
