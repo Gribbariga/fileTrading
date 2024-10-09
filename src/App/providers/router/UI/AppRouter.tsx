@@ -8,9 +8,9 @@ import { PageFallBack } from "shared/PageFallBack/PageFallBack";
 import { HomePage } from "src/page/HomePage/publicApi";
 import { LoginPage } from "src/page/LoginPage/publicApi";
 import { RegisterPage } from "src/page/RegisterPage/publicApi";
+import { SelectTariffPage } from "src/page/SelectTariffPape/publicApi";
 import { SubAccountPageAsync } from "src/page/SubAccountPage/publickApi";
 import { TwoFAPage } from "src/page/TwoFAPage/publicApi";
-import { SelectTariff } from "src/widgets/SelectTariff/publicApi";
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.STORAGE]: {
@@ -48,7 +48,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   },
   [AppRoutes.SELECT_TARIFF]: {
     path: AppRoutes.SELECT_TARIFF,
-    element: <SelectTariff />,
+    element: <SelectTariffPage />,
   },
 };
 
