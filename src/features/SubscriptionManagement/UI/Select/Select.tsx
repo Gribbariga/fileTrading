@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { SelectStyle } from "./SelectStyle";
 
 import {
@@ -12,10 +12,20 @@ import { ITariffCard } from "src/features/SubscriptionManagement/types/types";
 import { TariffCard } from "src/features/SubscriptionManagement/UI/Select/TariffCard/TariffCard";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { Heading, Text } from "@radix-ui/themes";
-export const Select = () => {
-  const { tariffs } = subscriptionSlice((slice) => slice);
+import { ITariffData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement";
 
-  const [monthCount, setMonthCount] = useState(3);
+interface ISelectProps {
+  month: number;
+  handleMonthSelect: (value: number) => void;
+  handleTariffSelect: (value: ITariffData) => void;
+}
+
+export const Select: FC<ISelectProps> = ({
+  month,
+  handleMonthSelect,
+  handleTariffSelect,
+}) => {
+  const { tariffs } = subscriptionSlice((slice) => slice);
 
   const [tariffData, setTariffData] = useState<ITariffCard[]>([]);
 
@@ -49,6 +59,7 @@ export const Select = () => {
         console.log(tariffs[i]);
         const name = tariffs[i].name as "Premium" | "Business" | "Corporate";
         const item = {
+          backendName: name,
           isProfitable: false,
           price: tariffs[i].price,
           storageSize:
@@ -90,7 +101,7 @@ export const Select = () => {
   }, [tariffs]);
   console.log(tariffData);
   const handleChangeMonth = (value: number) => {
-    return () => setMonthCount(value);
+    return () => handleMonthSelect(value);
   };
 
   return (
@@ -101,7 +112,7 @@ export const Select = () => {
       <Text size={"3"} mb={"6"} weight={"regular"}>
         Получите больше возможностей с расширенной подпиской
       </Text>
-      <SegmentControlRootSC mb={"6"} value={`${monthCount}`} defaultValue="3">
+      <SegmentControlRootSC mb={"6"} value={`${month}`} defaultValue="3">
         {mounthSet.map((item) => {
           return (
             <SegmentControlItemSC
@@ -118,7 +129,14 @@ export const Select = () => {
         {tariffData.map((item) => {
           return (
             <>
-              <TariffCard {...item} />
+              <TariffCard
+                backendName={
+                  item.backendName as "Premium" | "Business" | "Corporate"
+                }
+                month={month}
+                handleTariffSelect={handleTariffSelect}
+                tariffCard={item}
+              />
             </>
           );
         })}

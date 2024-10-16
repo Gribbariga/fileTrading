@@ -5,6 +5,7 @@ export interface ITariffFeature {
   text: string;
 }
 export interface ITariffCard {
+  backendName: string;
   tariffName: string;
   isProfitable: boolean;
   saleValue?: number;
@@ -13,3 +14,9 @@ export interface ITariffCard {
   businessAccount?: number;
   tariffFeatures: ITariffFeature[];
 }
+export type TariffNames =
+  | "Free"
+  | "Premium"
+  | "Business"
+  | "Corporate"
+  | "Unauthorized";

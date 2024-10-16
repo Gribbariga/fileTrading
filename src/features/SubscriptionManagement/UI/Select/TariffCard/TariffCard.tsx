@@ -3,26 +3,31 @@ import { TariffCardStyle } from "./TariffCardStyle.ts";
 import { LightningBoltIcon } from "@radix-ui/react-icons";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { FC } from "react";
-import { ITariffCard } from "../../../types/types.ts";
+import { ITariffCard, TariffNames } from "../../../types/types.ts";
+import { ITariffData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement.tsx";
 
-export const TariffCard: FC<ITariffCard> = ({
-  price,
-  saleValue,
-  tariffName,
-  storageSize,
-  isProfitable,
-  tariffFeatures,
-  businessAccount,
+interface ITariffCardProps {
+  month: number;
+  backendName: TariffNames;
+  handleTariffSelect: (value: ITariffData) => void;
+  tariffCard: ITariffCard;
+}
+
+export const TariffCard: FC<ITariffCardProps> = ({
+  month,
+  backendName,
+  tariffCard,
+  handleTariffSelect,
 }) => {
   return (
     <>
-      <TariffCardWrapperSC isProfitable={isProfitable}>
-        {saleValue && (
+      <TariffCardWrapperSC isProfitable={tariffCard.isProfitable}>
+        {tariffCard.saleValue && (
           <>
             <BadgeWrapperSC>
               <Badge>
                 <LightningBoltIcon />
-                {saleValue}%
+                {tariffCard.saleValue}%
               </Badge>
             </BadgeWrapperSC>
           </>
@@ -30,27 +35,27 @@ export const TariffCard: FC<ITariffCard> = ({
 
         <TariffCardHeaderSC>
           <Text size={"2"} weight={"light"}>
-            {tariffName}
+            {tariffCard.tariffName}
           </Text>
-          {isProfitable && (
+          {tariffCard.isProfitable && (
             <>
               <Text size={"2"} weight={"light"} highContrast={true}></Text>
             </>
           )}
         </TariffCardHeaderSC>
         <Text style={{ display: "block" }} size={"9"} weight={"bold"}>
-          {storageSize}
+          {tariffCard.storageSize}
         </Text>
         <div style={{ height: 20, marginBottom: 12 }}>
           <Text size={"2"} weight={"light"} mb={"3"}>
-            {!businessAccount
-              ? businessAccount
-              : `+${businessAccount} бизнес-аккаунтов`}
+            {!tariffCard.businessAccount
+              ? tariffCard.businessAccount
+              : `+${tariffCard.businessAccount} бизнес-аккаунтов`}
           </Text>
         </div>
 
         <FeatureListSC>
-          {tariffFeatures.map(({ Icon, text }) => {
+          {tariffCard.tariffFeatures.map(({ Icon, text }) => {
             return (
               <>
                 <FeatureListItemSC>
@@ -64,10 +69,17 @@ export const TariffCard: FC<ITariffCard> = ({
           })}
         </FeatureListSC>
         <ButtonUI
+          onClick={() =>
+            handleTariffSelect({
+              price: tariffCard.price * month,
+              sale: tariffCard.saleValue || 0,
+              selectTariffName: backendName,
+            })
+          }
           style={{ width: "100%" }}
           size={"4"}
-          variant={isProfitable ? "solid" : "outline"}
-        >{`Подключить за $${price}`}</ButtonUI>
+          variant={tariffCard.isProfitable ? "solid" : "outline"}
+        >{`Подключить за $${tariffCard.price * month}`}</ButtonUI>
       </TariffCardWrapperSC>
     </>
   );
