@@ -31,7 +31,7 @@ export const Layout: FC<ILayoutProps> = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  console.log(isHiddenHeaders);
   return (
     <>
       {!isHiddenHeaders && (

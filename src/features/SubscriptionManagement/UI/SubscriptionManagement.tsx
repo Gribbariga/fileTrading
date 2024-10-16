@@ -10,6 +10,7 @@ import {
   TimerIcon,
   UpdateIcon,
 } from "@radix-ui/react-icons";
+import { Confirm } from "src/features/SubscriptionManagement/UI/Confirm/Confirm.tsx";
 
 export const SubscriptionManagement = () => {
   const [monthCount, setMonthCount] = useState(3);
@@ -113,7 +114,7 @@ export const SubscriptionManagement = () => {
 
   return (
     <>
-      <SegmentControlRootSC mb={"6"} value={`${monthCount}`} defaultValue="3">
+      {/* <SegmentControlRootSC mb={"6"} value={`${monthCount}`} defaultValue="3">
         {mounthSet.map((item) => {
           return (
             <SegmentControlItemSC
@@ -134,7 +135,8 @@ export const SubscriptionManagement = () => {
             </>
           );
         })}
-      </TariffListSC>
+      </TariffListSC> */}
+      {<Confirm />}
     </>
   );
 };

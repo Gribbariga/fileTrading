@@ -8,7 +8,7 @@ import { PageFallBack } from "shared/PageFallBack/PageFallBack";
 import { HomePage } from "src/page/HomePage/publicApi";
 import { LoginPage } from "src/page/LoginPage/publicApi";
 import { RegisterPage } from "src/page/RegisterPage/publicApi";
-import { SelectTariffPage } from "src/page/SelectTariffPape/publicApi";
+import { SelectTariffPage } from "src/page/SelectTariffPage/publicApi";
 import { SubAccountPageAsync } from "src/page/SubAccountPage/publickApi";
 import { TwoFAPage } from "src/page/TwoFAPage/publicApi";
 

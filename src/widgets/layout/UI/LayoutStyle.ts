@@ -6,8 +6,8 @@ const MainWindowsSC = styled("div")<{
   $isContentCenter?: boolean;
   $isHiddenHeaders?: boolean;
 }>`
-  min-height: ${(isHiddenHeaders) =>
-    `calc(100vh - ${isHiddenHeaders ? 0 : headerDesktopHeight}px)`};
+  min-height: ${({ $isHiddenHeaders }) =>
+    `calc(100vh - ${$isHiddenHeaders ? 0 : headerDesktopHeight}px)`};
 
   ${({ $isContentCenter }) => {
     if ($isContentCenter) {
