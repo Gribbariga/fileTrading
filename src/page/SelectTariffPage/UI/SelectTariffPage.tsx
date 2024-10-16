@@ -5,7 +5,11 @@ import styled from "styled-components";
 
 const SelectTariffPage = () => {
   return (
-    <Layout isContentCenter={true} isHiddenHeaders={true}>
+    <Layout
+      navButton={{ text: "Мои хранилища", handleClick: () => console.log("?") }}
+      isContentCenter={true}
+      isHiddenHeaders={false}
+    >
       <Container maxWidth={1357}>
         <CenterWrapperSC>
           <SelectTariff />

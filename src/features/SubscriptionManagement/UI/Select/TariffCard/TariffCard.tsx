@@ -3,7 +3,7 @@ import { TariffCardStyle } from "./TariffCardStyle.ts";
 import { LightningBoltIcon } from "@radix-ui/react-icons";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { FC } from "react";
-import { ITariffCard } from "../../types/types.ts";
+import { ITariffCard } from "../../../types/types.ts";
 
 export const TariffCard: FC<ITariffCard> = ({
   price,

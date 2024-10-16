@@ -5,7 +5,11 @@ const TariffCardWrapperSC = styled("div")<{ isProfitable: boolean }>`
   width: 34%;
   padding: var(--space-5);
   border-radius: 16px;
-  border: 2px solid var(--accent-9);
+  border: 2px solid
+    ${({ isProfitable }) =>
+      isProfitable
+        ? `var(--accent-9)`
+        : "var(--Colors-Neutral-Neutral-Alpha-6, rgba(0, 0, 0, 0.15))"};
   background: rgba(255, 255, 255, 0.9);
   position: relative;
 `;
