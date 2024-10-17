@@ -4,7 +4,7 @@ import { refreshTokens } from "src/shared/API/auth/token/token";
 // baseURL: "https://" + import.meta.env.VITE_DOMAIN,
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 export const axiosBase = axios.create({
-  baseURL: "/api",
+  baseURL: "https://" + import.meta.env.VITE_DOMAIN,
   withCredentials: true,
 });
 
@@ -12,7 +12,10 @@ const JwtExpired = async (error: Error | AxiosError) => {
   if (isAxiosError(error)) {
     const originalRequest = error.config;
     console.log(error.response?.data.status);
-    if (error.response?.data.status === userCodeError.JWT_INVALID) {
+    if (
+      error.response?.data.status === userCodeError.JWT_INVALID ||
+      error.response?.data.status === userCodeError.USER_UNAUTHORIZED
+    ) {
       window.location.href = "/login";
     } else if (
       error.response?.data.status === userCodeError.JWT_EXPIRED &&

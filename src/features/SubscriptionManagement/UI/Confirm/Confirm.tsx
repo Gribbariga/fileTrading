@@ -5,11 +5,13 @@ import { FC, useState } from "react";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { TariffNames } from "src/features/SubscriptionManagement/types/types.ts";
 import { createCryptoPayment } from "src/shared/API/payment/crypto/api.ts";
+import { IPaymentData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement.tsx";
 
 interface IConfirm {
   tariffId: number;
   handleNext: () => void;
   handleBack: () => void;
+  setPaymentData: (value: IPaymentData) => void;
   setId: (paymentid: number) => void;
   price: number;
   sale: number;
@@ -27,6 +29,7 @@ export const Confirm: FC<IConfirm> = ({
   price,
   sale,
   setId,
+  setPaymentData,
   tariffId,
   monthNumber,
   selectTariffName,
@@ -75,6 +78,10 @@ export const Confirm: FC<IConfirm> = ({
       .then(({ data }) => {
         setIsLoading(false);
         setId(data.payment_id);
+        setPaymentData({
+          adress: data.address,
+          price: `${data.price} ${data.currency}`,
+        });
         handleNext();
       })
       .catch(() => {

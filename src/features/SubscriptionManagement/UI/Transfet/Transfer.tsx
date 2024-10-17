@@ -9,31 +9,67 @@ import {
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TransferStyle } from "src/features/SubscriptionManagement/UI/Transfet/TransferStyle";
-import { cryptoPaymentStatus } from "src/shared/API/payment/crypto/api";
+import {
+  cryptoPaymentStatus,
+  paidPayment,
+} from "src/shared/API/payment/crypto/api";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 
 interface ITransferProps {
+  adress: string;
+  price: string;
   payment_id: number;
   handleCansel: () => void;
 }
 
-export const Transfer: FC<ITransferProps> = ({ handleCansel, payment_id }) => {
+export const Transfer: FC<ITransferProps> = ({
+  handleCansel,
+  adress,
+  price,
+  payment_id,
+}) => {
   const navigation = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [textError] = useState("");
+  const [textError, setTextError] = useState("");
+
+  const longPolling = async () => {
+    try {
+      const response = await cryptoPaymentStatus({ payment_id: payment_id });
+      if (response.data && response.data.status === "Confirm") {
+        navigation("/home");
+      } else {
+        setTimeout(() => {
+          longPolling();
+        }, 15000);
+      }
+    } catch (error) {
+      setTextError(`неуплата ${error}`);
+    }
+  };
+
+  // Запускаем long polling
 
   const handleCheckPayment = () => {
     setIsLoading(true);
-    cryptoPaymentStatus({ payment_id })
+    paidPayment({ payment_id: payment_id })
       .then(() => {
-        setIsLoading(false);
-        navigation("/home");
+        longPolling();
       })
-      .catch(() => {
-        setIsLoading(true);
-      });
+      .catch(() => {});
+    // cryptoPaymentStatus({ payment_id })
+    //   .then(({ data }) => {
+    //     setIsLoading(false);
+    //     if (data.status === "Confirm") {
+    //       navigation("/home");
+    //     } else {
+    //       setTextError("неуплата");
+    //     }
+    //   })
+    //   .catch(() => {
+    //     setIsLoading(true);
+    //   });
   };
 
   return (
@@ -53,7 +89,7 @@ export const Transfer: FC<ITransferProps> = ({ handleCansel, payment_id }) => {
             Шаг 1. Скопируйте номер кошелька
           </Text>
           <TextField.Root
-            value={"1njrRcKQtfjjLuQxFYCeMXcth77m5TAYo"}
+            value={adress}
             size={"3"}
             readOnly={true}
             variant="surface"
@@ -70,7 +106,7 @@ export const Transfer: FC<ITransferProps> = ({ handleCansel, payment_id }) => {
             Шаг 2. Скопируйте сумму платежа
           </Text>
           <TextField.Root
-            value={"0.00001564 BTC"}
+            value={price}
             size={"3"}
             readOnly={true}
             variant="surface"
@@ -88,14 +124,14 @@ export const Transfer: FC<ITransferProps> = ({ handleCansel, payment_id }) => {
           </Text>
         </PaddingWrapperSC>
         {!!textError.length && (
-          <>
-            <Callout.Root>
+          <PaddingWrapperSC>
+            <Callout.Root size={"1"} variant="soft" color="red">
               <Callout.Icon>
                 <InfoCircledIcon />
               </Callout.Icon>
               <Callout.Text>{textError}</Callout.Text>
             </Callout.Root>
-          </>
+          </PaddingWrapperSC>
         )}
 
         <LineSC />

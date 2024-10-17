@@ -13,6 +13,11 @@ export interface ITariffData {
   sale: number;
 }
 
+export interface IPaymentData {
+  price: string;
+  adress: string;
+}
+
 export const SubscriptionManagement = () => {
   const [step, setStep] = useState<"select" | "confirm" | "transfer">("select");
   const [paymentId, setPaymentId] = useState<null | number>(null);
@@ -24,6 +29,11 @@ export const SubscriptionManagement = () => {
     selectTariffName: "Free",
     price: 0,
     sale: 0,
+  });
+
+  const [paymentData, setPaymentData] = useState<IPaymentData>({
+    adress: "",
+    price: "",
   });
 
   const handleSelectMonth = (value: number) => {
@@ -54,6 +64,10 @@ export const SubscriptionManagement = () => {
     setPaymentId(value);
   };
 
+  const setTransferData = (data: IPaymentData) => {
+    setPaymentData(data);
+  };
+
   return (
     <>
       {step === "select" && (
@@ -65,6 +79,7 @@ export const SubscriptionManagement = () => {
       )}
       {step === "confirm" && (
         <Confirm
+          setPaymentData={setTransferData}
           setId={setId}
           handleNext={handleStartCrypto}
           tariffId={tariffData.tariffId}
@@ -76,7 +91,11 @@ export const SubscriptionManagement = () => {
         />
       )}
       {step === "transfer" && paymentId && (
-        <Transfer payment_id={paymentId} handleCansel={handleCansel} />
+        <Transfer
+          {...paymentData}
+          payment_id={paymentId}
+          handleCansel={handleCansel}
+        />
       )}
     </>
   );

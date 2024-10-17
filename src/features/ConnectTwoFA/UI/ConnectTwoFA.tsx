@@ -21,7 +21,7 @@ export const ConnectTwoFA = () => {
     createTwoFa().then(async (response) => {
       setTwoFaKey(response.headers["two-fa-key"]);
       console.log(response);
-      const toBase64 = (binary) => {
+      const toBase64 = (binary: string) => {
         const bytes = new Uint8Array(binary.length);
         for (let i = 0; i < binary.length; i++) {
           bytes[i] = binary.charCodeAt(i);
