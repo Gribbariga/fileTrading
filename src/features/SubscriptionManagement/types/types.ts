@@ -5,6 +5,7 @@ export interface ITariffFeature {
   text: string;
 }
 export interface ITariffCard {
+  tariffId: number;
   backendName: string;
   tariffName: string;
   isProfitable: boolean;

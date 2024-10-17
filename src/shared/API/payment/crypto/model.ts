@@ -1,7 +1,7 @@
 export interface ICreateCryptoPaymentPayload {
   tariff_id: number;
   duration: number;
-  currency: number;
+  currency: string;
 }
 
 export interface ICreateCryptoPaymentResponse {

@@ -1,12 +1,16 @@
 import { Heading, Text } from "@radix-ui/themes";
 import { ConfirmStyle } from "./ConfirmStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
 import { TariffNames } from "src/features/SubscriptionManagement/types/types.ts";
+import { createCryptoPayment } from "src/shared/API/payment/crypto/api.ts";
 
 interface IConfirm {
+  tariffId: number;
+  handleNext: () => void;
   handleBack: () => void;
+  setId: (paymentid: number) => void;
   price: number;
   sale: number;
   monthNumber: number;
@@ -19,12 +23,17 @@ type Tariff = {
 
 export const Confirm: FC<IConfirm> = ({
   handleBack,
+  handleNext,
   price,
   sale,
+  setId,
+  tariffId,
   monthNumber,
   selectTariffName,
 }) => {
   const { subscribeStatus } = subscriptionSlice((state) => state);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const tariff: Tariff = {
     Free: "Бесплатный",
@@ -49,11 +58,29 @@ export const Confirm: FC<IConfirm> = ({
 
   // Пример использования
   const totalDays = getDaysInMonths(monthNumber);
+  const totalPrice = price - (price / 100) * sale;
 
   const daysLeft =
     !!subscribeStatus && subscribeStatus.duration > 0
       ? subscribeStatus.duration
       : 0;
+
+  const handleCreatePayment = () => {
+    setIsLoading(true);
+    createCryptoPayment({
+      currency: `BTC`,
+      duration: monthNumber,
+      tariff_id: tariffId,
+    })
+      .then(({ data }) => {
+        setIsLoading(false);
+        setId(data.payment_id);
+        handleNext();
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
+  };
 
   return (
     <>
@@ -110,7 +137,7 @@ export const Confirm: FC<IConfirm> = ({
               Итого:
             </Text>
             <Heading size={"6"} weight={"bold"} highContrast={true} as="h2">
-              ${price - (price / 100) * sale}
+              ${totalPrice}
             </Heading>
           </InfoLineSC>
         </PaddingWrapperSC>
@@ -122,6 +149,8 @@ export const Confirm: FC<IConfirm> = ({
               Назад
             </ButtonUI>
             <ButtonUI
+              loading={isLoading}
+              onClick={handleCreatePayment}
               style={{ maxWidth: "264px", width: "100%" }}
               size={"4"}
               variant="solid"

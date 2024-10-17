@@ -7,6 +7,7 @@ import { ITariffCard, TariffNames } from "../../../types/types.ts";
 import { ITariffData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement.tsx";
 
 interface ITariffCardProps {
+  tariffId: number;
   month: number;
   backendName: TariffNames;
   handleTariffSelect: (value: ITariffData) => void;
@@ -15,6 +16,7 @@ interface ITariffCardProps {
 
 export const TariffCard: FC<ITariffCardProps> = ({
   month,
+  tariffId,
   backendName,
   tariffCard,
   handleTariffSelect,
@@ -71,6 +73,7 @@ export const TariffCard: FC<ITariffCardProps> = ({
         <ButtonUI
           onClick={() =>
             handleTariffSelect({
+              tariffId: tariffId,
               price: tariffCard.price * month,
               sale: tariffCard.saleValue || 0,
               selectTariffName: backendName,

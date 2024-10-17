@@ -56,9 +56,9 @@ export const Select: FC<ISelectProps> = ({
       console.log(tariffs);
       console.log(tariffs.length);
       for (let i = 2; i < Object.values(tariffs).length; i++) {
-        console.log(tariffs[i]);
         const name = tariffs[i].name as "Premium" | "Business" | "Corporate";
         const item = {
+          tariffId: tariffs[i].tariff_id,
           backendName: name,
           isProfitable: false,
           price: tariffs[i].price,
@@ -130,6 +130,7 @@ export const Select: FC<ISelectProps> = ({
           return (
             <>
               <TariffCard
+                tariffId={item.tariffId}
                 backendName={
                   item.backendName as "Premium" | "Business" | "Corporate"
                 }
