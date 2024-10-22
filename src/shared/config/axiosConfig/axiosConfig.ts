@@ -39,24 +39,24 @@ axiosBase.interceptors.response.use((config) => {
 }, JwtExpired);
 export const axiosBaseAccount = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/api/account",
+  baseURL: "https://" + import.meta.env.VITE_DOMAIN + "/api/account",
 });
 export const axiosBaseStorage = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/api/storage",
+  baseURL: "https://" + import.meta.env.VITE_DOMAIN + "/api/storage",
 });
 export const axiosBaseSubscription = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/api/subscription",
+  baseURL: "https://" + import.meta.env.VITE_DOMAIN + "/api/subscription",
 });
 export const axiosBasePayment = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/api/payment",
+  baseURL: "https://" + import.meta.env.VITE_DOMAIN + "/api/payment",
 });
 
 export const axiosBaseAuth = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/api/auth",
+  baseURL: "https://" + import.meta.env.VITE_DOMAIN + "/api/auth",
 });
 
 axiosBaseAuth.interceptors.response.use((config) => {
