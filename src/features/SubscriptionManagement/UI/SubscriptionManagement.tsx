@@ -22,7 +22,9 @@ export const SubscriptionManagement = () => {
   const [step, setStep] = useState<"select" | "confirm" | "transfer">("select");
   const [paymentId, setPaymentId] = useState<null | number>(null);
 
-  const [month, setMonth] = useState(3);
+  const [isExtension, setIsExtension] = useState(true);
+
+  const [month, setMonth] = useState(1);
 
   const [tariffData, setTariffData] = useState<ITariffData>({
     tariffId: 0,
@@ -68,10 +70,21 @@ export const SubscriptionManagement = () => {
     setPaymentData(data);
   };
 
+  const chechedExtension = () => {
+    if (isExtension) {
+      setMonth(1);
+      setIsExtension((prev) => !prev);
+    } else {
+      setIsExtension(true);
+    }
+  };
+
   return (
     <>
       {step === "select" && (
         <Select
+          isExtension={isExtension}
+          handleChecked={chechedExtension}
           handleMonthSelect={handleSelectMonth}
           handleTariffSelect={handleTariffSelect}
           month={month}

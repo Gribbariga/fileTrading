@@ -6,6 +6,7 @@ import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSl
 import { TariffNames } from "src/features/SubscriptionManagement/types/types.ts";
 import { createCryptoPayment } from "src/shared/API/payment/crypto/api.ts";
 import { IPaymentData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement.tsx";
+import { getDaysInMonths } from "src/shared/lib/helper/getDaysInMonths/getDaysInMonths.tsx";
 
 interface IConfirm {
   tariffId: number;
@@ -45,19 +46,6 @@ export const Confirm: FC<IConfirm> = ({
     Corporate: "Корпоративный",
     Unauthorized: "Неавторизованный",
   };
-
-  function getDaysInMonths(months: number) {
-    let days = 0;
-
-    for (let i = 0; i < months; i++) {
-      // Используем объект Date для определения количества дней в месяце
-      const monthIndex = i % 12; // Месяцы от 0 до 11
-      const year = new Date().getFullYear(); // Текущий год (можно заменить на нужный)
-      days += new Date(year, monthIndex + 1, 0).getDate(); // Переходим к следующему месяцу и получаем количество дней в текущем месяце
-    }
-
-    return days;
-  }
 
   // Пример использования
   const totalDays = getDaysInMonths(monthNumber);

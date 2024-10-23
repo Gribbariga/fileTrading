@@ -11,24 +11,38 @@ import {
 import { ITariffCard } from "src/features/SubscriptionManagement/types/types";
 import { TariffCard } from "src/features/SubscriptionManagement/UI/Select/TariffCard/TariffCard";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
-import { Heading, Text } from "@radix-ui/themes";
+import { Heading, Switch, Text } from "@radix-ui/themes";
 import { ITariffData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement";
+import { storageSlice } from "src/entities/storage/model/storageSlice";
+import { getAllFolder } from "src/shared/API/storage/folder/api";
 
 interface ISelectProps {
   month: number;
+  isExtension: boolean;
+  handleChecked: () => void;
   handleMonthSelect: (value: number) => void;
   handleTariffSelect: (value: ITariffData) => void;
 }
 
 export const Select: FC<ISelectProps> = ({
   month,
+  isExtension,
+  handleChecked,
   handleMonthSelect,
   handleTariffSelect,
 }) => {
-  const { tariffs } = subscriptionSlice((slice) => slice);
+  const { tariffs, subscribeStatus } = subscriptionSlice((slice) => slice);
 
   const [tariffData, setTariffData] = useState<ITariffCard[]>([]);
 
+  const { allFolder } = storageSlice((state) => state);
+
+  const [storageInfo, setStorageInfo] = useState({
+    percent: 0,
+    storageSize: 0,
+  });
+  const currentTariff =
+    tariffs !== null ? tariffs[subscribeStatus?.tariff_id || 0] : null;
   const mounthSet = [1, 3, 6, 12, 24];
 
   const tariffDataSet: {
@@ -51,10 +65,28 @@ export const Select: FC<ISelectProps> = ({
   };
 
   useEffect(() => {
+    if (allFolder.length) {
+      console.log("");
+    } else {
+      getAllFolder()
+        .then(({ data }) => {
+          let res = 0;
+          data.folders.map((item) => {
+            res += +item.size;
+          });
+          setStorageInfo({
+            percent: (res / +(currentTariff?.max_storage_size || 1)) * 100,
+            storageSize: res,
+          });
+        })
+        .catch(() => {});
+    }
+  }, [tariffs, subscribeStatus]);
+
+  useEffect(() => {
     if (tariffs) {
       const res = [];
-      console.log(tariffs);
-      console.log(tariffs.length);
+
       for (let i = 2; i < Object.values(tariffs).length; i++) {
         const name = tariffs[i].name as "Premium" | "Business" | "Corporate";
         const item = {
@@ -62,10 +94,11 @@ export const Select: FC<ISelectProps> = ({
           backendName: name,
           isProfitable: false,
           price: tariffs[i].price,
+          storageSizeBytes: tariffs[i].max_storage_size,
           storageSize:
-            +tariffs[i].max_folder_size < 1000000000000
-              ? `${+tariffs[i].max_folder_size / 1024 ** 3}гб`
-              : `${+tariffs[i].max_folder_size / 1024 ** 4}тб`,
+            +tariffs[i].max_storage_size < 1000000000000
+              ? `${+tariffs[i].max_storage_size / 1024 ** 3}гб`
+              : `${+tariffs[i].max_storage_size / 1024 ** 4}тб`,
           tariffName: tariffDataSet[name].tariffName,
           businessAccount: tariffDataSet[name]?.businessAccount,
           saleValue: tariffDataSet[name].saleValue,
@@ -99,7 +132,6 @@ export const Select: FC<ISelectProps> = ({
       setTariffData(res);
     }
   }, [tariffs]);
-  console.log(tariffData);
   const handleChangeMonth = (value: number) => {
     return () => handleMonthSelect(value);
   };
@@ -112,24 +144,45 @@ export const Select: FC<ISelectProps> = ({
       <Text size={"3"} mb={"6"} weight={"regular"}>
         Получите больше возможностей с расширенной подпиской
       </Text>
-      <SegmentControlRootSC mb={"6"} value={`${month}`} defaultValue="3">
-        {mounthSet.map((item) => {
-          return (
-            <SegmentControlItemSC
-              onClick={handleChangeMonth(item)}
-              key={item}
-              value={`${item}`}
-            >
-              {item} мес
-            </SegmentControlItemSC>
-          );
-        })}
-      </SegmentControlRootSC>
+      {subscribeStatus && subscribeStatus.duration > 0 && (
+        <SwitchWrapper>
+          <Switch
+            size={"1"}
+            variant="classic"
+            checked={isExtension}
+            onClick={handleChecked}
+          />
+          <Text size={"2"} weight={"regular"}>
+            Продлить подписку
+          </Text>
+        </SwitchWrapper>
+      )}
+
+      {isExtension && (
+        <SegmentControlRootSC mb={"6"} defaultValue="1" size={"2"}>
+          {mounthSet.map((item) => {
+            return (
+              <SegmentControlItemSC
+                onClick={handleChangeMonth(item)}
+                key={item}
+                value={`${item}`}
+              >
+                {item} мес
+              </SegmentControlItemSC>
+            );
+          })}
+        </SegmentControlRootSC>
+      )}
+
       <TariffListSC>
         {tariffData.map((item) => {
           return (
             <>
               <TariffCard
+                userStorageSize={storageInfo.storageSize}
+                isExtension={isExtension}
+                percent={storageInfo.percent}
+                isCurrentTarrif={item.backendName === currentTariff?.name}
                 tariffId={item.tariffId}
                 backendName={
                   item.backendName as "Premium" | "Business" | "Corporate"
@@ -146,5 +199,10 @@ export const Select: FC<ISelectProps> = ({
   );
 };
 
-const { WrapperSC, TariffListSC, SegmentControlRootSC, SegmentControlItemSC } =
-  SelectStyle();
+const {
+  WrapperSC,
+  TariffListSC,
+  SwitchWrapper,
+  SegmentControlRootSC,
+  SegmentControlItemSC,
+} = SelectStyle();

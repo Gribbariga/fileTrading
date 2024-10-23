@@ -10,6 +10,7 @@ export interface ITariffCard {
   tariffName: string;
   isProfitable: boolean;
   saleValue?: number;
+  storageSizeBytes: string;
   storageSize: string;
   price: number;
   businessAccount?: number;

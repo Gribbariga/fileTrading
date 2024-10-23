@@ -10,24 +10,29 @@ const WrapperSC = styled("div")`
 
 const SegmentControlRootSC = styled(SegmentedControl.Root)`
   display: flex;
+  max-width: 395px;
   width: 100%;
-  max-width: 383px;
   height: 40px;
 `;
 
 const SegmentControlItemSC = styled(SegmentedControl.Item)`
   height: 100%;
-  width: 25%;
   cursor: pointer;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
+  width: 20%;
+`;
+
+const Test = styled(SegmentControlItemSC)`
+  width: 208px;
 `;
 
 const TariffListSC = styled("div")`
   display: flex;
   gap: 10px;
   justify-content: space-between;
+  align-items: start;
 `;
 
 const SelectTariffWrapperSC = styled("div")`
@@ -54,10 +59,18 @@ const IconButtonSC = styled(IconButtonUI)`
   right: var(--space-6);
 `;
 
+const SwitchWrapper = styled("div")`
+  display: flex;
+  gap: 10px;
+  margin-bottom: var(--space-8);
+`;
+
 export const SelectStyle = () => ({
+  Test,
   WrapperSC,
   TariffListSC,
   IconButtonSC,
+  SwitchWrapper,
   SegmentControlRootSC,
   SegmentControlItemSC,
   SelectTariffWrapperSC,
