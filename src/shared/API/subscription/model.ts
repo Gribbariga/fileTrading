@@ -32,3 +32,14 @@ export interface ISubscriptionStatusResponse {
   created_at: string;
   updated_at: string;
 }
+export interface IGetPriceArg {
+  tariff_id: number;
+  currency: string;
+  duration: number;
+  account_id: number;
+}
+
+export interface IGetPriceResponse {
+  price: string;
+  currency: string;
+}
