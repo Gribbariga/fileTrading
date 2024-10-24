@@ -15,6 +15,8 @@ import { Heading, Switch, Text } from "@radix-ui/themes";
 import { ITariffData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement";
 import { storageSlice } from "src/entities/storage/model/storageSlice";
 import { getAllFolder } from "src/shared/API/storage/folder/api";
+import { getAllSubaccount } from "src/shared/API/account/subaccount/subaccount";
+import { ISubaccount } from "src/shared/API/account/subaccount/model";
 
 interface ISelectProps {
   month: number;
@@ -34,6 +36,7 @@ export const Select: FC<ISelectProps> = ({
   const { tariffs, subscribeStatus } = subscriptionSlice((slice) => slice);
 
   const [tariffData, setTariffData] = useState<ITariffCard[]>([]);
+  const [subAccount, setSubAccount] = useState<ISubaccount[]>([]);
 
   const { allFolder } = storageSlice((state) => state);
 
@@ -54,20 +57,22 @@ export const Select: FC<ISelectProps> = ({
   } = {
     Premium: {
       tariffName: "Премиум",
-      saleValue: 50,
+      saleValue: 5,
     },
-    Business: { tariffName: "Бизнес", saleValue: 50 },
+    Business: { tariffName: "Бизнес", saleValue: 5 },
     Corporate: {
       tariffName: "Корпоративный",
-      saleValue: 50,
+      saleValue: 5,
       businessAccount: 50,
     },
   };
-
   useEffect(() => {
-    if (allFolder.length) {
-      console.log("");
-    } else {
+    getAllSubaccount().then(({ data }) => {
+      setSubAccount(data.subaccounts);
+    });
+  }, []);
+  useEffect(() => {
+    if (allFolder.length <= 0 && tariffs && subscribeStatus) {
       getAllFolder()
         .then(({ data }) => {
           let res = 0;
@@ -88,54 +93,55 @@ export const Select: FC<ISelectProps> = ({
       const res = [];
 
       for (let i = 2; i < Object.values(tariffs).length; i++) {
-        const name = tariffs[i].name as "Premium" | "Business" | "Corporate";
-        const item = {
-          tariffId: tariffs[i].tariff_id,
-          backendName: name,
-          isProfitable: false,
-          price: tariffs[i].price,
-          storageSizeBytes: tariffs[i].max_storage_size,
-          storageSize:
-            +tariffs[i].max_storage_size < 1000000000000
-              ? `${+tariffs[i].max_storage_size / 1024 ** 3}гб`
-              : `${+tariffs[i].max_storage_size / 1024 ** 4}тб`,
-          tariffName: tariffDataSet[name].tariffName,
-          businessAccount: tariffDataSet[name]?.businessAccount,
-          saleValue: tariffDataSet[name].saleValue,
-          tariffFeatures: [
-            {
-              Icon: <HeartFilledIcon />,
-              text: "Бесконечное число хранилищ и файлов",
-            },
-            {
-              Icon: <UpdateIcon />,
-              text: "Создание одноразовых ссылок",
-            },
-            {
-              Icon: <EyeClosedIcon />,
-              text: "Создание одноразовых ссылок",
-            },
-            {
-              Icon: <LockClosedIcon />,
-              text: "Установка пароля на просмотр хранилища",
-            },
-            {
-              Icon: <TimerIcon />,
-              text: "До 1 года срок жизни хранилища",
-            },
-          ],
-        };
+        if (tariffs) {
+          const name = tariffs[i].name as "Premium" | "Business" | "Corporate";
+          const item = {
+            tariffId: tariffs[i].tariff_id,
+            backendName: name,
+            isProfitable: false,
+            price: tariffs[i].price,
+            storageSizeBytes: tariffs[i].max_storage_size,
+            storageSize:
+              +tariffs[i].max_storage_size < 1000000000000
+                ? `${+tariffs[i].max_storage_size / 1024 ** 3}гб`
+                : `${+tariffs[i].max_storage_size / 1024 ** 4}тб`,
+            tariffName: tariffDataSet[name].tariffName,
+            businessAccount: tariffDataSet[name]?.businessAccount || 0,
+            saleValue: tariffDataSet[name].saleValue,
+            tariffFeatures: [
+              {
+                Icon: <HeartFilledIcon />,
+                text: "Бесконечное число хранилищ и файлов",
+              },
+              {
+                Icon: <UpdateIcon />,
+                text: "Создание одноразовых ссылок",
+              },
+              {
+                Icon: <EyeClosedIcon />,
+                text: "Создание одноразовых ссылок",
+              },
+              {
+                Icon: <LockClosedIcon />,
+                text: "Установка пароля на просмотр хранилища",
+              },
+              {
+                Icon: <TimerIcon />,
+                text: "До 1 года срок жизни хранилища",
+              },
+            ],
+          };
 
-        res.push(item);
+          res.push(item);
+        }
+        console.log(res);
+        setTariffData(res);
       }
-      console.log(res);
-      setTariffData(res);
     }
   }, [tariffs]);
   const handleChangeMonth = (value: number) => {
     return () => handleMonthSelect(value);
   };
-
   return (
     <WrapperSC>
       <Heading size={"9"} weight={"bold"} highContrast={true}>
@@ -179,6 +185,7 @@ export const Select: FC<ISelectProps> = ({
           return (
             <>
               <TariffCard
+                userSubAccont={subAccount}
                 userStorageSize={storageInfo.storageSize}
                 isExtension={isExtension}
                 percent={storageInfo.percent}

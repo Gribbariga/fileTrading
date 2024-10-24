@@ -92,6 +92,7 @@ export const SubscriptionManagement = () => {
       )}
       {step === "confirm" && (
         <Confirm
+          isExtension={isExtension}
           setPaymentData={setTransferData}
           setId={setId}
           handleNext={handleStartCrypto}

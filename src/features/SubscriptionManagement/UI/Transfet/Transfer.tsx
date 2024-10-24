@@ -8,11 +8,13 @@ import {
 } from "@radix-ui/themes";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { TransferStyle } from "src/features/SubscriptionManagement/UI/Transfet/TransferStyle";
 import {
   cryptoPaymentStatus,
   paidPayment,
 } from "src/shared/API/payment/crypto/api";
+import { subscriptionStatus } from "src/shared/API/subscription/subscription";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 
 interface ITransferProps {
@@ -28,6 +30,8 @@ export const Transfer: FC<ITransferProps> = ({
   price,
   payment_id,
 }) => {
+  const { setSubscribeStatus } = subscriptionSlice((state) => state);
+
   const navigation = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +42,10 @@ export const Transfer: FC<ITransferProps> = ({
     try {
       const response = await cryptoPaymentStatus({ payment_id: payment_id });
       if (response.data && response.data.status === "Confirm") {
-        navigation("/home");
+        subscriptionStatus().then(async ({ data }) => {
+          setSubscribeStatus(data);
+          navigation("/home");
+        });
       } else {
         setTimeout(() => {
           longPolling();

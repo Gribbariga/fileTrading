@@ -39,18 +39,18 @@ export const Register = () => {
     setIsLoading(true);
     register(data)
       .then(({ data }) => {
-        setTimeout(() => {
-          setCookie("account_id", `${data.user_id}`, { "max-age": 86400000 });
-          subscriptionStatus().then(async ({ data }) => {
-            getInfo().then(async (response) => {
-              const userInfo = response.data;
-              setIsLoading(false);
-              await setSubscribeStatus(data);
-              setInfo(userInfo);
-            });
+        setCookie("account_id", `${data.account_id}`, {
+          "max-age": 86400000,
+        });
+        subscriptionStatus().then(async ({ data }) => {
+          getInfo().then(async (response) => {
+            const userInfo = response.data;
+            setIsLoading(false);
+            await setSubscribeStatus(data);
+            setInfo(userInfo);
           });
-          navigation("/");
-        }, 3000);
+        });
+        navigation("/");
       })
       .catch((error: Error | AxiosError) => {
         setIsLoading(false);

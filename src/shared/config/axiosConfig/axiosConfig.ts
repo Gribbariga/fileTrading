@@ -4,7 +4,7 @@ import { refreshTokens } from "src/shared/API/auth/token/token";
 // baseURL: "https://" + import.meta.env.VITE_DOMAIN,
 import { userCodeError } from "src/shared/constant/backendCodeError/User";
 export const axiosBase = axios.create({
-  baseURL: import.meta.env.VITE_DOMAIN,
+  baseURL: "/api",
   withCredentials: true,
 });
 
@@ -39,24 +39,24 @@ axiosBase.interceptors.response.use((config) => {
 }, JwtExpired);
 export const axiosBaseAccount = axios.create({
   ...axiosBase.defaults,
-  baseURL: import.meta.env.VITE_DOMAIN + "/api/account",
+  baseURL: "/api/api/account",
 });
 export const axiosBaseStorage = axios.create({
   ...axiosBase.defaults,
-  baseURL: import.meta.env.VITE_DOMAIN + "/api/storage",
+  baseURL: "/api/api/storage",
 });
 export const axiosBaseSubscription = axios.create({
   ...axiosBase.defaults,
-  baseURL: import.meta.env.VITE_DOMAIN + "/api/subscription",
+  baseURL: "/api/api/subscription",
 });
 export const axiosBasePayment = axios.create({
   ...axiosBase.defaults,
-  baseURL: import.meta.env.VITE_DOMAIN + "/api/payment",
+  baseURL: "/api/api/payment",
 });
 
 export const axiosBaseAuth = axios.create({
   ...axiosBase.defaults,
-  baseURL: import.meta.env.VITE_DOMAIN + "/api/auth",
+  baseURL: "/api/api/auth",
 });
 
 axiosBaseAuth.interceptors.response.use((config) => {

@@ -6,17 +6,18 @@ import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSl
 import { TariffNames } from "src/features/SubscriptionManagement/types/types.ts";
 import { createCryptoPayment } from "src/shared/API/payment/crypto/api.ts";
 import { IPaymentData } from "src/features/SubscriptionManagement/UI/SubscriptionManagement.tsx";
-import { getDaysInMonths } from "src/shared/lib/helper/getDaysInMonths/getDaysInMonths.tsx";
 
 interface IConfirm {
   tariffId: number;
   handleNext: () => void;
   handleBack: () => void;
+  isExtension: boolean;
   setPaymentData: (value: IPaymentData) => void;
   setId: (paymentid: number) => void;
   price: number;
   sale: number;
   monthNumber: number;
+
   selectTariffName: TariffNames;
 }
 
@@ -30,6 +31,7 @@ export const Confirm: FC<IConfirm> = ({
   price,
   sale,
   setId,
+  isExtension,
   setPaymentData,
   tariffId,
   monthNumber,
@@ -48,7 +50,6 @@ export const Confirm: FC<IConfirm> = ({
   };
 
   // Пример использования
-  const totalDays = getDaysInMonths(monthNumber);
   const totalPrice = price - (price / 100) * sale;
 
   const daysLeft =
@@ -57,24 +58,28 @@ export const Confirm: FC<IConfirm> = ({
       : 0;
 
   const handleCreatePayment = () => {
-    setIsLoading(true);
-    createCryptoPayment({
-      currency: `BTC`,
-      duration: monthNumber,
-      tariff_id: tariffId,
-    })
-      .then(({ data }) => {
-        setIsLoading(false);
-        setId(data.payment_id);
-        setPaymentData({
-          adress: data.address,
-          price: `${data.price} ${data.currency}`,
-        });
-        handleNext();
+    if (subscribeStatus) {
+      setIsLoading(true);
+      createCryptoPayment({
+        currency: `BTC`,
+        duration: !isExtension
+          ? monthNumber
+          : monthNumber + subscribeStatus?.duration,
+        tariff_id: tariffId,
       })
-      .catch(() => {
-        setIsLoading(false);
-      });
+        .then(({ data }) => {
+          setIsLoading(false);
+          setId(data.payment_id);
+          setPaymentData({
+            adress: data.address,
+            price: `${data.price} ${data.currency}`,
+          });
+          handleNext();
+        })
+        .catch(() => {
+          setIsLoading(false);
+        });
+    }
   };
 
   return (
@@ -92,10 +97,13 @@ export const Confirm: FC<IConfirm> = ({
           <InfoListSC>
             <InfoLineSC>
               <InfoLineTitleSC size={"5"} weight={"medium"}>
-                Количество дней:
+                Срок:
               </InfoLineTitleSC>
               <Text size={"5"} weight={"medium"} highContrast={true}>
-                {daysLeft} ⮕ {daysLeft + totalDays}
+                {daysLeft} ⮕{" "}
+                {!isExtension
+                  ? subscribeStatus?.duration
+                  : monthNumber + (subscribeStatus?.duration || 0)}
               </Text>
             </InfoLineSC>
             <InfoLineSC>
@@ -103,8 +111,14 @@ export const Confirm: FC<IConfirm> = ({
                 Тариф:
               </InfoLineTitleSC>
               <Text size={"5"} weight={"medium"} highContrast={true}>
-                {tariff[subscribeStatus?.name as TariffNames]} ⮕{" "}
-                {tariff[selectTariffName]}
+                {tariff[subscribeStatus?.name as TariffNames] !==
+                tariff[selectTariffName]
+                  ? `${tariff[subscribeStatus?.name as TariffNames]} ⮕${" "} ${
+                      tariff[selectTariffName]
+                    }`
+                  : tariff[selectTariffName]}
+
+                {}
               </Text>
             </InfoLineSC>
             <InfoLineSC>
