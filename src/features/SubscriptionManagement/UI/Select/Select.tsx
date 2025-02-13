@@ -144,12 +144,23 @@ export const Select: FC<ISelectProps> = ({
   };
   return (
     <WrapperSC>
-      <Heading size={"9"} weight={"bold"} highContrast={true}>
+      {/* <Heading size={"9"} weight={"bold"} highContrast={true}> */}
+      <TextWrapperSC>
+      <Heading 
+      size={{
+        initial: "8",
+        md: "8",
+        lg: '9',
+        xl: "9",
+      }}
+      weight={"bold"} highContrast={true}
+      align={'center'}>
         Выберите подходящий тариф
       </Heading>
-      <Text size={"3"} mb={"6"} weight={"regular"}>
+      <TextSC size={"3"} mb={"6"} weight={"regular"}>
         Получите больше возможностей с расширенной подпиской
-      </Text>
+      </TextSC>
+      </TextWrapperSC>
       {subscribeStatus && subscribeStatus.duration > 0 && (
         <SwitchWrapper>
           <Switch
@@ -179,37 +190,47 @@ export const Select: FC<ISelectProps> = ({
           })}
         </SegmentControlRootSC>
       )}
-
+    <FlexWrapperSC>
       <TariffListSC>
-        {tariffData.map((item) => {
-          return (
-            <>
-              <TariffCard
-                userSubAccont={subAccount}
-                userStorageSize={storageInfo.storageSize}
-                isExtension={isExtension}
-                percent={storageInfo.percent}
-                isCurrentTarrif={item.backendName === currentTariff?.name}
-                tariffId={item.tariffId}
-                backendName={
-                  item.backendName as "Premium" | "Business" | "Corporate"
-                }
-                month={month}
-                handleTariffSelect={handleTariffSelect}
-                tariffCard={item}
-              />
-            </>
-          );
-        })}
-      </TariffListSC>
+          <TariffListWrapperSC>
+          {tariffData.map((item) => {
+            return (
+              <>
+                <TariffCard
+                  userSubAccont={subAccount}
+                  userStorageSize={storageInfo.storageSize}
+                  isExtension={isExtension}
+                  percent={storageInfo.percent}
+                  isCurrentTarrif={item.backendName === currentTariff?.name}
+                  tariffId={item.tariffId}
+                  backendName={
+                    item.backendName as "Premium" | "Business" | "Corporate"
+                  }
+                  month={month}
+                  handleTariffSelect={handleTariffSelect}
+                  tariffCard={item}
+                />
+              </>
+            );
+          })}
+          </TariffListWrapperSC>
+        </TariffListSC>
+    </FlexWrapperSC>
+      
+
+
     </WrapperSC>
   );
 };
 
 const {
+  TextSC,
   WrapperSC,
   TariffListSC,
   SwitchWrapper,
+  TextWrapperSC,
+  FlexWrapperSC,
+  TariffListWrapperSC,
   SegmentControlRootSC,
   SegmentControlItemSC,
 } = SelectStyle();
