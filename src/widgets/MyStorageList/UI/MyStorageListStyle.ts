@@ -1,10 +1,17 @@
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const HeaderSC = styled("div")`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-4);
+  padding: 0 5px;
+  ${mediaMaxQuery(MOBILE)} {
+    margin: 0 16px 22px;
+    align-items: center;
+  }
 `;
 
 export const MyStorageListStyle = () => ({ HeaderSC });

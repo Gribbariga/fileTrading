@@ -9,7 +9,11 @@ export const MyStorageList = () => {
     <>
       <BreadCrumbs />
       <HeaderSC>
-        <Heading size="6" weight={"medium"} align={"left"}>
+        <Heading size={{
+          initial: "5",
+          md: "6",
+          xl: "6",
+	        }} weight={"medium"} align={"left"} >
           Мои хранилища
         </Heading>
         <CreateFolder />
