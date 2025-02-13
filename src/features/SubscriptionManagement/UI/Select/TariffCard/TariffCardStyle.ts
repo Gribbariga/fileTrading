@@ -1,3 +1,5 @@
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const TariffCardWrapperSC = styled("div")<{ isProfitable: boolean }>`
@@ -12,6 +14,9 @@ const TariffCardWrapperSC = styled("div")<{ isProfitable: boolean }>`
         : "var(--Colors-Neutral-Neutral-Alpha-6, rgba(0, 0, 0, 0.15))"};
   background: rgba(255, 255, 255, 0.9);
   position: relative;
+  ${mediaMaxQuery(MOBILE)}{
+    min-width: 285px;
+  }
 `;
 
 const TariffCardHeaderSC = styled("div")`
