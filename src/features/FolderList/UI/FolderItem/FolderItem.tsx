@@ -3,6 +3,7 @@ import { FolderItemStyle } from "./FolderItemStyle.ts";
 import { ArchiveIcon } from "@radix-ui/react-icons";
 import { FC, useEffect, useRef, useState } from "react";
 import { formattedData } from "src/shared/lib/helper/formattedData/formattedData.ts";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
 interface FolderItemProps {
   name: string;
@@ -60,6 +61,8 @@ export const FolderItem: FC<FolderItemProps> = ({
     }, 1000);
   }, []);
 
+  const {isMobile} = useResize();
+
   return (
     <CardSC to={`/storage/${folderId}`}>
       <SegmentWrapperSC>
@@ -76,20 +79,36 @@ export const FolderItem: FC<FolderItemProps> = ({
             variant="soft"
             fallback={<ArchiveIcon />}
           />
+          <NameWrapperSC>
+            
           <Text>Хранилище {name}</Text>
+          {isMobile && (
+            <TextSC>{time}</TextSC>
+          ) }
+          </NameWrapperSC>
         </NameAndImgWrapperSC>
       </SegmentWrapperSC>
-      <SegmentWrapperSC>
-        <Text>{(+size / 1024 / 1024).toFixed(2)} mb</Text>
-      </SegmentWrapperSC>
-      <SegmentWrapperSC>
-        <Text>{formattedData(createAt)}</Text>
-      </SegmentWrapperSC>
-      <SegmentWrapperSC>
-        <Text>{time}</Text>
-      </SegmentWrapperSC>
+      {!isMobile && (
+        <>
+          <SegmentWrapperSC>
+            <TextSC>{(+size / 1024 / 1024).toFixed(2)} mb</TextSC>
+          </SegmentWrapperSC>
+          <SegmentWrapperSC>
+              <TextSC>{formattedData(createAt)}</TextSC>
+          </SegmentWrapperSC>
+          <SegmentWrapperSC>
+            <TextSC>{time}</TextSC>
+          </SegmentWrapperSC>
+        </>
+      )}
+     
     </CardSC>
   );
 };
 
-const { CardSC, SegmentWrapperSC, NameAndImgWrapperSC } = FolderItemStyle();
+const {  
+  TextSC,
+  CardSC,
+  NameWrapperSC,
+  SegmentWrapperSC,
+  NameAndImgWrapperSC, } = FolderItemStyle();
