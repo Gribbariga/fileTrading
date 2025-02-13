@@ -10,11 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { v4 as uuidv4 } from "uuid";
 
+
 import UploadIcon from "../assets/uploadIcon.svg?react";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
-  const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
+  const { tariffs } = subscriptionSlice((state) => state);
 
   const { setYourFolderId } = storageSlice((state) => state);
 
@@ -22,12 +23,10 @@ export const UploadWindow = () => {
 
   const inputUploadRef = useRef<HTMLInputElement>(null);
 
-  console.log(subscribeStatus?.tariff_id);
-  console.log(tariffs);
-  const currentTariff =
-    tariffs !== null ? tariffs[subscribeStatus?.tariff_id || 0] : null;
 
-  console.log(currentTariff);
+  const currentTariff =
+    tariffs !== null ? tariffs[0] : null;
+
 
   const fetchFiles = (files: FileList) => {
     if (currentTariff) {
@@ -67,7 +66,7 @@ export const UploadWindow = () => {
     event.preventDefault();
     event.stopPropagation();
   };
-  console.log(currentTariff);
+ console.log(currentTariff)
   return (
     <UploadWrapperSC $screenHeight={height}>
       {currentTariff && (
