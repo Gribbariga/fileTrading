@@ -1,9 +1,18 @@
 import { Card, TextField } from "@radix-ui/themes";
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const WrapperSC = styled(Card)`
   max-width: 404px;
   width: 34%;
+  margin: 0 5px;
+  ${mediaMaxQuery(MOBILE)} {
+    max-width: 393px;
+    width: 73%;
+    height: 308px;
+    margin: 0 16px;
+  }
 `;
 
 const InputsWrapperSC = styled("div")`
