@@ -6,6 +6,7 @@ import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { checkImg } from "src/shared/lib/helper/checkImg/checkImg.ts";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
 interface IFileItemProps {
   fileDbId: number;
@@ -86,12 +87,14 @@ export const FileItem: FC<IFileItemProps> = ({
     }
   }, []);
 
+  const {isMobile} = useResize();
+
   return (
     <ItemWrapperSC>
       <SegmentWrapperSC
         style={{
           whiteSpace: "nowrap",
-          overflow: "hidden",
+          overflow: "visible",
           textOverflow: "ellipsis",
         }}
       >
@@ -108,6 +111,7 @@ export const FileItem: FC<IFileItemProps> = ({
             )
           }
         />
+        <TextWrapperSC>
 
         <Text
           style={{
@@ -120,16 +124,31 @@ export const FileItem: FC<IFileItemProps> = ({
         >
           {name}
         </Text>
-      </SegmentWrapperSC>
-      <SegmentWrapperSC>
+        {isMobile &&(
         <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
           {(size / 1024 / 1024).toFixed(1)}MB
         </Text>
+      )}
+
+        </TextWrapperSC>
+        
+
+
       </SegmentWrapperSC>
       <SegmentWrapperSC>
+      {!isMobile &&(
         <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-          {formattedDate}
+          {(size / 1024 / 1024).toFixed(1)}MB
         </Text>
+      )}
+      </SegmentWrapperSC>
+      <SegmentWrapperSC>
+          {!isMobile && (
+            <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
+                      {formattedDate}
+            </Text>
+          )}
+        
       </SegmentWrapperSC>
       <IconWrapperSC>
         <DownloadFile fileName={name} fileDbId={fileDbId} />
@@ -143,4 +162,4 @@ export const FileItem: FC<IFileItemProps> = ({
   );
 };
 
-const { IconWrapperSC, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();
+const { TextWrapperSC, IconWrapperSC, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();

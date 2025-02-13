@@ -2,14 +2,20 @@ import { ScrollArea, Text } from "@radix-ui/themes";
 import { StorageFileListStyle } from "./StorageFileListStyle.ts";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { FileItem } from "./FileItem/FileItem.tsx";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
 export const StorageFileList = () => {
   const { storage } = storageSlice((state) => state);
 
+  const { isMobile } = useResize();
+
   return (
     <StorageListWrapperSC>
       <ListHeaderSC>
-        <SegmentWrapperSC>
+        {!isMobile &&
+        (
+          <>
+          <SegmentWrapperSC>
           <Text
             size={"2"}
             weight={"regular"}
@@ -19,26 +25,28 @@ export const StorageFileList = () => {
             Имя
           </Text>
         </SegmentWrapperSC>
-        <SegmentWrapperSC>
-          <Text
-            size={"2"}
-            weight={"regular"}
-            align={"left"}
-            highContrast={false}
-          >
-            Размер
-          </Text>
-        </SegmentWrapperSC>
-        <SegmentWrapperSC>
-          <Text
-            size={"2"}
-            weight={"regular"}
-            align={"left"}
-            highContrast={false}
-          >
-            Загружен
-          </Text>
-        </SegmentWrapperSC>
+         <SegmentWrapperSC>
+         <Text
+           size={"2"}
+           weight={"regular"}
+           align={"left"}
+           highContrast={false}
+         >
+           Размер
+         </Text>
+       </SegmentWrapperSC>
+       <SegmentWrapperSC>
+         <Text
+           size={"2"}
+           weight={"regular"}
+           align={"left"}
+           highContrast={false}
+         >
+           Загружен
+         </Text>
+       </SegmentWrapperSC>
+       </>
+       )}
       </ListHeaderSC>
       <ScrollArea>
         {storage?.files.map((item) => {

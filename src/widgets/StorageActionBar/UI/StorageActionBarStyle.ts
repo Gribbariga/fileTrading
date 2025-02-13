@@ -1,3 +1,5 @@
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const StorageActionBarWrapperSC = styled("div")`
@@ -5,9 +7,17 @@ const StorageActionBarWrapperSC = styled("div")`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-top: 20px;
+  padding: 20px 5px 0;
   height: 60px;
   margin-bottom: var(--space-4);
+  ${mediaMaxQuery(MOBILE)} {
+    height: 90px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 16px;
+    padding-top: 0;
+    gap: 22px;
+  }
 `;
 
 const ActionWrapperSC = styled("div")`
