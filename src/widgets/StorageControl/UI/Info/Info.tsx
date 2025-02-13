@@ -4,8 +4,10 @@ import { formattedData } from "shared/lib/helper/formattedData/formattedData.ts"
 import { Text } from "@radix-ui/themes";
 import { StorageDescription } from "src/features/StorageDescription/UI/StorageDescription.tsx";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
 export const Info = () => {
+  const { isMobile } = useResize();
   const { storage } = storageSlice((state) => state);
   const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
   let result: {
@@ -59,42 +61,47 @@ export const Info = () => {
     <>
       {storage && (
         <>
-          <InfoWrapperSC>
-            {result.map((item) => {
-              if (!item.isHidden) {
-                return (
-                  <InfoItemSC key={item.name}>
-                    <Text
-                      size={"3"}
-                      weight={"medium"}
-                      align={"left"}
-                      highContrast={false}
-                    >
-                      {item.name}
-                    </Text>
-                    <Text
-                      size={"3"}
-                      weight={"medium"}
-                      align={"right"}
-                      highContrast={true}
-                    >
-                      {item.value}
-                    </Text>
-                  </InfoItemSC>
-                );
-              }
-            })}
-          </InfoWrapperSC>
-          <Text
-            size={"3"}
-            weight={"medium"}
-            align={"left"}
-            highContrast={true}
-            mb={"-8"}
-          >
-            Описание хранилища
-          </Text>
-          <StorageDescription />
+        {!isMobile && (
+          <>
+            <InfoWrapperSC>
+            
+              {result.map((item) => {
+               if (!item.isHidden) {
+               return (
+            <InfoItemSC key={item.name}>
+              <Text
+                size={"3"}
+                weight={"medium"}
+                align={"left"}
+                highContrast={false}
+              >
+                {item.name}
+              </Text>
+              <Text
+                size={"3"}
+                weight={"medium"}
+                align={"right"}
+                highContrast={true}
+              >
+                {item.value}
+              </Text>
+            </InfoItemSC>
+          );
+        }
+      })}
+      </InfoWrapperSC>
+         <Text
+         size={"3"}
+         weight={"medium"}
+         align={"left"}
+         highContrast={true}
+         mb={"-8"}
+       >
+         Описание хранилища
+       </Text>
+       <StorageDescription />
+       </>
+        )}
         </>
       )}
     </>
