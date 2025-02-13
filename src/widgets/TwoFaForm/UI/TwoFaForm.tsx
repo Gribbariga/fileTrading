@@ -10,7 +10,12 @@ export const TwoFaForm = () => {
           align={"left"}
           mb={"5"}
           highContrast={true}
-          size={"5"}
+          // size={"5"}
+          size={{
+            initial: "4",
+            md: "5",
+            xl: "5",
+          }}
           weight={"medium"}
         >
           Двухфакторная аутентификация
