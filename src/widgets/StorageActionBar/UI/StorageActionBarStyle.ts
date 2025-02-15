@@ -7,15 +7,14 @@ const StorageActionBarWrapperSC = styled("div")`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 20px 5px 0;
+  padding-top: 20px;
   height: 60px;
-  margin-bottom: var(--space-4);
+  margin-bottom: 16px;
   ${mediaMaxQuery(MOBILE)} {
     height: 90px;
     flex-direction: column;
     align-items: flex-start;
-    margin: 16px;
-    padding-top: 0;
+    padding: 0 16px;
     gap: 22px;
   }
 `;

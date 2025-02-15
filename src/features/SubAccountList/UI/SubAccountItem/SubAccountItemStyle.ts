@@ -6,12 +6,10 @@ import styled from "styled-components";
 const WrapperSC = styled(Card)`
   max-width: 404px;
   width: 34%;
-  margin: 0 5px;
   ${mediaMaxQuery(MOBILE)} {
     max-width: 393px;
-    width: 73%;
+    width: 100%;
     height: 308px;
-    margin: 0 16px;
   }
 `;
 

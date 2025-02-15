@@ -90,76 +90,79 @@ export const FileItem: FC<IFileItemProps> = ({
   const {isMobile} = useResize();
 
   return (
+    <WrapperSC>
     <ItemWrapperSC>
-      <SegmentWrapperSC
-        style={{
-          whiteSpace: "nowrap",
-          overflow: "visible",
-          textOverflow: "ellipsis",
-        }}
-      >
-        <Avatar
-          size={"4"}
-          variant="soft"
-          color="gray"
-          highContrast={false}
-          fallback={
-            previewImg ? (
-              <img src={`data:image/jpg;base64,${previewImg}`} />
-            ) : (
-              <FileIcon />
-            )
-          }
-        />
-        <TextWrapperSC>
-
-        <Text
+        <SegmentWrapperSC
           style={{
             whiteSpace: "nowrap",
+            overflow: "visible",
+            textOverflow: "ellipsis",
           }}
-          size={"2"}
-          weight={"medium"}
-          align={"left"}
-          highContrast={true}
         >
-          {name}
-        </Text>
-        {isMobile &&(
-        <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-          {(size / 1024 / 1024).toFixed(1)}MB
-        </Text>
-      )}
+          <Avatar
+            size={"4"}
+            variant="soft"
+            color="gray"
+            highContrast={false}
+            fallback={
+              previewImg ? (
+                <img src={`data:image/jpg;base64,${previewImg}`} />
+              ) : (
+                <FileIcon />
+              )
+            }
+          />
+          <TextWrapperSC>
 
-        </TextWrapperSC>
-        
-
-
-      </SegmentWrapperSC>
-      <SegmentWrapperSC>
-      {!isMobile &&(
-        <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-          {(size / 1024 / 1024).toFixed(1)}MB
-        </Text>
-      )}
-      </SegmentWrapperSC>
-      <SegmentWrapperSC>
-          {!isMobile && (
-            <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-                      {formattedDate}
-            </Text>
-          )}
-        
-      </SegmentWrapperSC>
-      <IconWrapperSC>
-        <DownloadFile fileName={name} fileDbId={fileDbId} />
-        {!isGuest && (
-          <>
-            <DeleteFile fileDbId={fileDbId} />
-          </>
+          <Text
+            style={{
+              whiteSpace: "nowrap",
+            }}
+            size={"2"}
+            weight={"medium"}
+            align={"left"}
+            highContrast={true}
+          >
+            {name}
+          </Text>
+          {isMobile &&(
+          <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
+            {(size / 1024 / 1024).toFixed(1)}MB
+          </Text>
         )}
-      </IconWrapperSC>
-    </ItemWrapperSC>
+
+          </TextWrapperSC>
+          
+
+
+        </SegmentWrapperSC>
+        <SegmentWrapperSC>
+        {!isMobile &&(
+          <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
+            {(size / 1024 / 1024).toFixed(1)}MB
+          </Text>
+        )}
+        </SegmentWrapperSC>
+        <SegmentWrapperSC>
+            {!isMobile && (
+              <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
+                        {formattedDate}
+              </Text>
+            )}
+          
+        </SegmentWrapperSC>
+        <IconWrapperSC>
+          <DownloadFile fileName={name} fileDbId={fileDbId} />
+          {!isGuest && (
+            <>
+              <DeleteFile fileDbId={fileDbId} />
+            </>
+          )}
+        </IconWrapperSC>
+      </ItemWrapperSC>
+    </WrapperSC>
+    
   );
 };
 
-const { TextWrapperSC, IconWrapperSC, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();
+  const { WrapperSC, TextWrapperSC, IconWrapperSC, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();

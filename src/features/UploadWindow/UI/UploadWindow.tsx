@@ -25,7 +25,7 @@ export const UploadWindow = () => {
 
 
   const currentTariff =
-    tariffs !== null ? tariffs[0] : null;
+    tariffs !== null ? tariffs[subscribeStatus?.tariff_id || 0] : null;
 
 
   const fetchFiles = (files: FileList) => {

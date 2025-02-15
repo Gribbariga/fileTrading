@@ -144,7 +144,6 @@ export const Select: FC<ISelectProps> = ({
   };
   return (
     <WrapperSC>
-      {/* <Heading size={"9"} weight={"bold"} highContrast={true}> */}
       <TextWrapperSC>
       <Heading 
       size={{

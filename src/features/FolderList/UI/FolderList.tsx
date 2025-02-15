@@ -14,7 +14,7 @@ export const FolderList = () => {
 
   useEffect(() => {
     if (!allFolder.length) {
-      setIsLoading(false);
+      setIsLoading(true);
       getAllFolder().then(({ data }) => {
         setIsLoading(false);
         setAllFolder(data.folders);

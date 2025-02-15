@@ -7,9 +7,8 @@ const HeaderSC = styled("div")`
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-4);
-  padding: 0 5px;
   ${mediaMaxQuery(MOBILE)} {
-    margin: 0 16px 22px;
+    padding: 0 16px;
     align-items: center;
   }
 `;

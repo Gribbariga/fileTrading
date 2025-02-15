@@ -13,8 +13,11 @@ const ItemWrapperSC = styled("div")`
   align-self: stretch;
   border-bottom: 1px solid var(--gray-a6);
   background: white;
-  ${mediaMaxQuery(MOBILE)} { 
-    margin: 0 29px 22px 16px;
+`;
+
+const WrapperSC = styled('div')`
+  ${mediaMaxQuery(MOBILE)}{
+    padding: 0 29px 0 16px;
   }
 `;
 
@@ -30,8 +33,6 @@ const SegmentWrapperSC = styled("div")`
   display: flex;
   align-items: center;
   gap: 16px;
-  ${mediaMaxQuery(MOBILE)} { 
-  }
 `;
 
 
@@ -43,6 +44,7 @@ const IconWrapperSC = styled("div")`
 `;
 
 export const FileItemStyle = () => ({
+  WrapperSC,
   TextWrapperSC,
   IconWrapperSC,
   ItemWrapperSC,

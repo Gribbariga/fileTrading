@@ -20,7 +20,8 @@ const TextWrapperSC = styled('div')`
   gap: var(--Spacing-1, 4px);
   margin-top: 58px;
   ${mediaMaxQuery(MOBILE)}{
-    margin: 25px 16px 0;
+    padding: 25px 16px 0;
+    margin-top: 0;
   }
 `;
 

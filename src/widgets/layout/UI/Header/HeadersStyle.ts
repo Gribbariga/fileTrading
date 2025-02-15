@@ -22,7 +22,7 @@ const MenuWrapperSC = styled("div")`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: top;
+  align-items: center;
 `;
 
 const IcomButtonSC = styled(IconButtonUI)`
