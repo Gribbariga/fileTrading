@@ -15,7 +15,7 @@ import UploadIcon from "../assets/uploadIcon.svg?react";
 
 export const UploadWindow = () => {
   const navigation = useNavigate();
-  const { tariffs } = subscriptionSlice((state) => state);
+  const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
 
   const { setYourFolderId } = storageSlice((state) => state);
 

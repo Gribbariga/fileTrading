@@ -12,9 +12,14 @@ const TitleWrapperSC = styled("div")`
     flex-direction: column;
     align-items: flex-start;
     max-width: 361px;
-    padding: 0 16px;
     gap: 24px;
   }
 `;
 
-export const SubAccountStyle = () => ({ TitleWrapperSC });
+const WrapperSC = styled('div')`
+  ${mediaMaxQuery(MOBILE)}{
+    padding: 0 16px;
+  }
+`;
+
+export const SubAccountStyle = () => ({ WrapperSC, TitleWrapperSC });

@@ -4,12 +4,6 @@ import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 import { Text } from "@radix-ui/themes";
 
-const CardWrapperSC =styled('div')`
-  ${mediaMaxQuery(MOBILE)}{
-    padding: 0 29px 0 16px;
-  }
-`
-
 const CardSC = styled(Link)`
   display: block;
   text-decoration: none;
@@ -42,14 +36,15 @@ const NameAndImgWrapperSC = styled("div")`
 `;
 
 const NameWrapperSC = styled("div")`
-    ${mediaMaxQuery(MOBILE)} { 
-      display: flex;
-      flex-direction: column;
-    }
+  ${mediaMaxQuery(MOBILE)} { 
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const TextSC = styled(Text)`
-  color: rgba(0, 0, 0, 0.61);
+  color: #000000;
+  opacity: 0.61;
 `
 
 
@@ -57,7 +52,6 @@ const TextSC = styled(Text)`
 export const FolderItemStyle = () => ({
   TextSC,
   CardSC,
-  CardWrapperSC,
   NameWrapperSC,
   SegmentWrapperSC,
   NameAndImgWrapperSC,

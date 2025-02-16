@@ -26,7 +26,8 @@ const TextWrapperSC = styled('div')`
 `;
 
 const TextSC = styled(Text)`
-  color: rgba(0, 0, 0, 0.61);
+  color: #000000;
+  opacity: 0.61;
   text-align: center;
 `;
 
@@ -36,7 +37,8 @@ const SegmentControlRootSC = styled(SegmentedControl.Root)`
   width: 100%;
   height: 40px;
   ${mediaMaxQuery(MOBILE)}{
-    width: 330px;
+    max-width: 330px;
+    width: 100%;
   }
 `;
 
