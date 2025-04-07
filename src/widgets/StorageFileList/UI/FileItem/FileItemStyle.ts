@@ -14,13 +14,13 @@ const ItemWrapperSC = styled("div")`
   border-bottom: 1px solid var(--gray-a6);
   background: white;
   ${mediaMaxQuery(MOBILE)}{
-    padding: 12px 0px 12px 8px;
+    padding: 0 15px;
   }
 `;
 
 const WrapperSC = styled('div')`
   ${mediaMaxQuery(MOBILE)}{
-    padding: 0 29px 0 16px;
+    /* padding: 0 29px 0 16px; */
   }
 `;
 

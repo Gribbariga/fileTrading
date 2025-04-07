@@ -14,7 +14,7 @@ const StorageActionBarWrapperSC = styled("div")`
     height: 90px;
     flex-direction: column;
     align-items: flex-start;
-    padding: 0 16px;
+    padding: 0 16px 0 0;
     gap: 22px;
   }
 `;
