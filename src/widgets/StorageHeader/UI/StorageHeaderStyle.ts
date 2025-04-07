@@ -1,3 +1,5 @@
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const StorageHeaderSC = styled("div")`
@@ -11,6 +13,10 @@ const StorageHeaderSC = styled("div")`
   border: 1px solid var(--gray-a6);
   background: var(--color-panel-solid, #fff);
   margin-bottom: var(--space-4);
+  ${mediaMaxQuery(MOBILE)} {
+    height: 72px;
+    padding: var(--space-4);
+  }
 `;
 
 const InfoWrapperSC = styled("div")`

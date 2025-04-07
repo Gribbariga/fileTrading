@@ -43,8 +43,7 @@ const NameWrapperSC = styled("div")`
 `;
 
 const TextSC = styled(Text)`
-  color: #000000;
-  opacity: 0.61;
+  color: rgba(0, 0, 0, 0.61);
 `
 
 

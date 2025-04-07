@@ -4,7 +4,7 @@ import { Login } from "src/features/Login/publicApi";
 
 export const LoginForm = () => {
   return (
-    <RegisterWrapperSC size={"3"} variant="surface">
+    <LoginWrapperSC size={"3"} variant="surface">
       <Heading
         align={"left"}
         mb={"5"}
@@ -15,8 +15,8 @@ export const LoginForm = () => {
         Войдите в аккаунт
       </Heading>
       <Login />
-    </RegisterWrapperSC>
+    </LoginWrapperSC>
   );
 };
 
-const { RegisterWrapperSC } = LoginFormStyle();
+const { LoginWrapperSC } = LoginFormStyle();

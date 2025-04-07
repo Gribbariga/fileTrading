@@ -64,7 +64,7 @@ export const FolderItem: FC<FolderItemProps> = ({
   const {isMobile} = useResize();
 
   return (
-    <CardSC to={`/storage/${folderId}`}>
+      <CardSC to={`/storage/${folderId}`}>
       <SegmentWrapperSC>
         <NameAndImgWrapperSC
           style={{

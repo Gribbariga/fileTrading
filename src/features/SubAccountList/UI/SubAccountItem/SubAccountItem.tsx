@@ -89,7 +89,7 @@ export const SubAccountItem: FC<ISubAccountItemProps> = ({
   return (
     <>
       <WrapperSC>
-        <FormSC onSubmit={handleSubmit(handleFormSubmit)}>
+      <FormSC onSubmit={handleSubmit(handleFormSubmit)}>
           <Text mb={"4"} style={{ display: "block" }}>
             Аккаунт #{number}
           </Text>

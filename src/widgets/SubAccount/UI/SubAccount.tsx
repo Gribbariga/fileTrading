@@ -21,7 +21,7 @@ export const SubAccount = () => {
   return (
     <>
       <BreadCrumbs />
-
+      <WrapperSC>
       <TitleWrapperSC>
         <Heading size={"6"} weight={"medium"}>
           Корпоративные аккаунты
@@ -32,8 +32,9 @@ export const SubAccount = () => {
         handleCanselCreate={handleCanselCreate}
         isCreate={isCreate}
       />
+      </WrapperSC>
     </>
   );
 };
 
-const { TitleWrapperSC } = SubAccountStyle();
+const { WrapperSC, TitleWrapperSC } = SubAccountStyle();

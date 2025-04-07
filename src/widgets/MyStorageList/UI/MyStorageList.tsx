@@ -8,6 +8,7 @@ export const MyStorageList = () => {
   return (
     <>
       <BreadCrumbs />
+      <WrapperSC>
       <HeaderSC>
         <Heading size={{
           initial: "5",
@@ -19,8 +20,9 @@ export const MyStorageList = () => {
         <CreateFolder />
       </HeaderSC>
       <FolderList />
+      </WrapperSC>
     </>
   );
 };
 
-const { HeaderSC } = MyStorageListStyle();
+const { HeaderSC, WrapperSC } = MyStorageListStyle();

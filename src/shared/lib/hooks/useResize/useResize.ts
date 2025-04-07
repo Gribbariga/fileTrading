@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LAPTOP, MOBILE, TABLE } from "shared/lib/Container/screenSize";
+import { LAPTOP, MOBILE, TABLE } from "src/shared/constant/screenSize";
 
 export const useResize = () => {
   const [width, setWidth] = useState(window.innerWidth);

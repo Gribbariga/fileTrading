@@ -1,3 +1,5 @@
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const StorageListWrapperSC = styled("div")`
@@ -17,6 +19,10 @@ const ListHeaderSC = styled("div")`
     var(--radius-none, 0px) var(--radius-none, 0px);
 
   background: var(--gray-a2);
+  ${mediaMaxQuery(MOBILE)} { 
+    padding: 0;
+  }
+  
 `;
 
 const SegmentWrapperSC = styled("div")`

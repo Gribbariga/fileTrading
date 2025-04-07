@@ -13,6 +13,9 @@ const ItemWrapperSC = styled("div")`
   align-self: stretch;
   border-bottom: 1px solid var(--gray-a6);
   background: white;
+  ${mediaMaxQuery(MOBILE)}{
+    padding: 12px 0px 12px 8px;
+  }
 `;
 
 const WrapperSC = styled('div')`
