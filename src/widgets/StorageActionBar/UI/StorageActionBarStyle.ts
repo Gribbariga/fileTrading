@@ -9,7 +9,7 @@ const StorageActionBarWrapperSC = styled("div")`
   width: 100%;
   padding-top: 20px;
   height: 60px;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
   ${mediaMaxQuery(MOBILE)} {
     height: 90px;
     flex-direction: column;
@@ -28,8 +28,15 @@ const ActionWrapperSC = styled("div")`
   justify-content: space-between;
   align-items: center;
 `;
+const HeadingAndButtonSC = styled('div')`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`
 
 export const StorageActionBarStyle = () => ({
   ActionWrapperSC,
+  HeadingAndButtonSC,
   StorageActionBarWrapperSC,
 });

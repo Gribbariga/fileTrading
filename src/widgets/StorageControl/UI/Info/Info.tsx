@@ -4,10 +4,8 @@ import { formattedData } from "shared/lib/helper/formattedData/formattedData.ts"
 import { Text } from "@radix-ui/themes";
 import { StorageDescription } from "src/features/StorageDescription/UI/StorageDescription.tsx";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
-import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
 export const Info = () => {
-  const { isMobile } = useResize();
   const { storage } = storageSlice((state) => state);
   const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
   let result: {
@@ -61,8 +59,6 @@ export const Info = () => {
     <>
       {storage && (
         <>
-        {!isMobile && (
-          <>
             <InfoWrapperSC>
             
               {result.map((item) => {
@@ -104,8 +100,5 @@ export const Info = () => {
         )}
         </>
       )}
-    </>
-  );
-};
 
 const { InfoWrapperSC, InfoItemSC } = InfoStyle();
