@@ -37,30 +37,29 @@ const JwtExpired = async (error: Error | AxiosError) => {
   return Promise.reject(error); // Отдаём дальше, если не наш случай
 };
 
-
 axiosBase.interceptors.response.use((config) => {
   return config;
 }, JwtExpired);
 export const axiosBaseAccount = axios.create({
   ...axiosBase.defaults,
-  baseURL:"/api/account",
+  baseURL: "https://filesharing-dev.ru/api/account",
 });
 export const axiosBaseStorage = axios.create({
   ...axiosBase.defaults,
-  baseURL:"/api/storage",
+  baseURL: "https://filesharing-dev.ru/api/storage",
 });
 export const axiosBaseSubscription = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/subscription",
+  baseURL: "https://filesharing-dev.ru/api/subscription",
 });
 export const axiosBasePayment = axios.create({
   ...axiosBase.defaults,
-  baseURL:"/api/payment",
+  baseURL: "https://filesharing-dev.ru/api/payment",
 });
 
 export const axiosBaseAuth = axios.create({
   ...axiosBase.defaults,
-  baseURL:"/api/auth",
+  baseURL: "https://filesharing-dev.ru/api/auth",
 });
 
 axiosBaseAuth.interceptors.response.use((config) => {
