@@ -24,7 +24,7 @@ export default defineConfig({
     port: 4517,
     proxy: {
       "/api": {
-        target: "http://217.25.93.134/api/",
+        target: "https://filesharing-dev.ru/api/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
