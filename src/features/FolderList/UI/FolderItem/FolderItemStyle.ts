@@ -29,9 +29,8 @@ const NameAndImgWrapperSC = styled("div")`
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  
   ${mediaMaxQuery(MOBILE)} { 
-    width: 100%;
+    /* width: 100%; */
   }
 `;
 

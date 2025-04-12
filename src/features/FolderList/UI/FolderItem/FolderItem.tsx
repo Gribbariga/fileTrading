@@ -66,13 +66,7 @@ export const FolderItem: FC<FolderItemProps> = ({
   return (
       <CardSC to={`/storage/${folderId}`}>
       <SegmentWrapperSC>
-        <NameAndImgWrapperSC
-          style={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
+        <NameAndImgWrapperSC>
           <Avatar
             color="gray"
             size={"4"}
@@ -81,7 +75,15 @@ export const FolderItem: FC<FolderItemProps> = ({
           />
           <NameWrapperSC>
             
-          <Text>Хранилище {name}</Text>
+          <Text
+          style={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            width:'75%',
+            display:'block',
+            whiteSpace:'nowrap'
+          }}
+          >Хранилище {name}</Text>
           {isMobile && (
             <TextSC>{time}</TextSC>
           ) }

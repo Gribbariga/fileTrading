@@ -44,6 +44,9 @@ const IconWrapperSC = styled("div")`
   justify-content: space-around;
   width: 100%;
   display: flex;
+  ${mediaMaxQuery(MOBILE)}{
+    /* max-width: 25%; */
+  }
 `;
 
 export const FileItemStyle = () => ({
