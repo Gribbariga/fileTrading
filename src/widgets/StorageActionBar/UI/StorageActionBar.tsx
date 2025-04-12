@@ -8,21 +8,18 @@ import { DeleteFolder } from "src/features/DeleteFolder/UI/DeleteFolder.tsx";
 import { StorageModal } from "src/features/StorageModal/PublicApi.ts";
 import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
-
 export const StorageActionBar = () => {
   const { storage, isGuest } = storageSlice((state) => state);
-  const {isMobile} = useResize();
+  const { isMobile } = useResize();
   return (
     <StorageActionBarWrapperSC>
       <HeadingAndButtonSC>
-      <Heading size={"6"} weight={"medium"} align={"left"}>
-        Хранилище {storage?.name}
+        <Heading size={isMobile ? "5" : "6"} weight={"medium"} align={"left"}>
+          Хранилище {storage?.name}
         </Heading>
-        {isMobile && (
-          <StorageModal/>
-        )}
+        {isMobile && <StorageModal />}
       </HeadingAndButtonSC>
-     
+
       <ActionWrapperSC>
         {!isGuest && (
           <>
@@ -41,4 +38,5 @@ export const StorageActionBar = () => {
   );
 };
 
-const { ActionWrapperSC, StorageActionBarWrapperSC, HeadingAndButtonSC } = StorageActionBarStyle();
+const { ActionWrapperSC, StorageActionBarWrapperSC, HeadingAndButtonSC } =
+  StorageActionBarStyle();

@@ -14,10 +14,11 @@ const TitleWrapperSC = styled("div")`
 
 const TabContentSC = styled("div")`
   height: 400px;
+  overflow: auto;
 `;
 
 export const StorageModalStyle = () => ({
-    TabContentSC,
-    DialogRootSC,
-    TitleWrapperSC
+  TabContentSC,
+  DialogRootSC,
+  TitleWrapperSC,
 });

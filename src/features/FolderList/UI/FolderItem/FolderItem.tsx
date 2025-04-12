@@ -1,4 +1,4 @@
-import { Avatar, Text } from "@radix-ui/themes";
+import { Avatar } from "@radix-ui/themes";
 import { FolderItemStyle } from "./FolderItemStyle.ts";
 import { ArchiveIcon } from "@radix-ui/react-icons";
 import { FC, useEffect, useRef, useState } from "react";
@@ -61,32 +61,24 @@ export const FolderItem: FC<FolderItemProps> = ({
     }, 1000);
   }, []);
 
-  const {isMobile} = useResize();
+  const { isMobile } = useResize();
 
   return (
-      <CardSC to={`/storage/${folderId}`}>
+    <CardSC to={`/storage/${folderId}`}>
       <SegmentWrapperSC>
         <NameAndImgWrapperSC>
           <Avatar
+            style={{
+              flex: `0 0 48px`,
+            }}
             color="gray"
             size={"4"}
             variant="soft"
             fallback={<ArchiveIcon />}
           />
           <NameWrapperSC>
-            
-          <Text
-          style={{
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            width:'75%',
-            display:'block',
-            whiteSpace:'nowrap'
-          }}
-          >Хранилище {name}</Text>
-          {isMobile && (
-            <TextSC>{time}</TextSC>
-          ) }
+            <NameSC>Хранилище {name}</NameSC>
+            {isMobile && <TextSC>{time}</TextSC>}
           </NameWrapperSC>
         </NameAndImgWrapperSC>
       </SegmentWrapperSC>
@@ -96,21 +88,22 @@ export const FolderItem: FC<FolderItemProps> = ({
             <TextSC>{(+size / 1024 / 1024).toFixed(2)} mb</TextSC>
           </SegmentWrapperSC>
           <SegmentWrapperSC>
-              <TextSC>{formattedData(createAt)}</TextSC>
+            <TextSC>{formattedData(createAt)}</TextSC>
           </SegmentWrapperSC>
           <SegmentWrapperSC>
             <TextSC>{time}</TextSC>
           </SegmentWrapperSC>
         </>
       )}
-     
     </CardSC>
   );
 };
 
-const {  
+const {
   TextSC,
   CardSC,
+  NameSC,
   NameWrapperSC,
   SegmentWrapperSC,
-  NameAndImgWrapperSC, } = FolderItemStyle();
+  NameAndImgWrapperSC,
+} = FolderItemStyle();

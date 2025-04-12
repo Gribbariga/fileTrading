@@ -1,6 +1,5 @@
 import { Logo } from "shared/Logo/Logo";
 import { HeaderStyle } from "./HeadersStyle";
-import { GlobeIcon, QuestionMarkIcon } from "@radix-ui/react-icons";
 import { ProfileConfig } from "./ProfileConfig/ProfileConfig";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 
@@ -11,7 +10,7 @@ export const Header = () => {
     <HeaderSC>
       <Logo />
       <MenuWrapperSC>
-        <IcomButtonSC
+        {/* <IcomButtonSC
           size={"3"}
           variant="outline"
           color="orange"
@@ -28,7 +27,7 @@ export const Header = () => {
           loading={false}
         >
           <GlobeIcon />
-        </IcomButtonSC>
+        </IcomButtonSC> */}
         {subscribeStatus?.name !== "Unauthorized" && (
           <>
             <ProfileConfig />
@@ -39,4 +38,4 @@ export const Header = () => {
   );
 };
 
-const { HeaderSC, IcomButtonSC, MenuWrapperSC } = HeaderStyle();
+const { HeaderSC, MenuWrapperSC } = HeaderStyle();

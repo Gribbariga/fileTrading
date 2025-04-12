@@ -18,8 +18,6 @@ const HeaderSC = styled("header")`
 `;
 
 const MenuWrapperSC = styled("div")`
-  max-width: 140px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

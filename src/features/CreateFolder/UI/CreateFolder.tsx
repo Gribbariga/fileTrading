@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice";
 import { createFolder } from "src/shared/API/storage/folder/api";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize";
 import { v4 as uuidv4 } from "uuid";
 
 export const CreateFolder = () => {
+  const { isMobile } = useResize();
   const { tariffs, subscribeStatus } = subscriptionSlice((state) => state);
   const navigation = useNavigate();
 
@@ -28,7 +30,7 @@ export const CreateFolder = () => {
       <ButtonUI
         onClick={handleClick}
         highContrast={false}
-        size={"3"}
+        size={isMobile ? "2" : "3"}
         variant="soft"
       >
         Создать хранилище

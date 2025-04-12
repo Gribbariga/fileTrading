@@ -10,23 +10,22 @@ export const TabsList = () => {
     <TabsWrapperSC>
       {!isMobile && (
         <ListSC size={"2"}>
-        <TriggetSC $isGuest={isGuest} value="info">
-          Инфо
-        </TriggetSC>
+          <TriggetSC $isGuest={isGuest} value="info">
+            Инфо
+          </TriggetSC>
 
-{!isGuest && (
-  <>
-    <TriggetSC $isGuest={isGuest} value="settings">
-      Настройки
-    </TriggetSC>
-    <TriggetSC $isGuest={isGuest} value="link">
-      Ссылка
-    </TriggetSC>
-  </>
-)}
-</ListSC>
+          {!isGuest && (
+            <>
+              <TriggetSC $isGuest={isGuest} value="settings">
+                Настройки
+              </TriggetSC>
+              <TriggetSC $isGuest={isGuest} value="link">
+                Ссылка
+              </TriggetSC>
+            </>
+          )}
+        </ListSC>
       )}
-     
     </TabsWrapperSC>
   );
 };

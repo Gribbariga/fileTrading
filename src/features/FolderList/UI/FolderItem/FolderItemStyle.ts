@@ -20,7 +20,7 @@ const CardSC = styled(Link)`
 
 const SegmentWrapperSC = styled("div")`
   width: 25%;
-  ${mediaMaxQuery(MOBILE)} { 
+  ${mediaMaxQuery(MOBILE)} {
     width: 100%;
   }
 `;
@@ -29,13 +29,23 @@ const NameAndImgWrapperSC = styled("div")`
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  ${mediaMaxQuery(MOBILE)} { 
+  ${mediaMaxQuery(MOBILE)} {
     /* width: 100%; */
   }
 `;
 
+const NameSC = styled(Text)`
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+`;
+
 const NameWrapperSC = styled("div")`
-  ${mediaMaxQuery(MOBILE)} { 
+  flex: 1 1 auto;
+  overflow: hidden;
+  ${mediaMaxQuery(MOBILE)} {
     display: flex;
     flex-direction: column;
   }
@@ -43,13 +53,12 @@ const NameWrapperSC = styled("div")`
 
 const TextSC = styled(Text)`
   color: rgba(0, 0, 0, 0.61);
-`
-
-
+`;
 
 export const FolderItemStyle = () => ({
   TextSC,
   CardSC,
+  NameSC,
   NameWrapperSC,
   SegmentWrapperSC,
   NameAndImgWrapperSC,

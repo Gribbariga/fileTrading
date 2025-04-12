@@ -87,11 +87,11 @@ export const FileItem: FC<IFileItemProps> = ({
     }
   }, []);
 
-  const {isMobile} = useResize();
+  const { isMobile } = useResize();
 
   return (
     <WrapperSC>
-    <ItemWrapperSC>
+      <ItemWrapperSC>
         <SegmentWrapperSC
           style={{
             whiteSpace: "nowrap",
@@ -113,44 +113,59 @@ export const FileItem: FC<IFileItemProps> = ({
             }
           />
           <TextWrapperSC>
-
-          <Text
-            style={{
-              whiteSpace: "nowrap",
-            }}
-            size={"2"}
-            weight={"medium"}
-            align={"left"}
-            highContrast={true}
-          >
-            {name}
-          </Text>
-          {isMobile &&(
-          <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-            {(size / 1024 / 1024).toFixed(1)}MB
-          </Text>
-        )}
-
-          </TextWrapperSC>
-          
-
-
-        </SegmentWrapperSC>
-        <SegmentWrapperSC>
-        {!isMobile &&(
-          <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-            {(size / 1024 / 1024).toFixed(1)}MB
-          </Text>
-        )}
-        </SegmentWrapperSC>
-        <SegmentWrapperSC>
-            {!isMobile && (
-              <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-                        {formattedDate}
+            <Text
+              style={{
+                whiteSpace: "nowrap",
+              }}
+              size={"2"}
+              weight={"medium"}
+              align={"left"}
+              highContrast={true}
+            >
+              {name}
+            </Text>
+            {isMobile && (
+              <Text
+                size={"2"}
+                weight={"regular"}
+                align={"left"}
+                highContrast={false}
+              >
+                {(size / 1024 / 1024).toFixed(1)}MB
               </Text>
             )}
-          
+          </TextWrapperSC>
         </SegmentWrapperSC>
+        {!isMobile && (
+          <>
+            <SegmentWrapperSC>
+              <Text
+                size={"2"}
+                weight={"regular"}
+                align={"left"}
+                highContrast={false}
+              >
+                {(size / 1024 / 1024).toFixed(1)}MB
+              </Text>
+            </SegmentWrapperSC>
+          </>
+        )}
+
+        {!isMobile && (
+          <>
+            <SegmentWrapperSC>
+              <Text
+                size={"2"}
+                weight={"regular"}
+                align={"left"}
+                highContrast={false}
+              >
+                {formattedDate}
+              </Text>
+            </SegmentWrapperSC>
+          </>
+        )}
+
         <IconWrapperSC>
           <DownloadFile fileName={name} fileDbId={fileDbId} />
           {!isGuest && (
@@ -161,8 +176,13 @@ export const FileItem: FC<IFileItemProps> = ({
         </IconWrapperSC>
       </ItemWrapperSC>
     </WrapperSC>
-    
   );
 };
 
-  const { WrapperSC, TextWrapperSC, IconWrapperSC, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();
+const {
+  WrapperSC,
+  TextWrapperSC,
+  IconWrapperSC,
+  ItemWrapperSC,
+  SegmentWrapperSC,
+} = FileItemStyle();
