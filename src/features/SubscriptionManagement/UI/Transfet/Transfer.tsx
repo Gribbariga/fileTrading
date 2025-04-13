@@ -147,15 +147,14 @@ export const Transfer: FC<ITransferProps> = ({
             <ButtonUI onClick={handleCansel} size={"4"} variant="outline">
               Назад
             </ButtonUI>
-            <ButtonUI
+            <ButtonUISC
               loading={isLoading}
-              style={{ maxWidth: "264px", width: "100%" }}
               size={"4"}
               variant="solid"
               onClick={handleCheckPayment}
             >
               Проверить платёж
-            </ButtonUI>
+            </ButtonUISC>
           </ButtoGroupSC>
         </PaddingWrapperSC>
       </CardSC>
@@ -163,4 +162,5 @@ export const Transfer: FC<ITransferProps> = ({
   );
 };
 
-const { LineSC, CardSC, ButtoGroupSC, PaddingWrapperSC } = TransferStyle();
+const { LineSC, CardSC, ButtonUISC, ButtoGroupSC, PaddingWrapperSC } =
+  TransferStyle();
