@@ -3,7 +3,7 @@ import { TabsSubscribeContentStyle } from "./TabsSubscribeContentStyle.ts";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { useNavigate } from "react-router-dom";
 import { subscriptionSlice } from "src/entities/subscription/model/subcriptionSlice.ts";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getAllFolder } from "src/shared/API/storage/folder/api.ts";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 
@@ -33,7 +33,7 @@ export const TabsSubscribeContent = () => {
       name: "Месяцев осталось:",
       value: subscribeStatus?.duration || 0 < 0 ? 0 : subscribeStatus?.duration,
     },
-    { name: "Заполнено:", value: `${percent}%` },
+    { name: "Заполнено:", value: `${percent.toFixed(2)}%` },
   ];
 
   useEffect(() => {
@@ -51,13 +51,13 @@ export const TabsSubscribeContent = () => {
         .catch(() => {});
     }
   }, [tariffs, subscribeStatus]);
-
+  console.log(percent.toFixed(2));
   return (
     <>
       <InfoListSC>
         {infoItemSet.map((item) => {
           return (
-            <>
+            <Fragment key={item.name}>
               <InfoItemWrapperSC>
                 <Text size={"3"} weight={"medium"}>
                   {item.name}
@@ -66,11 +66,11 @@ export const TabsSubscribeContent = () => {
                   {item.value}
                 </Text>
               </InfoItemWrapperSC>
-            </>
+            </Fragment>
           );
         })}
       </InfoListSC>
-      <Progress size={"1"} variant="classic" value={75} mb={"4"} />
+      <Progress size={"1"} variant="classic" value={percent} mb={"4"} />
       <ButtonUI
         onClick={() => navigation("/tariff")}
         size={"3"}

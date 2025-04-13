@@ -1,4 +1,7 @@
-import { Text } from "@radix-ui/themes";
+import { Heading, Text } from "@radix-ui/themes";
+import { ButtonUI } from "src/shared/ButtonUI/ButtonUI";
+import { MOBILE } from "src/shared/constant/screenSize";
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
 import styled from "styled-components";
 
 const CardSC = styled("div")`
@@ -34,11 +37,21 @@ const InfoLineSC = styled("div")`
 
 const InfoLineTitleSC = styled(Text)`
   color: var(--Colors-Neutral-Neutral-Alpha-11, rgba(0, 0, 0, 0.61));
+  ${mediaMaxQuery(MOBILE)} {
+    font-size: 16px;
+  }
+  ${mediaMaxQuery(420)} {
+    font-size: 14px;
+  }
+  ${mediaMaxQuery(380)} {
+    font-size: 12px;
+  }
 `;
 
 const ButtoGroupSC = styled("div")`
   display: flex;
   justify-content: space-between;
+  gap: 12px;
 `;
 
 const PaddingWrapperSC = styled("div")`
@@ -49,9 +62,45 @@ const PaddingWrapperSC = styled("div")`
   justify-content: center;
 `;
 
+const ButtonUISC = styled(ButtonUI)`
+  max-width: 264px;
+  width: 100%;
+  ${mediaMaxQuery(MOBILE)} {
+    width: auto;
+    flex: 1 1 0;
+  }
+`;
+
+const HeadingSC = styled(Heading)`
+  ${mediaMaxQuery(MOBILE)} {
+    font-size: 16px;
+  }
+  ${mediaMaxQuery(420)} {
+    font-size: 14px;
+  }
+  ${mediaMaxQuery(380)} {
+    font-size: 12px;
+  }
+`;
+
+const TextSC = styled(Text)`
+  ${mediaMaxQuery(MOBILE)} {
+    font-size: 16px;
+  }
+  ${mediaMaxQuery(420)} {
+    font-size: 14px;
+  }
+  ${mediaMaxQuery(380)} {
+    font-size: 12px;
+  }
+`;
+
 export const ConfirmStyle = () => ({
   LineSC,
   CardSC,
+  TextSC,
+  HeadingSC,
+  ButtonUISC,
   InfoListSC,
   InfoLineSC,
   ButtoGroupSC,
