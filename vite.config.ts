@@ -28,7 +28,6 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
-      
     },
   },
 
@@ -36,15 +35,15 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return 'vendor';
+          if (id.includes("node_modules")) {
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
           }
-          if (id.includes('src/components')) {
-            return 'components';
-          }
-          return null;
-        }
-      }
-    }
+        },
+      },
+    },
   },
 });
