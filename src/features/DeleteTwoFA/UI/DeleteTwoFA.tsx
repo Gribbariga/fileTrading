@@ -1,6 +1,6 @@
 import { userSlice } from "src/entities/user/model/userSlice";
+import { DeleteTwoFAStyle } from "src/features/DeleteTwoFA/UI/DeleteTwoFAStyle";
 import { deleteKeyTwoFa } from "src/shared/API/auth/2FA/2FA";
-import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { setCookie } from "src/shared/lib/helper/setCookie/setCookie";
 
 export const DeleteTwoFA = () => {
@@ -15,7 +15,7 @@ export const DeleteTwoFA = () => {
 
   return (
     <>
-      <ButtonUI
+      <ButtonUISC
         onClick={handleClick}
         type="button"
         size={"3"}
@@ -23,7 +23,9 @@ export const DeleteTwoFA = () => {
         mb={"3"}
       >
         Отключить Google Authentificator
-      </ButtonUI>
+      </ButtonUISC>
     </>
   );
 };
+
+const { ButtonUISC } = DeleteTwoFAStyle();
