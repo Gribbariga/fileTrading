@@ -89,7 +89,7 @@ export const SubAccountItem: FC<ISubAccountItemProps> = ({
   return (
     <>
       <WrapperSC>
-      <FormSC onSubmit={handleSubmit(handleFormSubmit)}>
+        <FormSC onSubmit={handleSubmit(handleFormSubmit)}>
           <Text mb={"4"} style={{ display: "block" }}>
             Аккаунт #{number}
           </Text>
@@ -152,7 +152,7 @@ export const SubAccountItem: FC<ISubAccountItemProps> = ({
                   required: "Заполните все обязательные поля",
                   maxLength: { value: 250, message: "Логин слишком длинный" },
                 })}
-                placeholder="Введите логин"
+                placeholder="Введите пароль"
               >
                 <TextField.Slot side="right">
                   {isChange || isCreate ? (

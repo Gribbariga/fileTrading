@@ -5,7 +5,7 @@ const WrapperSC = styled("div")`
   display: flex;
   /* justify-content: space-between; */
   flex-wrap: wrap;
-  gap: 12px;
+  justify-content: space-between;
 `;
 
 export const SubAccountListStyle = () => ({

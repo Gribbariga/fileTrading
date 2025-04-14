@@ -4,12 +4,20 @@ import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const WrapperSC = styled(Card)`
-  max-width: 404px;
-  width: 34%;
+  /* max-width: 444px; */
+  flex: 0 0 32.64%;
+  margin-bottom: 16px;
+  ${mediaMaxQuery(800)} {
+    flex: 0 0 49%;
+  }
+  /* ${mediaMaxQuery(630)} {
+    flex: 0 0 100%;
+  } */
   ${mediaMaxQuery(MOBILE)} {
-    max-width: 393px;
-    width: 100%;
+    flex: 0 0 100%;
     height: 308px;
+    max-width: 100%;
+    margin-bottom: 24px;
   }
 `;
 

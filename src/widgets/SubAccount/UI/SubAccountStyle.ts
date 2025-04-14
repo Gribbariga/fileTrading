@@ -8,7 +8,7 @@ const TitleWrapperSC = styled("div")`
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-5);
-  ${mediaMaxQuery(MOBILE)} {
+  ${mediaMaxQuery(550)} {
     flex-direction: column;
     align-items: flex-start;
     max-width: 361px;
@@ -16,9 +16,9 @@ const TitleWrapperSC = styled("div")`
   }
 `;
 
-const WrapperSC = styled('div')`
-  ${mediaMaxQuery(MOBILE)}{
-    padding: 0 16px;
+const WrapperSC = styled("div")`
+  ${mediaMaxQuery(MOBILE)} {
+    padding: 0 8px;
   }
 `;
 

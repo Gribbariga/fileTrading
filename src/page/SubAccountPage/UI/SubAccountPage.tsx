@@ -5,9 +5,7 @@ import { SubAccount } from "src/widgets/SubAccount/publicApi";
 const SubAccountPage = () => {
   return (
     <Layout>
-      <Container maxWidth={1357}>
-        <SubAccount />
-      </Container>
+      <SubAccount />
     </Layout>
   );
 };
