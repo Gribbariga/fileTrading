@@ -7,10 +7,17 @@ import {
 } from "./model";
 
 export const createTwoFa = async () => {
-  return await axiosBaseAuth.post("/two_fa/create", {
-    responseType: "blob",
-    contentType: "image/png",
-  });
+  return await axiosBaseAuth.post(
+    "/two_fa/create",
+    {},
+    {
+      responseType: "arraybuffer",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    }
+  );
 };
 
 export const verifyTwoFa = (arg: IVerifyKey2FAArg) => {

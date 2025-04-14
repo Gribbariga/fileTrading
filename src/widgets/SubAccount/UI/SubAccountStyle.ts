@@ -1,3 +1,5 @@
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const TitleWrapperSC = styled("div")`
@@ -6,6 +8,18 @@ const TitleWrapperSC = styled("div")`
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-5);
+  ${mediaMaxQuery(550)} {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 361px;
+    gap: 24px;
+  }
 `;
 
-export const SubAccountStyle = () => ({ TitleWrapperSC });
+const WrapperSC = styled("div")`
+  ${mediaMaxQuery(MOBILE)} {
+    padding: 0 8px;
+  }
+`;
+
+export const SubAccountStyle = () => ({ WrapperSC, TitleWrapperSC });

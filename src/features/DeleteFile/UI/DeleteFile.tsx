@@ -24,6 +24,10 @@ export const DeleteFile: FC<IDeleteFileProps> = ({ fileDbId }) => {
 
   return (
     <IconButtonUI
+      style={{
+        width: "24px",
+        height: "24px",
+      }}
       onClick={handleDeleteFile}
       size={"4"}
       variant="ghost"

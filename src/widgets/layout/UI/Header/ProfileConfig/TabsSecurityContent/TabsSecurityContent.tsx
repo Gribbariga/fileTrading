@@ -1,6 +1,6 @@
 import { Dialog, Text } from "@radix-ui/themes";
 import { ChangeAccountPassword } from "src/features/ChangeAccountPassword/publicApi.ts";
-import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
+// import { ButtonUI } from "src/shared/ButtonUI/ButtonUI.tsx";
 import { ConnectGoogleTwoFA } from "./ConnectGoogleTwoFA/ConnectGoogleTwoFA";
 import { TabsSecurityContentStyle } from "./TabsSecurityContentStyle";
 import { userSlice } from "src/entities/user/model/userSlice";
@@ -23,9 +23,9 @@ export const TabsSecurityContent = () => {
         {!two_fa && (
           <Dialog.Root>
             <Dialog.Trigger>
-              <ButtonUI size={"3"} variant="surface" mb={"3"}>
+              <ButtonUISC size={"3"} variant="surface" mb={"3"}>
                 Подключить Google Authentificator
-              </ButtonUI>
+              </ButtonUISC>
             </Dialog.Trigger>
             <DialogContentSC>
               <ConnectGoogleTwoFA />
@@ -38,4 +38,4 @@ export const TabsSecurityContent = () => {
   );
 };
 
-const { DialogContentSC } = TabsSecurityContentStyle();
+const { ButtonUISC, DialogContentSC } = TabsSecurityContentStyle();

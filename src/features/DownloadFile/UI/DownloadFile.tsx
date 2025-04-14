@@ -44,6 +44,10 @@ export const DownloadFile: FC<IDownloadFileProps> = ({
 
   return (
     <IconButtonUI
+      style={{
+        width: "24px",
+        height: "24px",
+      }}
       size={"4"}
       variant="ghost"
       highContrast={false}

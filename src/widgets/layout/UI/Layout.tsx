@@ -5,6 +5,8 @@ import { LayoutStyle } from "./LayoutStyle";
 import { styled } from "styled-components";
 import { ButtonUI } from "src/shared/ButtonUI/ButtonUI";
 import { HomeIcon } from "@radix-ui/react-icons";
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -81,6 +83,9 @@ const NavWrapperSC = styled("div")`
   width: 100%;
   padding: 8px 83px;
   background: var(--Colors-Neutral-Neutral-3, #f0f0f0);
+  ${mediaMaxQuery(MOBILE)}{
+    padding: 8px 20px;
+  }
 `;
 
 const NavContainerSC = styled("div")`

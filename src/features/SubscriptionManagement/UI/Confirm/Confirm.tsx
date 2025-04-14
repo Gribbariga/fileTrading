@@ -81,7 +81,7 @@ export const Confirm: FC<IConfirm> = ({
         });
     }
   };
-
+  console.log(subscribeStatus?.duration);
   return (
     <>
       <CardSC>
@@ -99,18 +99,21 @@ export const Confirm: FC<IConfirm> = ({
               <InfoLineTitleSC size={"5"} weight={"medium"}>
                 Срок:
               </InfoLineTitleSC>
-              <Text size={"5"} weight={"medium"} highContrast={true}>
+              <TextSC size={"5"} weight={"medium"} highContrast={true}>
                 {daysLeft} ⮕{" "}
                 {!isExtension
                   ? subscribeStatus?.duration
-                  : monthNumber + (subscribeStatus?.duration || 0)}
-              </Text>
+                  : monthNumber +
+                    (subscribeStatus?.duration === -1
+                      ? 0
+                      : subscribeStatus?.duration || 0)}
+              </TextSC>
             </InfoLineSC>
             <InfoLineSC>
               <InfoLineTitleSC size={"5"} weight={"medium"}>
                 Тариф:
               </InfoLineTitleSC>
-              <Text size={"5"} weight={"medium"} highContrast={true}>
+              <TextSC size={"5"} weight={"medium"} highContrast={true}>
                 {tariff[subscribeStatus?.name as TariffNames] !==
                 tariff[selectTariffName]
                   ? `${tariff[subscribeStatus?.name as TariffNames]} ⮕${" "} ${
@@ -119,35 +122,35 @@ export const Confirm: FC<IConfirm> = ({
                   : tariff[selectTariffName]}
 
                 {}
-              </Text>
+              </TextSC>
             </InfoLineSC>
             <InfoLineSC>
               <InfoLineTitleSC size={"5"} weight={"medium"}>
                 Сумма:
               </InfoLineTitleSC>
-              <Text size={"5"} weight={"medium"} highContrast={true}>
+              <TextSC size={"5"} weight={"medium"} highContrast={true}>
                 ${price.toFixed(2)}
-              </Text>
+              </TextSC>
             </InfoLineSC>
             <InfoLineSC>
               <InfoLineTitleSC size={"5"} weight={"medium"}>
                 Скидка:
               </InfoLineTitleSC>
-              <Text size={"5"} weight={"medium"} highContrast={true}>
+              <TextSC size={"5"} weight={"medium"} highContrast={true}>
                 -{sale}%
-              </Text>
+              </TextSC>
             </InfoLineSC>
           </InfoListSC>
         </PaddingWrapperSC>
         <LineSC />
         <PaddingWrapperSC>
           <InfoLineSC>
-            <Text size={"5"} weight={"medium"}>
+            <TextSC size={"5"} weight={"medium"}>
               Итого:
-            </Text>
-            <Heading size={"6"} weight={"bold"} highContrast={true} as="h2">
+            </TextSC>
+            <HeadingSC size={"6"} weight={"bold"} highContrast={true} as="h2">
               ${totalPrice}
-            </Heading>
+            </HeadingSC>
           </InfoLineSC>
         </PaddingWrapperSC>
 
@@ -157,15 +160,14 @@ export const Confirm: FC<IConfirm> = ({
             <ButtonUI onClick={handleBack} size={"4"} variant="outline">
               Назад
             </ButtonUI>
-            <ButtonUI
+            <ButtonUISC
               loading={isLoading}
               onClick={handleCreatePayment}
-              style={{ maxWidth: "264px", width: "100%" }}
               size={"4"}
               variant="solid"
             >
               Продолжить
-            </ButtonUI>
+            </ButtonUISC>
           </ButtoGroupSC>
         </PaddingWrapperSC>
       </CardSC>
@@ -176,6 +178,9 @@ export const Confirm: FC<IConfirm> = ({
 const {
   LineSC,
   CardSC,
+  TextSC,
+  HeadingSC,
+  ButtonUISC,
   InfoListSC,
   InfoLineSC,
   ButtoGroupSC,

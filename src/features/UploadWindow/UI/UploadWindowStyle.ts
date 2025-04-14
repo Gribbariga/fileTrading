@@ -1,6 +1,8 @@
 import { headerDesktopHeight } from "shared/constant/headerSize";
 import { ZIndexEight, ZIndexNine } from "shared/constant/z-index";
-import styled from "styled-components";
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
+import styled from "styled-components"; 
 
 const UploadWrapperSC = styled("div")<{ $screenHeight: number }>`
   width: 100%;
@@ -14,6 +16,7 @@ const UploadWrapperSC = styled("div")<{ $screenHeight: number }>`
 const DropZoneSC = styled("div")<{
   $screenHeight: number;
   $screenWidth: number;
+  
 }>`
   display: flex;
   justify-content: center;
@@ -61,6 +64,10 @@ const WindowWrapperSC = styled("div")`
 
   box-shadow: var(--shadow-5);
   z-index: ${ZIndexNine};
+  ${mediaMaxQuery(MOBILE)} { 
+    max-width: 360px;
+    width: 100%;
+  }
 `;
 
 const FileUploadBaseSC = styled("div")`

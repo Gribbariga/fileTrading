@@ -59,46 +59,46 @@ export const Info = () => {
     <>
       {storage && (
         <>
-          <InfoWrapperSC>
-            {result.map((item) => {
-              if (!item.isHidden) {
-                return (
-                  <InfoItemSC key={item.name}>
-                    <Text
-                      size={"3"}
-                      weight={"medium"}
-                      align={"left"}
-                      highContrast={false}
-                    >
-                      {item.name}
-                    </Text>
-                    <Text
-                      size={"3"}
-                      weight={"medium"}
-                      align={"right"}
-                      highContrast={true}
-                    >
-                      {item.value}
-                    </Text>
-                  </InfoItemSC>
-                );
-              }
-            })}
-          </InfoWrapperSC>
-          <Text
-            size={"3"}
-            weight={"medium"}
-            align={"left"}
-            highContrast={true}
-            mb={"-8"}
-          >
-            Описание хранилища
-          </Text>
-          <StorageDescription />
+            <InfoWrapperSC>
+            
+              {result.map((item) => {
+               if (!item.isHidden) {
+               return (
+            <InfoItemSC key={item.name}>
+              <Text
+                size={"3"}
+                weight={"medium"}
+                align={"left"}
+                highContrast={false}
+              >
+                {item.name}
+              </Text>
+              <Text
+                size={"3"}
+                weight={"medium"}
+                align={"right"}
+                highContrast={true}
+              >
+                {item.value}
+              </Text>
+            </InfoItemSC>
+          );
+        }
+      })}
+      </InfoWrapperSC>
+         <Text
+         size={"3"}
+         weight={"medium"}
+         align={"left"}
+         highContrast={true}
+         mb={"-8"}
+       >
+         Описание хранилища
+       </Text>
+       <StorageDescription />
+       </>
+        )}
         </>
       )}
-    </>
-  );
-};
 
 const { InfoWrapperSC, InfoItemSC } = InfoStyle();

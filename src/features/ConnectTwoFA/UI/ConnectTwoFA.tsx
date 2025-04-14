@@ -18,63 +18,16 @@ export const ConnectTwoFA = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    createTwoFa().then(async (response) => {
-      setTwoFaKey(response.headers["two-fa-key"]);
-      console.log(response);
-      const toBase64 = (binary: string) => {
-        const bytes = new Uint8Array(binary.length);
-        for (let i = 0; i < binary.length; i++) {
-          bytes[i] = binary.charCodeAt(i);
-        }
-        const base64String = btoa(String.fromCharCode(...bytes));
-        return base64String;
-      };
+    createTwoFa().then((response) => {
+      const twoFaKey = response.headers["two-fa-key"];
 
-      const base64 = toBase64(response.data);
-      console.log(base64);
+      const byteArray = new Uint8Array(response.data);
+      const base64 = btoa(
+        byteArray.reduce((data, byte) => data + String.fromCharCode(byte), "")
+      );
+
       setImgUrl(`data:image/png;base64,${base64}`);
-      // console.log(response);
-      // const binaryLen = response.data.length;
-      // const bytes = new Uint8Array(binaryLen);
-      // for (let i = 0; i < binaryLen; i++) {
-      //   bytes[i] = response.data.charCodeAt(i);
-      // }
-      // // // Создаем Blob из массива
-      // const blob = new Blob([bytes], { type: "image/png" }); // Указываем правильный MIME тип
-      // // console.log(blob);
-      // const url = URL.createObjectURL(blob);
-      // setImgUrl(url);
-      // let buffer = new TextEncoder().encode(response.data);
-      // // Преобразуем байты в строку (используя UTF-8)
-      // let binaryString = "";
-      // for (let i = 0; i < buffer.length; i++) {
-      //   binaryString += String.fromCharCode(buffer[i]);
-      // }
-
-      // const res = btoa(binaryString);
-
-      // setImgUrl(res);
-      // const binaryLen = response.data.length;
-      // const bytes64 = new Uint8Array(binaryLen);
-      // for (let i = 0; i < binaryLen; i++) {
-      //   bytes64[i] = response.data.charCodeAt(i) & 0xff; // Преобразуем в 8-битные значения
-      // }
-
-      // // Преобразуем Uint8Array в строку Base64
-      // const base64String = btoa(String.fromCharCode.apply(null, bytes64));
-
-      // const binaryString = window.atob(base64String); // Декодируем Base64 в бинарную строку
-      // const len = binaryString.length;
-      // const bytes = new Uint8Array(len);
-
-      // for (let i = 0; i < len; i++) {
-      //   bytes[i] = binaryString.charCodeAt(i);
-      // }
-
-      // const blob = new Blob([bytes], { type: "application/octet-stream" }); //
-      // console.log(blob);
-      // const url = URL.createObjectURL(blob);
-      // setImgUrl(url);
+      setTwoFaKey(twoFaKey);
     });
   }, []);
   console.log(imgUrl);
@@ -110,6 +63,7 @@ export const ConnectTwoFA = () => {
       });
   };
   console.log(imgUrl);
+
   return (
     <FormSC>
       <Text size={"3"} weight={"medium"} align={"left"} mb={"4"}>

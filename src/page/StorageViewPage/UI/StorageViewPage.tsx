@@ -82,6 +82,7 @@ const ContentWrapperSC = styled("div")`
   max-width: 1357px;
   display: flex;
   margin: 0 auto;
+  gap: 16px;
   justify-content: space-between;
 `;
 

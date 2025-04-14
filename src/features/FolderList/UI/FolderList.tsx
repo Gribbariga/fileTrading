@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { getAllFolder } from "src/shared/API/storage/folder/api.ts";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { FolderItem } from "./FolderItem/FolderItem.tsx";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
 export const FolderList = () => {
+  const {isMobile} = useResize();
   const { allFolder, setAllFolder } = storageSlice((state) => state);
   const [isLoading, setIsLoading] = useState(false);
   const headerText = ["Имя", "Размер", "Создано", "Срок хранения"];
@@ -26,24 +28,28 @@ export const FolderList = () => {
 
   return (
     <>
-      <ListHeaderSC>
-        {headerText.map((item) => {
-          return (
-            <>
-              <ListHeaderSegmentWrapperSC>
-                <Text
-                  size={"2"}
-                  weight={"regular"}
-                  align={"left"}
-                  highContrast={false}
-                >
-                  {item}
-                </Text>
-              </ListHeaderSegmentWrapperSC>
-            </>
-          );
-        })}
-      </ListHeaderSC>
+    {!isMobile && (
+       <ListHeaderSC>
+       {headerText.map((item) => {
+         return (
+           <>
+             <ListHeaderSegmentWrapperSC>
+               <Text
+                 size={"2"}
+                 weight={"regular"}
+                 align={"left"}
+                 highContrast={false}
+               >
+                 {item}
+               </Text>
+             </ListHeaderSegmentWrapperSC>
+           </>
+         );
+       })}
+     </ListHeaderSC>
+
+    )}
+     
       <ScrollArea>
         {isLoading &&
           skeletonNumber.map((item) => {

@@ -6,6 +6,7 @@ import { DeleteFile } from "src/features/DeleteFile/UI/DeleteFile.tsx";
 import { FileIcon } from "@radix-ui/react-icons";
 import { storageSlice } from "src/entities/storage/model/storageSlice.ts";
 import { checkImg } from "src/shared/lib/helper/checkImg/checkImg.ts";
+import { useResize } from "src/shared/lib/hooks/useResize/useResize.ts";
 
 interface IFileItemProps {
   fileDbId: number;
@@ -86,61 +87,102 @@ export const FileItem: FC<IFileItemProps> = ({
     }
   }, []);
 
-  return (
-    <ItemWrapperSC>
-      <SegmentWrapperSC
-        style={{
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
-      >
-        <Avatar
-          size={"4"}
-          variant="soft"
-          color="gray"
-          highContrast={false}
-          fallback={
-            previewImg ? (
-              <img src={`data:image/jpg;base64,${previewImg}`} />
-            ) : (
-              <FileIcon />
-            )
-          }
-        />
+  const { isMobile } = useResize();
 
-        <Text
+  return (
+    <WrapperSC>
+      <ItemWrapperSC>
+        <SegmentWrapperSC
           style={{
             whiteSpace: "nowrap",
+            overflow: "visible",
+            textOverflow: "ellipsis",
           }}
-          size={"2"}
-          weight={"medium"}
-          align={"left"}
-          highContrast={true}
         >
-          {name}
-        </Text>
-      </SegmentWrapperSC>
-      <SegmentWrapperSC>
-        <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-          {(size / 1024 / 1024).toFixed(1)}MB
-        </Text>
-      </SegmentWrapperSC>
-      <SegmentWrapperSC>
-        <Text size={"2"} weight={"regular"} align={"left"} highContrast={false}>
-          {formattedDate}
-        </Text>
-      </SegmentWrapperSC>
-      <IconWrapperSC>
-        <DownloadFile fileName={name} fileDbId={fileDbId} />
-        {!isGuest && (
+          <Avatar
+            size={"4"}
+            variant="soft"
+            color="gray"
+            highContrast={false}
+            fallback={
+              previewImg ? (
+                <img src={`data:image/jpg;base64,${previewImg}`} />
+              ) : (
+                <FileIcon />
+              )
+            }
+          />
+          <TextWrapperSC>
+            <Text
+              style={{
+                whiteSpace: "nowrap",
+              }}
+              size={"2"}
+              weight={"medium"}
+              align={"left"}
+              highContrast={true}
+            >
+              {name}
+            </Text>
+            {isMobile && (
+              <Text
+                size={"2"}
+                weight={"regular"}
+                align={"left"}
+                highContrast={false}
+              >
+                {(size / 1024 / 1024).toFixed(1)}MB
+              </Text>
+            )}
+          </TextWrapperSC>
+        </SegmentWrapperSC>
+        {!isMobile && (
           <>
-            <DeleteFile fileDbId={fileDbId} />
+            <SegmentWrapperSC>
+              <Text
+                size={"2"}
+                weight={"regular"}
+                align={"left"}
+                highContrast={false}
+              >
+                {(size / 1024 / 1024).toFixed(1)}MB
+              </Text>
+            </SegmentWrapperSC>
           </>
         )}
-      </IconWrapperSC>
-    </ItemWrapperSC>
+
+        {!isMobile && (
+          <>
+            <SegmentWrapperSC>
+              <Text
+                size={"2"}
+                weight={"regular"}
+                align={"left"}
+                highContrast={false}
+              >
+                {formattedDate}
+              </Text>
+            </SegmentWrapperSC>
+          </>
+        )}
+
+        <IconWrapperSC>
+          <DownloadFile fileName={name} fileDbId={fileDbId} />
+          {!isGuest && (
+            <>
+              <DeleteFile fileDbId={fileDbId} />
+            </>
+          )}
+        </IconWrapperSC>
+      </ItemWrapperSC>
+    </WrapperSC>
   );
 };
 
-const { IconWrapperSC, ItemWrapperSC, SegmentWrapperSC } = FileItemStyle();
+const {
+  WrapperSC,
+  TextWrapperSC,
+  IconWrapperSC,
+  ItemWrapperSC,
+  SegmentWrapperSC,
+} = FileItemStyle();

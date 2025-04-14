@@ -51,6 +51,7 @@ export const SubscriptionManagement = () => {
   };
 
   const confirmBack = () => {
+    setMonth(1);
     setStep("select");
   };
 

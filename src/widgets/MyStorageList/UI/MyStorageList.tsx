@@ -1,4 +1,3 @@
-import { Heading } from "@radix-ui/themes";
 import { MyStorageListStyle } from "./MyStorageListStyle.ts";
 import { FolderList } from "src/features/FolderList/publicApi.ts";
 import { BreadCrumbs } from "src/features/BreadCrumbs/UI/BreadCrumbs.tsx";
@@ -8,15 +7,25 @@ export const MyStorageList = () => {
   return (
     <>
       <BreadCrumbs />
-      <HeaderSC>
-        <Heading size="6" weight={"medium"} align={"left"}>
-          Мои хранилища
-        </Heading>
-        <CreateFolder />
-      </HeaderSC>
-      <FolderList />
+      <WrapperSC>
+        <HeaderSC>
+          <HeadingSC
+            size={{
+              initial: "5",
+              md: "6",
+              xl: "6",
+            }}
+            weight={"medium"}
+            align={"left"}
+          >
+            Мои хранилища
+          </HeadingSC>
+          <CreateFolder />
+        </HeaderSC>
+        <FolderList />
+      </WrapperSC>
     </>
   );
 };
 
-const { HeaderSC } = MyStorageListStyle();
+const { HeadingSC, HeaderSC, WrapperSC } = MyStorageListStyle();

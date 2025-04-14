@@ -152,7 +152,7 @@ export const SubAccountItem: FC<ISubAccountItemProps> = ({
                   required: "Заполните все обязательные поля",
                   maxLength: { value: 250, message: "Логин слишком длинный" },
                 })}
-                placeholder="Введите логин"
+                placeholder="Введите пароль"
               >
                 <TextField.Slot side="right">
                   {isChange || isCreate ? (

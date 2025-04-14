@@ -1,3 +1,5 @@
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
 
 const ItemWrapperSC = styled("div")`
@@ -5,12 +7,27 @@ const ItemWrapperSC = styled("div")`
   /* justify-content: space-between; */
   align-items: center;
   height: 72px;
-  width: 100%;
+  /* width: 100%; */
   padding: var(--space-3);
   align-items: center;
   align-self: stretch;
   border-bottom: 1px solid var(--gray-a6);
   background: white;
+  ${mediaMaxQuery(MOBILE)} {
+    padding: 0 15px;
+    justify-content: space-between;
+  }
+`;
+
+const WrapperSC = styled("div")`
+  ${mediaMaxQuery(MOBILE)} {
+    /* padding: 0 29px 0 16px; */
+  }
+`;
+
+const TextWrapperSC = styled("div")`
+  display: flex;
+  flex-direction: column;
 `;
 
 const SegmentWrapperSC = styled("div")`
@@ -23,13 +40,17 @@ const SegmentWrapperSC = styled("div")`
 `;
 
 const IconWrapperSC = styled("div")`
-  max-width: 10%;
-  justify-content: space-around;
-  width: 100%;
   display: flex;
+  width: 72px;
+  justify-content: space-between;
+  ${mediaMaxQuery(MOBILE)} {
+    /* max-width: 25%; */
+  }
 `;
 
 export const FileItemStyle = () => ({
+  WrapperSC,
+  TextWrapperSC,
   IconWrapperSC,
   ItemWrapperSC,
   SegmentWrapperSC,

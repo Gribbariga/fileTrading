@@ -1,11 +1,33 @@
 import { SegmentedControl } from "@radix-ui/themes";
 import { IconButtonUI } from "src/shared/IconButtonUI/IconButtonUI";
+import { Text } from "@radix-ui/themes";
+import { mediaMaxQuery } from "src/shared/lib/helper/mediaMaxQuery/mediaMaxQuery";
+import { MOBILE } from "src/shared/constant/screenSize";
 import styled from "styled-components";
+
 
 const WrapperSC = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
+`;
+
+const TextWrapperSC = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--Spacing-1, 4px);
+  margin-top: 58px;
+  ${mediaMaxQuery(MOBILE)}{
+    padding: 25px 16px 0;
+    margin-top: 0;
+  }
+`;
+
+const TextSC = styled(Text)`
+  color: rgba(0, 0, 0, 0.61);
+  text-align: center;
 `;
 
 const SegmentControlRootSC = styled(SegmentedControl.Root)`
@@ -13,6 +35,10 @@ const SegmentControlRootSC = styled(SegmentedControl.Root)`
   max-width: 395px;
   width: 100%;
   height: 40px;
+  ${mediaMaxQuery(MOBILE)}{
+    max-width: 330px;
+    width: 100%;
+  }
 `;
 
 const SegmentControlItemSC = styled(SegmentedControl.Item)`
@@ -28,14 +54,39 @@ const Test = styled(SegmentControlItemSC)`
   width: 208px;
 `;
 
-const TariffListSC = styled("div")`
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
-  align-items: start;
+const FlexWrapperSC = styled("div")` 
+  width: 100%; 
+  display: flex; 
+  justify-content: center; 
+  overflow: visible; 
+`; 
+ 
+const TariffListSC = styled("div")` 
+  max-width: 979px; 
+  width: 100%; 
+  overflow: visible; 
+`; 
+ 
+const TariffListWrapperSC = styled("div")` 
+  display: flex; 
+  gap: 10px; 
+  &::-webkit-scrollbar { 
+    width: 0px; /* ширина scrollbar */ 
+  } 
+  &::-webkit-scrollbar-track { 
+    background: #fff; /* цвет дорожки */ 
+  } 
+  &::-webkit-scrollbar-thumb { 
+    background: #fff; /* цвет плашки */ 
+    border-radius: 20px; /* закругления плашки */ 
+    border: 0cap solid orange; /* padding вокруг плашки */ 
+  } 
+  ${mediaMaxQuery(MOBILE)} { 
+    overflow-x: ${"ontouchstart" in window ? "scroll" : "visible"}; 
+  } 
 `;
 
-const SelectTariffWrapperSC = styled("div")`
+const SelectTariffWrapperSC = styled("div")<{ $transformXValue: number}>`
   position: relative;
   max-width: 927px;
   max-height: 690px;
@@ -51,6 +102,25 @@ const SelectTariffWrapperSC = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  transform: ${({ $transformXValue }) =>
+    `translateX(${$transformXValue * -1}px)`};
+    width: 100%;
+
+  &::-webkit-scrollbar {
+    width: 0px; /* ширина scrollbar */
+  }
+  &::-webkit-scrollbar-track {
+    background: #fff; /* цвет дорожки */
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #fff; /* цвет плашки */
+    border-radius: 20px; /* закругления плашки */
+    border: 0cap solid orange; /* padding вокруг плашки */
+  }
+  ${mediaMaxQuery(MOBILE)} {
+    overflow-x: ${"ontouchstart" in window ? "scroll" : "visible"};
+  }
 `;
 
 const IconButtonSC = styled(IconButtonUI)`
@@ -67,10 +137,14 @@ const SwitchWrapper = styled("div")`
 
 export const SelectStyle = () => ({
   Test,
+  TextSC,
   WrapperSC,
   TariffListSC,
   IconButtonSC,
   SwitchWrapper,
+  TextWrapperSC,
+  FlexWrapperSC,
+  TariffListWrapperSC,
   SegmentControlRootSC,
   SegmentControlItemSC,
   SelectTariffWrapperSC,
