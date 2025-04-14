@@ -42,22 +42,22 @@ axiosBase.interceptors.response.use((config) => {
 }, JwtExpired);
 export const axiosBaseAccount = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/account",
+  baseURL: "https://filesharing-dev.ru/api/account",
   withCredentials: true,
 });
 export const axiosBaseStorage = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/storage",
+  baseURL: "https://filesharing-dev.ru/api/storage",
   withCredentials: true,
 });
 export const axiosBaseSubscription = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/subscription",
+  baseURL: "https://filesharing-dev.ru/api/subscription",
   withCredentials: true,
 });
 export const axiosBasePayment = axios.create({
   ...axiosBase.defaults,
-  baseURL: "/api/payment",
+  baseURL: "https://filesharing-dev.ru/api/payment",
   withCredentials: true,
 });
 
